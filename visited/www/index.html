@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>MyWorldMap</title>
+        <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/jquery-jvectormap-2.0.3.min.js"></script>
+        <script src="js/jquery-jvectormap-world-mill.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+        <div id="world-map" style="width: 100%; height:250px"></div>
+        <div data-demo-html="true" id="countryList" style="padding:5px">
+  				<ul data-role="listview" data-filter="true" data-filter-placeholder="Search countries..." data-inset="true">
+  				</ul>
+			  </div><!--/demo-html -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script>
+        $(function(){
+          var visitedCountries = [];
+          $('#world-map').vectorMap({
+            map: 'world_mill',
+            backgroundColor: '#383f47',
+            regionsSelectable: true,
+            regionStyle: {
+              selected: {
+                fill: '#B8E186'
+              }
+            },
+            onRegionClick: function(e, code){
+              if(visitedCountries.includes(code)){
+                $("#" + code).remove();
+	              visitedCountries.splice(visitedCountries.indexOf(code), 1);
+              }
+              else{
+                $("#countryList ul").append('<li id="' + code + '"> <a href="#">' + map.getRegionName(code) + '</a></li>').listview('refresh');
+                visitedCountries.push(code);
+              }
+              window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
+            }
+          });
+
+          var map = $('#world-map').vectorMap('get', 'mapObject');
+          map.setSelectedRegions(JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' ) );
+
+          if (localStorage.getItem("visitedCountries") !== null) {
+            visitedCountries = JSON.parse(window.localStorage.getItem('visitedCountries'));
+          }
+
+          for (i in visitedCountries) {
+            var code = visitedCountries[i];
+            $("#countryList ul").append('<li id="' + code + '"> <a href="#">' + map.getRegionName(code) + '</a></li>').listview('refresh');
+          }
+        });
+        </script>
+    </body>
+</html>
