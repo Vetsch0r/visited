@@ -2,11 +2,14 @@
 <widget id="ch.vetsch.visited" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>visited</name>
     <description>
-        A blank PhoneGap app.
+        visited - An app to mark all the visisted countries
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="tvetsch@gmail.com" href="https://github.com/Vetsch0r">
+        Thomas Vetsch
     </author>
+    <icon src="icon.png" />
     <content src="index.html" />
     <access origin="*" />
+    <engine name="ios" spec="~4.3.1" />
+    <engine name="android" spec="~6.0.0" />
 </widget>

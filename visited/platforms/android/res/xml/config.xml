@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ch.vetsch.visited" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>visited</name>
+    <description>
+        visited - An app to mark all the visisted countries
+    </description>
+    <author email="tvetsch@gmail.com" href="https://github.com/Vetsch0r">
+        Thomas Vetsch
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>
