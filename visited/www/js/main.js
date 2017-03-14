@@ -63,24 +63,31 @@ function getContinentId(code){
 }
 
 function addCountryToList(code){
+  var europeMap = $('#europeMap').vectorMap('get', 'mapObject');
+  var asiaMap = $('#asiaMap').vectorMap('get', 'mapObject');
+  var africaMap = $('#africaMap').vectorMap('get', 'mapObject');
+  var northAmericaMap = $('#namericaMap').vectorMap('get', 'mapObject');
+  var southAmericaMap = $('#samericaMap').vectorMap('get', 'mapObject');
+  var australiaMap = $('#australiaMap').vectorMap('get', 'mapObject');
+
   var regionName = '';
   if(EUROPE_COUNTRIES.includes(code)){
-    regionName = $('#europeMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName = europeMap.getRegionName(code);
   }
   if(ASIA_COUNTRIES.includes(code)){
-    regionName = $('#asiaMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName = asiaMap.getRegionName(code);
   }
   if(AFRICA_COUNTRIES.includes(code)){
-    regionName = $('#africaMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName =  africaMap.getRegionName(code);
   }
   if(NAMERICA_COUNTRIES.includes(code)){
-    regionName = $('#namericaMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName = northAmericaMap.getRegionName(code);
   }
   if(SAMERICA_COUNTRIES.includes(code)){
-    regionName = $('#samericaMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName = southAmericaMap.getRegionName(code);
   }
   if(AUSTRALIA_COUNTRIES.includes(code)){
-    regionName = $('#australiaMap').vectorMap('get', 'mapObject').getRegionName(code);
+    regionName = australiaMap.getRegionName(code);
   }
   var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
   $('<li id="' + code + '">' + imgsrc +  regionName + '</li>').insertAfter("#" + getContinentId(code));
@@ -92,6 +99,9 @@ function loadMap(mapName){
   $('#map').empty();
   $('#map').vectorMap({
     map: mapName,
+    regionLabelStyle: {
+      initial: {},
+    },
     backgroundColor: '#383f47',
     zoomMax: 40,
     regionsSelectable: true,
@@ -164,6 +174,7 @@ function getMapName(code){
     case 'NA': return NAMERICA_MAP;
     case 'SA': return SAMERICA_MAP;
   }
+  return CONTINENTS_MAP;
 }
 
 $(function() {
