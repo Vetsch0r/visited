@@ -107,15 +107,14 @@ function loadMap(mapName){
           visitedCountries.splice(visitedCountries.indexOf(code), 1);
         }
         else{
-          addCountryToList(code, map);
+          addCountryToList(code);
           visitedCountries.push(code);
-          visitedCountries.sort();
         }
         window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
         updateBubbles();
       }
       else{
-        loadMap(getMapName(code));
+        window.location.hash = code;
       }
     }
   });
@@ -128,7 +127,6 @@ function loadMap(mapName){
 
   if (localStorage.getItem("visitedCountries") !== null) {
     visitedCountries = JSON.parse(window.localStorage.getItem('visitedCountries'));
-    visitedCountries.sort();
   }
 }
 
@@ -169,6 +167,16 @@ function getMapName(code){
 }
 
 $(function() {
+  $(window).bind('hashchange', function() {
+    if(window.location.hash) {
+      var continentCode = window.location.hash.substring(1);
+      loadMap(getMapName(continentCode));
+    }
+    else{
+      loadMap(CONTINENTS_MAP);
+    }
+  });
+
   $('#europeMap').vectorMap({map: EUROPE_MAP});
   $('#asiaMap').vectorMap({map: ASIA_MAP});
   $('#africaMap').vectorMap({map: AFRICA_MAP});
@@ -176,25 +184,23 @@ $(function() {
   $('#samericaMap').vectorMap({map: SAMERICA_MAP});
   $('#australiaMap').vectorMap({map: AUSTRALIA_MAP});
 
-  loadMap('continents_mill');
+  loadMap(CONTINENTS_MAP);
   visitedCountries.forEach(function(code){
-    addCountryToList(code,map);
+    addCountryToList(code);
   });
   updateBubbles();
 });
 
-function getTotalCountries(continentId){
-  switch(continentId){
-    case EUROPE_ID: return EUROPE_COUNTRIES.length;
-    case ASIA_ID: return ASIA_COUNTRIES.length;
-    case AUSTRALIA_ID: return AUSTRALIA_COUNTRIES.length;
-    case NAMERICA_ID: return NAMERICA_COUNTRIES.length;
-    case SAMERICA_ID: return SAMERICA_COUNTRIES.length;
-    case AFRICA_ID: return AFRICA_COUNTRIES.length;
-  }
+function updateBubbles(){
+  $('#europeBubble').text(getBubbleText(EUROPE_ID));
+  $('#asiaBubble').text(getBubbleText(ASIA_ID));
+  $('#australiaBubble').text(getBubbleText(AUSTRALIA_ID));
+  $('#namericaBubble').text(getBubbleText(NAMERICA_ID));
+  $('#samericaBubble').text(getBubbleText(SAMERICA_ID));
+  $('#africaBubble').text(getBubbleText(AFRICA_ID));
 }
 
-function getContinentText(continentId){
+function getBubbleText(continentId){
   var count = 0;
   var total = getTotalCountries(continentId);
 
@@ -211,11 +217,13 @@ function getContinentText(continentId){
   return count + '/' + total;
 }
 
-function updateBubbles(){
-  $('#europeBubble').text(getContinentText(EUROPE_ID));
-  $('#asiaBubble').text(getContinentText(ASIA_ID));
-  $('#australiaBubble').text(getContinentText(AUSTRALIA_ID));
-  $('#namericaBubble').text(getContinentText(NAMERICA_ID));
-  $('#samericaBubble').text(getContinentText(SAMERICA_ID));
-  $('#africaBubble').text(getContinentText(AFRICA_ID));
+function getTotalCountries(continentId){
+  switch(continentId){
+    case EUROPE_ID: return EUROPE_COUNTRIES.length;
+    case ASIA_ID: return ASIA_COUNTRIES.length;
+    case AUSTRALIA_ID: return AUSTRALIA_COUNTRIES.length;
+    case NAMERICA_ID: return NAMERICA_COUNTRIES.length;
+    case SAMERICA_ID: return SAMERICA_COUNTRIES.length;
+    case AFRICA_ID: return AFRICA_COUNTRIES.length;
+  }
 }
