@@ -31,6 +31,13 @@ const AUSTRALIA_ID = 'australia';
 const AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
+const CONTINENTS_MAP = 'continents_mill';
+const EUROPE_MAP = 'europe_mill';
+const ASIA_MAP = 'asia_mill';
+const AFRICA_MAP = 'africa_mill';
+const SAMERICA_MAP = 'south_america_mill';
+const NAMERICA_MAP = 'north_america_mill';
+const AUSTRALIA_MAP = 'oceania_mill';
 
 var visitedCountries = [];
 
@@ -55,17 +62,38 @@ function getContinentId(code){
   }
 }
 
-function addCountryToList(code, map){
-  var regionName = $('#map').vectorMap('get', 'mapObject').getRegionName(code);
+function addCountryToList(code){
+  var regionName = '';
+  if(EUROPE_COUNTRIES.includes(code)){
+    regionName = $('#europeMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
+  if(ASIA_COUNTRIES.includes(code)){
+    regionName = $('#asiaMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
+  if(AFRICA_COUNTRIES.includes(code)){
+    regionName = $('#africaMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
+  if(NAMERICA_COUNTRIES.includes(code)){
+    regionName = $('#namericaMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
+  if(SAMERICA_COUNTRIES.includes(code)){
+    regionName = $('#samericaMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
+  if(AUSTRALIA_COUNTRIES.includes(code)){
+    regionName = $('#australiaMap').vectorMap('get', 'mapObject').getRegionName(code);
+  }
   var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
   $('<li id="' + code + '">' + imgsrc +  regionName + '</li>').insertAfter("#" + getContinentId(code));
   $("#countries").listview('refresh');
 }
 
-function loadMap(continent){
+function loadMap(mapName){
+  var selectable = mapName !== CONTINENTS_MAP;
+  $('#map').empty();
   $('#map').vectorMap({
-    map: 'world_mill',
+    map: mapName,
     backgroundColor: '#383f47',
+    zoomMax: 40,
     regionsSelectable: true,
     regionStyle: {
       selected: {
@@ -73,22 +101,30 @@ function loadMap(continent){
       }
     },
     onRegionClick: function(e, code){
-      if(visitedCountries.includes(code)){
-        $("#" + code).remove();
-        visitedCountries.splice(visitedCountries.indexOf(code), 1);
+      if(mapName !== CONTINENTS_MAP){
+        if(visitedCountries.includes(code)){
+          $("#" + code).remove();
+          visitedCountries.splice(visitedCountries.indexOf(code), 1);
+        }
+        else{
+          addCountryToList(code, map);
+          visitedCountries.push(code);
+          visitedCountries.sort();
+        }
+        window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
+        updateBubbles();
       }
       else{
-        addCountryToList(code, map);
-        visitedCountries.push(code);
-        visitedCountries.sort();
+        loadMap(getMapName(code));
       }
-      window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
-      updateBubbles();
     }
   });
 
-  var map = $('#map').vectorMap('get', 'mapObject');
-  map.setSelectedRegions(JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' ) );
+  if(mapName !== CONTINENTS_MAP){
+    var map = $('#map').vectorMap('get', 'mapObject');
+    var allSelectedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
+    map.setSelectedRegions(filterContinentCountries(allSelectedCountries, mapName));
+  }
 
   if (localStorage.getItem("visitedCountries") !== null) {
     visitedCountries = JSON.parse(window.localStorage.getItem('visitedCountries'));
@@ -96,14 +132,54 @@ function loadMap(continent){
   }
 }
 
-$(function() {
-  loadMap('world');
+function filterContinentCountries(selectedRegions, mapName){
+  filteredCountries = [];
+  selectedRegions.forEach(function(code){
+    if(mapName === EUROPE_MAP && EUROPE_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+    if(mapName === ASIA_MAP && ASIA_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+    if(mapName === AFRICA_MAP && AFRICA_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+    if(mapName === AUSTRALIA_MAP && AUSTRALIA_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+    if(mapName === NAMERICA_MAP && NAMERICA_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+    if(mapName === SAMERICA_MAP && SAMERICA_COUNTRIES.includes(code)){
+      filteredCountries.push(code);
+    }
+  });
+  return filteredCountries;
+}
 
-  for (i in visitedCountries) {
-    var code = visitedCountries[i];
-    addCountryToList(visitedCountries[i], map);
+function getMapName(code){
+  switch(code){
+    case 'EU': return EUROPE_MAP;
+    case 'AS': return ASIA_MAP;
+    case 'AF': return AFRICA_MAP;
+    case 'OC': return AUSTRALIA_MAP;
+    case 'NA': return NAMERICA_MAP;
+    case 'SA': return SAMERICA_MAP;
   }
+}
 
+$(function() {
+  $('#europeMap').vectorMap({map: EUROPE_MAP});
+  $('#asiaMap').vectorMap({map: ASIA_MAP});
+  $('#africaMap').vectorMap({map: AFRICA_MAP});
+  $('#namericaMap').vectorMap({map: NAMERICA_MAP});
+  $('#samericaMap').vectorMap({map: SAMERICA_MAP});
+  $('#australiaMap').vectorMap({map: AUSTRALIA_MAP});
+
+  loadMap('continents_mill');
+  visitedCountries.forEach(function(code){
+    addCountryToList(code,map);
+  });
   updateBubbles();
 });
 
