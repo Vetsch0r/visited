@@ -39,8 +39,6 @@ const SAMERICA_MAP = 'south_america_mill';
 const NAMERICA_MAP = 'north_america_mill';
 const AUSTRALIA_MAP = 'oceania_mill';
 
-var visitedCountries = [];
-
 function getContinentId(code){
   if(EUROPE_COUNTRIES.includes(code)){
    return EUROPE_ID;
@@ -62,40 +60,19 @@ function getContinentId(code){
   }
 }
 
-function addCountryToList(code){
-  var europeMap = $('#europeMap').vectorMap('get', 'mapObject');
-  var asiaMap = $('#asiaMap').vectorMap('get', 'mapObject');
-  var africaMap = $('#africaMap').vectorMap('get', 'mapObject');
-  var northAmericaMap = $('#namericaMap').vectorMap('get', 'mapObject');
-  var southAmericaMap = $('#samericaMap').vectorMap('get', 'mapObject');
-  var australiaMap = $('#australiaMap').vectorMap('get', 'mapObject');
-
-  var regionName = '';
-  if(EUROPE_COUNTRIES.includes(code)){
-    regionName = europeMap.getRegionName(code);
-  }
-  if(ASIA_COUNTRIES.includes(code)){
-    regionName = asiaMap.getRegionName(code);
-  }
-  if(AFRICA_COUNTRIES.includes(code)){
-    regionName =  africaMap.getRegionName(code);
-  }
-  if(NAMERICA_COUNTRIES.includes(code)){
-    regionName = northAmericaMap.getRegionName(code);
-  }
-  if(SAMERICA_COUNTRIES.includes(code)){
-    regionName = southAmericaMap.getRegionName(code);
-  }
-  if(AUSTRALIA_COUNTRIES.includes(code)){
-    regionName = australiaMap.getRegionName(code);
-  }
+function addCountryToList(country){
+  var code = country['key'];
+  var regionName = country['value'];
   var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
   $('<li id="' + code + '">' + imgsrc +  regionName + '</li>').insertAfter("#" + getContinentId(code));
   $("#countries").listview('refresh');
 }
 
-function loadMap(mapName){
+function loadMap(mapName, model){
   var selectable = mapName !== CONTINENTS_MAP;
+  var selectColor = '#B8E186';
+  var visitedCountries = model.getVisistedCountries();
+
   $('#map').empty();
   $('#map').vectorMap({
     map: mapName,
@@ -107,21 +84,22 @@ function loadMap(mapName){
     regionsSelectable: true,
     regionStyle: {
       selected: {
-        fill: '#B8E186'
+        fill: selectable ? selectColor : '#000000'
       }
     },
     onRegionClick: function(e, code){
       if(mapName !== CONTINENTS_MAP){
-        if(visitedCountries.includes(code)){
-          $("#" + code).remove();
-          visitedCountries.splice(visitedCountries.indexOf(code), 1);
+        if(visitedCountries.hasOwnProperty(code)){
+          model.unselectCountry(code);
+          $("#" + code).remove
         }
         else{
-          addCountryToList(code);
-          visitedCountries.push(code);
+          var map = $('#map').vectorMap('get', 'mapObject');
+          var country = model.addCountry(code, map.getRegionName(code))
+          addCountryToList(country);
         }
         window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
-        updateBubbles();
+        updateBubbles(model);
       }
       else{
         window.location.hash = code;
@@ -129,36 +107,28 @@ function loadMap(mapName){
     }
   });
 
+  visitedCountries.sort(function(countryA, countryB){
+    return countryB['value'].localeCompare(countryA['value']);
+  });
+
   if(mapName !== CONTINENTS_MAP){
     var map = $('#map').vectorMap('get', 'mapObject');
     var allSelectedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
     map.setSelectedRegions(filterContinentCountries(allSelectedCountries, mapName));
   }
-
-  if (localStorage.getItem("visitedCountries") !== null) {
-    visitedCountries = JSON.parse(window.localStorage.getItem('visitedCountries'));
-  }
 }
 
 function filterContinentCountries(selectedRegions, mapName){
   filteredCountries = [];
-  selectedRegions.forEach(function(code){
-    if(mapName === EUROPE_MAP && EUROPE_COUNTRIES.includes(code)){
-      filteredCountries.push(code);
-    }
-    if(mapName === ASIA_MAP && ASIA_COUNTRIES.includes(code)){
-      filteredCountries.push(code);
-    }
-    if(mapName === AFRICA_MAP && AFRICA_COUNTRIES.includes(code)){
-      filteredCountries.push(code);
-    }
-    if(mapName === AUSTRALIA_MAP && AUSTRALIA_COUNTRIES.includes(code)){
-      filteredCountries.push(code);
-    }
-    if(mapName === NAMERICA_MAP && NAMERICA_COUNTRIES.includes(code)){
-      filteredCountries.push(code);
-    }
-    if(mapName === SAMERICA_MAP && SAMERICA_COUNTRIES.includes(code)){
+
+  selectedRegions.forEach(function(country){
+    var code = country['key'];
+    if((mapName === EUROPE_MAP && EUROPE_COUNTRIES.includes(code)) ||
+        (mapName === ASIA_MAP && ASIA_COUNTRIES.includes(code)) ||
+        (mapName === AFRICA_MAP && AFRICA_COUNTRIES.includes(code)) ||
+        (mapName === AUSTRALIA_MAP && AUSTRALIA_COUNTRIES.includes(code)) ||
+        (mapName === NAMERICA_MAP && NAMERICA_COUNTRIES.includes(code)) ||
+        (mapName === SAMERICA_MAP && SAMERICA_COUNTRIES.includes(code))){
       filteredCountries.push(code);
     }
   });
@@ -178,44 +148,42 @@ function getMapName(code){
 }
 
 $(function() {
+  var model = new ApplicationModel();;
+
+  loadMap(CONTINENTS_MAP, model);
+
+  model.getVisistedCountries().forEach(function(country){
+    addCountryToList(country);
+  });
+
+  updateBubbles(model);
+
   $(window).bind('hashchange', function() {
     if(window.location.hash) {
       var continentCode = window.location.hash.substring(1);
-      loadMap(getMapName(continentCode));
+      loadMap(getMapName(continentCode), model);
     }
     else{
-      loadMap(CONTINENTS_MAP);
+      loadMap(CONTINENTS_MAP, model);
     }
   });
-
-  $('#europeMap').vectorMap({map: EUROPE_MAP});
-  $('#asiaMap').vectorMap({map: ASIA_MAP});
-  $('#africaMap').vectorMap({map: AFRICA_MAP});
-  $('#namericaMap').vectorMap({map: NAMERICA_MAP});
-  $('#samericaMap').vectorMap({map: SAMERICA_MAP});
-  $('#australiaMap').vectorMap({map: AUSTRALIA_MAP});
-
-  loadMap(CONTINENTS_MAP);
-  visitedCountries.forEach(function(code){
-    addCountryToList(code);
-  });
-  updateBubbles();
 });
 
-function updateBubbles(){
-  $('#europeBubble').text(getBubbleText(EUROPE_ID));
-  $('#asiaBubble').text(getBubbleText(ASIA_ID));
-  $('#australiaBubble').text(getBubbleText(AUSTRALIA_ID));
-  $('#namericaBubble').text(getBubbleText(NAMERICA_ID));
-  $('#samericaBubble').text(getBubbleText(SAMERICA_ID));
-  $('#africaBubble').text(getBubbleText(AFRICA_ID));
+function updateBubbles(model){
+  $('#europeBubble').text(getBubbleText(EUROPE_ID, model));
+  $('#asiaBubble').text(getBubbleText(ASIA_ID, model));
+  $('#australiaBubble').text(getBubbleText(AUSTRALIA_ID, model));
+  $('#namericaBubble').text(getBubbleText(NAMERICA_ID, model));
+  $('#samericaBubble').text(getBubbleText(SAMERICA_ID, model));
+  $('#africaBubble').text(getBubbleText(AFRICA_ID, model));
 }
 
-function getBubbleText(continentId){
+function getBubbleText(continentId, model){
   var count = 0;
   var total = getTotalCountries(continentId);
 
-  visitedCountries.forEach(function(code){
+  model.getVisistedCountries().forEach(function(country){
+    var code = country['key'];
     if(continentId === EUROPE_ID && EUROPE_COUNTRIES.includes(code) ||
       continentId === ASIA_ID && ASIA_COUNTRIES.includes(code) ||
       continentId === AUSTRALIA_ID && AUSTRALIA_COUNTRIES.includes(code) ||
