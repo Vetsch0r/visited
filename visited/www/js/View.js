@@ -5,28 +5,79 @@ var View = function (model) {
 
 View.prototype = {
 
-  init: function(){
+  init: function(isVisited){
     var model = this.model;
-    this.load();
-    model.getVisitedCountries().forEach(function(country){
-      addCountryToList(country);
-    });
-
-    updateBubbles(model);
+    this.load(isVisited);
+    if(isVisited){
+      model.getVisitedCountries().forEach(function(country){
+        addCountryToVisitedList(country);
+      });
+      updateBubbles(model);
+    }
+    else{
+    }
   },
 
-  load: function(){
-    $('#map').empty();
-    $('#map').vectorMap(this.getMapParams());
-    var model = this.model;
+  changeSite: function(site) {
+    window.location=site;
+  },
 
+  load: function(isVisited){
+    $('#map').empty();
+    $('#map').vectorMap(this.getMapParamsVisited());
+
+    var model = this.model;
     if(model.getMapName() !== CONTINENTS_MAP){
       var map = $('#map').vectorMap('get', 'mapObject');
       map.setSelectedRegions(model.getFilteredCountriesByMap());
     }
   },
 
-  getMapParams: function(){
+  getMapParamsWanted: function(){
+    var model = this.model;
+    var selectable = model.getMapName() !== CONTINENTS_MAP;
+    var selectColor = selectable ? '#CCCCCC' : '#FFFFFF';
+    return {
+      map: model.getMapName(),
+      regionLabelStyle: {
+        initial: {'display': 'none'},
+      },
+      backgroundColor: '#383f47',
+      zoomMax: 40,
+      regionsSelectable: true,
+      regionStyle: {
+        selected: {
+          fill: selectColor,
+        }
+      },
+      onRegionClick: function(e, code){
+        var wantedCountries = model.getWantedCountries();
+        if(model.getMapName() !== CONTINENTS_MAP){
+          var alreadySelected = false;
+          wantedCountries.forEach(function(country){
+            if(country['key'] === code){
+              alreadySelected = true;
+            }
+          });
+          alert(alreadySelected)
+          if(alreadySelected){
+            $("#" + code).remove();
+            model.unselectWantedCountry(code);
+          }
+          else{
+            var map = $('#map').vectorMap('get', 'mapObject');
+            var country = model.addWantedCountry(code, map.getRegionName(code));
+            addCountryToWantedList(country);
+          }
+        }
+        else{
+          window.location.hash = code;
+        }
+      }
+    };
+  },
+
+  getMapParamsVisited: function(){
     var model = this.model;
     var selectable = model.getMapName() !== CONTINENTS_MAP;
     var selectColor = selectable ? '#B8E186' : '#FFFFFF';
@@ -54,17 +105,17 @@ View.prototype = {
           });
           if(alreadySelected){
             $("#" + code).remove();
-            model.unselectCountry(code);
+            model.unselectVisitedCountry(code);
           }
           else{
             var map = $('#map').vectorMap('get', 'mapObject');
-            var country = model.addCountry(code, map.getRegionName(code));
+            var country = model.addVisitedCountry(code, map.getRegionName(code));
             var keys = model.getVisitedCountriesOfContinent(country['continent']);
             var index = keys.indexOf(country['key']);
             if(keys.length > 1 && index != 0){
-              addCountryToList(country, keys[index-1]);
+              addCountryToVisitedList(country, keys[index-1]);
             }else {
-              addCountryToList(country);
+              addCountryToVisitedList(country);
             }
           }
           updateBubbles(model);
@@ -77,15 +128,22 @@ View.prototype = {
   },
 }
 
-
-
-function addCountryToList(country, indexCode){
+function addCountryToVisitedList(country, indexCode){
   var code = country['key'];
   var afterId = indexCode === undefined ? country['continent'] : indexCode;
   var regionName = country['value'];
   var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
+  var link = '<a href="#"</a>';
   $('<li id="' + code + '">' + imgsrc +  regionName + '</li>').insertAfter("#" + afterId);
-  $("#countries").listview('refresh');
+  $("#visitedCountries").listview('refresh');
+}
+
+function addCountryToWantedList(country){
+  var code = country['key'];
+  var regionName = country['value'];
+  var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
+  $('<li id="' + code + '">' + imgsrc +  regionName + '</li>').insert("#wantedCountries");
+  $("#wantedCountries").listview('refresh');
 }
 
 function updateBubbles(model){

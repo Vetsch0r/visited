@@ -13,5 +13,11 @@ Controller.prototype = {
       model.changeMap();
       view.load();
     });
+    $("#visistedLink").click(function(e){
+      view.changeSite("index.html");
+    });
+    $("#wantedLink").click(function(e){
+      view.changeSite("wanted.html");
+    });
   },
 }

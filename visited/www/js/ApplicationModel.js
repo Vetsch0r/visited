@@ -41,6 +41,7 @@ const AUSTRALIA_COUNTRIES = [
 
 var ApplicationModel = function () {
   this.visitedCountries = [];
+  this.wantedCountries = [];
   this.mapName = CONTINENTS_MAP;
   this.init();
 };
@@ -49,9 +50,10 @@ ApplicationModel.prototype = {
 
   init: function (){
     this.visitedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
+    this.wantedCountries = JSON.parse( window.localStorage.getItem('wantedCountries') || '[]' );
   },
 
-  addCountry: function (code, regionName) {
+  addVisitedCountry: function (code, regionName) {
     var obj = {
       key: code,
       value: regionName,
@@ -59,6 +61,17 @@ ApplicationModel.prototype = {
     };
     this.visitedCountries.push(obj);
     window.localStorage.setItem('visitedCountries', JSON.stringify(this.visitedCountries));
+    return obj;
+  },
+
+  addWantedCountry: function (code, regionName) {
+    var obj = {
+      key: code,
+      value: regionName,
+      continent: getContinentId(code)
+    };
+    this.wantedCountries.push(obj);
+    window.localStorage.setItem('wantedCountries', JSON.stringify(this.wantedCountries));
     return obj;
   },
 
@@ -98,6 +111,10 @@ ApplicationModel.prototype = {
     });
   },
 
+  getWantedCountries: function(){
+    return this.wantedCountries;
+  },
+
   getVisitedCountriesOfContinent: function (continentId) {
     var visitedCountriesOfContinent = [];
     this.getVisitedCountries().forEach(function(country){
@@ -108,13 +125,22 @@ ApplicationModel.prototype = {
     return visitedCountriesOfContinent.reverse();
   },
 
-  unselectCountry: function (code) {
+  unselectVisitedCountry: function (code) {
     for(i in this.visitedCountries){
       if(this.visitedCountries[i]['key'] === code){
         this.visitedCountries.splice(i, 1);
       }
     }
     window.localStorage.setItem('visitedCountries', JSON.stringify(this.visitedCountries));
+  },
+
+  unselecWantedCountry: function (code) {
+    for(i in this.wantedCountries){
+      if(this.wantedCountries[i]['key'] === code){
+        this.wantedCountries.splice(i, 1);
+      }
+    }
+    window.localStorage.setItem('wantedCountries', JSON.stringify(this.wantedCountries));
   },
 
   getBubbleText: function (continentId){

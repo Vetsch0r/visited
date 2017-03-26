@@ -18,41 +18,18 @@
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
-        <div id="map"></div>
-        <div id="content">
-          <div data-role="navbar" id="navigation">
-            <ul>
-              <li><a href="#" class="ui-btn-active" id="visistedLink">visited</a></li>
-              <li><a href="#" id="wantedLink">wanted</a></li>
-            </ul>
-          </div>
-          <ul data-role="listview" id="visitedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
-            <li data-role="list-divider" id="africa">
-              <span class="ui-li-count" id="africaBubble">0</span>
-              <span>Africa</span>
-            </li>
-            <li data-role="list-divider" id="asia">
-              <span class="ui-li-count" id="asiaBubble">0</span>
-              <span>Asia</span>
-            </li>
-            <li data-role="list-divider" id="australia">
-              <span class="ui-li-count" id="australiaBubble">0</span>
-              <span>Australia</span>
-            </li>
-            <li data-role="list-divider" id="europe">
-              <span class="ui-li-count" id="europeBubble">0</span>
-              <span>Europe</span>
-            </li>
-            <li data-role="list-divider" id="namerica">
-              <span class="ui-li-count" id="namericaBubble">0</span>
-              <span>North America</span>
-            </li>
-            <li data-role="list-divider" id="samerica">
-              <span class="ui-li-count" id="samericaBubble">0</span>
-              <span>South America</span>
-            </li>
+      <div id="wantedMap"></div>
+      <div id="content">
+        <div data-role="navbar" id="navigation">
+          <ul>
+            <li><a href="#visited" id="visistedLink">visited</a></li>
+            <li><a href="#wanted" id="wantedLink" class="ui-btn-active">wanted</a></li>
           </ul>
         </div>
+        <ol data-role="listview" id="wantedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
+          <li>Test</li>
+        </ol>
+      </div>
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="js/ApplicationModel.js"></script>
       <script type="text/javascript" src="js/View.js"></script>
@@ -62,8 +39,9 @@
           var model = new ApplicationModel();;
           var view = new View(model);
           var controller = new Controller(model, view);
-          view.init(true);
+          view.init(false);
         });
       </script>
+
     </body>
 </html>
