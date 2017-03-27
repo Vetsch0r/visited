@@ -2,59 +2,68 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>MyWorldMap</title>
+        <title>visited - World</title>
         <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+        <link rel="stylesheet" href="css/main.css"/>
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="js/jquery-jvectormap-world-mill.js"></script>
+        <script src="js/jquery-jvectormap-europe-mill.js"></script>
+        <script src="js/jquery-jvectormap-africa-mill.js"></script>
+        <script src="js/jquery-jvectormap-asia-mill.js"></script>
+        <script src="js/jquery-jvectormap-north_america-mill.js"></script>
+        <script src="js/jquery-jvectormap-oceania-mill.js"></script>
+        <script src="js/jquery-jvectormap-south_america-mill.js"></script>
+        <script src="js/jquery-jvectormap-continents-mill.js"></script>
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
-        <div id="world-map" style="width: 100%; height:250px"></div>
-        <div data-demo-html="true" id="countryList" style="padding:5px">
-  				<ul data-role="listview" data-filter="true" data-filter-placeholder="Search countries..." data-inset="true">
-  				</ul>
-			  </div><!--/demo-html -->
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-        <script>
-        $(function(){
-          var visitedCountries = [];
-          $('#world-map').vectorMap({
-            map: 'world_mill',
-            backgroundColor: '#383f47',
-            regionsSelectable: true,
-            regionStyle: {
-              selected: {
-                fill: '#B8E186'
-              }
-            },
-            onRegionClick: function(e, code){
-              if(visitedCountries.includes(code)){
-                $("#" + code).remove();
-	              visitedCountries.splice(visitedCountries.indexOf(code), 1);
-              }
-              else{
-                $("#countryList ul").append('<li id="' + code + '"> <a href="#">' + map.getRegionName(code) + '</a></li>').listview('refresh');
-                visitedCountries.push(code);
-              }
-              window.localStorage.setItem('visitedCountries', JSON.stringify(visitedCountries));
-            }
-          });
-
-          var map = $('#world-map').vectorMap('get', 'mapObject');
-          map.setSelectedRegions(JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' ) );
-
-          if (localStorage.getItem("visitedCountries") !== null) {
-            visitedCountries = JSON.parse(window.localStorage.getItem('visitedCountries'));
-          }
-
-          for (i in visitedCountries) {
-            var code = visitedCountries[i];
-            $("#countryList ul").append('<li id="' + code + '"> <a href="#">' + map.getRegionName(code) + '</a></li>').listview('refresh');
-          }
+        <div id="map"></div>
+        <div id="content">
+          <div data-role="navbar" id="navigation">
+            <ul>
+              <li><a href="#" class="ui-btn-active" id="visistedLink">visited</a></li>
+              <li><a href="#" id="wantedLink">wanted</a></li>
+            </ul>
+          </div>
+          <ul data-role="listview" id="visitedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
+            <li data-role="list-divider" id="africa">
+              <span class="ui-li-count" id="africaBubble">0</span>
+              <span>Africa</span>
+            </li>
+            <li data-role="list-divider" id="asia">
+              <span class="ui-li-count" id="asiaBubble">0</span>
+              <span>Asia</span>
+            </li>
+            <li data-role="list-divider" id="australia">
+              <span class="ui-li-count" id="australiaBubble">0</span>
+              <span>Australia</span>
+            </li>
+            <li data-role="list-divider" id="europe">
+              <span class="ui-li-count" id="europeBubble">0</span>
+              <span>Europe</span>
+            </li>
+            <li data-role="list-divider" id="namerica">
+              <span class="ui-li-count" id="namericaBubble">0</span>
+              <span>North America</span>
+            </li>
+            <li data-role="list-divider" id="samerica">
+              <span class="ui-li-count" id="samericaBubble">0</span>
+              <span>South America</span>
+            </li>
+          </ul>
+        </div>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/ApplicationModel.js"></script>
+      <script type="text/javascript" src="js/View.js"></script>
+      <script type="text/javascript" src="js/Controller.js"></script>
+      <script type="text/javascript">
+        $(function() {
+          var model = new ApplicationModel();;
+          var view = new View(model);
+          var controller = new Controller(model, view);
+          view.init(true);
         });
-        </script>
+      </script>
     </body>
 </html>
