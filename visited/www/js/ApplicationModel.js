@@ -101,6 +101,23 @@ ApplicationModel.prototype = {
     return filteredCountries;
   },
 
+  getFilteredWantedCountriesByMap: function(){
+    var mapName = this.getMapName();
+    filteredCountries = [];
+    this.wantedCountries.forEach(function(country){
+      var code = country['key'];
+      if((mapName === EUROPE_MAP && EUROPE_COUNTRIES.includes(code)) ||
+          (mapName === ASIA_MAP && ASIA_COUNTRIES.includes(code)) ||
+          (mapName === AFRICA_MAP && AFRICA_COUNTRIES.includes(code)) ||
+          (mapName === AUSTRALIA_MAP && AUSTRALIA_COUNTRIES.includes(code)) ||
+          (mapName === NAMERICA_MAP && NAMERICA_COUNTRIES.includes(code)) ||
+          (mapName === SAMERICA_MAP && SAMERICA_COUNTRIES.includes(code))){
+        filteredCountries.push(code);
+      }
+    });
+    return filteredCountries;
+  },
+
   getMapName: function(){
     return this.mapName;
   },
@@ -134,7 +151,7 @@ ApplicationModel.prototype = {
     window.localStorage.setItem('visitedCountries', JSON.stringify(this.visitedCountries));
   },
 
-  unselecWantedCountry: function (code) {
+  unselectWantedCountry: function (code) {
     for(i in this.wantedCountries){
       if(this.wantedCountries[i]['key'] === code){
         this.wantedCountries.splice(i, 1);

@@ -1,69 +1,74 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>visited - World</title>
-        <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-        <link rel="stylesheet" href="css/main.css"/>
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="js/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="js/jquery-jvectormap-europe-mill.js"></script>
-        <script src="js/jquery-jvectormap-africa-mill.js"></script>
-        <script src="js/jquery-jvectormap-asia-mill.js"></script>
-        <script src="js/jquery-jvectormap-north_america-mill.js"></script>
-        <script src="js/jquery-jvectormap-oceania-mill.js"></script>
-        <script src="js/jquery-jvectormap-south_america-mill.js"></script>
-        <script src="js/jquery-jvectormap-continents-mill.js"></script>
-        <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    </head>
-    <body>
-        <div id="map"></div>
-        <div id="content">
-          <div data-role="navbar" id="navigation">
-            <ul>
-              <li><a href="#" class="ui-btn-active" id="visistedLink">visited</a></li>
-              <li><a href="#" id="wantedLink">wanted</a></li>
-            </ul>
-          </div>
-          <ul data-role="listview" id="visitedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
-            <li data-role="list-divider" id="africa">
-              <span class="ui-li-count" id="africaBubble">0</span>
-              <span>Africa</span>
-            </li>
-            <li data-role="list-divider" id="asia">
-              <span class="ui-li-count" id="asiaBubble">0</span>
-              <span>Asia</span>
-            </li>
-            <li data-role="list-divider" id="australia">
-              <span class="ui-li-count" id="australiaBubble">0</span>
-              <span>Australia</span>
-            </li>
-            <li data-role="list-divider" id="europe">
-              <span class="ui-li-count" id="europeBubble">0</span>
-              <span>Europe</span>
-            </li>
-            <li data-role="list-divider" id="namerica">
-              <span class="ui-li-count" id="namericaBubble">0</span>
-              <span>North America</span>
-            </li>
-            <li data-role="list-divider" id="samerica">
-              <span class="ui-li-count" id="samericaBubble">0</span>
-              <span>South America</span>
-            </li>
-          </ul>
-        </div>
-      <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript" src="js/ApplicationModel.js"></script>
-      <script type="text/javascript" src="js/View.js"></script>
-      <script type="text/javascript" src="js/Controller.js"></script>
-      <script type="text/javascript">
-        $(function() {
-          var model = new ApplicationModel();;
-          var view = new View(model);
-          var controller = new Controller(model, view);
-          view.init(true);
-        });
-      </script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>visited - World</title>
+    <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="js/jquery-jvectormap-europe-mill.js"></script>
+    <script src="js/jquery-jvectormap-africa-mill.js"></script>
+    <script src="js/jquery-jvectormap-asia-mill.js"></script>
+    <script src="js/jquery-jvectormap-north_america-mill.js"></script>
+    <script src="js/jquery-jvectormap-oceania-mill.js"></script>
+    <script src="js/jquery-jvectormap-south_america-mill.js"></script>
+    <script src="js/jquery-jvectormap-continents-mill.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+  <body>
+    <div data-role="header" data-position="fixed" style="overflow:hidden">
+      <div id="map"></div>
+    </div>
+    <div id="content">
+      <ul data-role="listview" id="visitedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
+        <li data-role="list-divider" id="africa">
+          <span class="ui-li-count" id="africaBubble">0</span>
+          <span>Africa</span>
+        </li>
+        <li data-role="list-divider" id="asia">
+          <span class="ui-li-count" id="asiaBubble">0</span>
+          <span>Asia</span>
+        </li>
+        <li data-role="list-divider" id="australia">
+          <span class="ui-li-count" id="australiaBubble">0</span>
+          <span>Australia</span>
+        </li>
+        <li data-role="list-divider" id="europe">
+          <span class="ui-li-count" id="europeBubble">0</span>
+          <span>Europe</span>
+        </li>
+        <li data-role="list-divider" id="namerica">
+          <span class="ui-li-count" id="namericaBubble">0</span>
+          <span>North America</span>
+        </li>
+        <li data-role="list-divider" id="samerica">
+          <span class="ui-li-count" id="samericaBubble">0</span>
+          <span>South America</span>
+        </li>
+      </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" style="overflow:hidden">
+      <div data-role="navbar"  data-iconpos="bottom">
+        <ul>
+          <li><a data-icon="check" href="#" class="ui-btn-active" id="visistedLink">Visited</a></li>
+          <li><a data-icon="heart" href="#" id="wantedLink">Wanted</a></li>
+          <li><a data-icon="gear" href="#" id="settingsLink">Settings</a></li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/ApplicationModel.js"></script>
+    <script type="text/javascript" src="js/VisitedView.js"></script>
+    <script type="text/javascript" src="js/Controller.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var model = new ApplicationModel();;
+        var view = new VisitedView(model);
+        var controller = new Controller(model, view);
+        view.init(true);
+      });
+    </script>
+  </body>
 </html>

@@ -14,10 +14,13 @@ Controller.prototype = {
       view.load();
     });
     $("#visistedLink").click(function(e){
-      view.changeSite("index.html");
+      window.location="index.html";
     });
     $("#wantedLink").click(function(e){
-      view.changeSite("wanted.html");
+      window.location="wanted.html";
+    });
+    $("#settingsLink").click(function(e){
+      window.location="settings.html";
     });
   },
 }
