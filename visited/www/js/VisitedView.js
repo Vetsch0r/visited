@@ -7,28 +7,17 @@ VisitedView.prototype = {
 
   init: function(){
     var model = this.model;
-    this.load();
+    this.loadMap();
 
     this.loadCountryList();
     this.markCountries();
 
-    //init country list
-    //model.getVisitedCountries().forEach(function(country){
-      //addCountryToList(country);
-    //});
     updateBubbles(model);
   },
 
-  load: function(){
+  loadMap: function(){
     $('#map').empty();
     $('#map').vectorMap(this.getMapParams());
-
-    var model = this.model;
-
-//    if(model.getMapName() !== CONTINENTS_MAP){
-//      var map = $('#map').vectorMap('get', 'mapObject');
-//      map.setSelectedRegions(model.getFilteredCountriesByMap());
-//    }
   },
 
   loadCountryList: function(){
@@ -65,18 +54,32 @@ VisitedView.prototype = {
 
   clickVisited: function(countryId){
     var model = this.model;
+    if($('#' + countryId + '.ui-icon-check').hasClass("ui-icon-check-on")){
+      model.removeVisitedCountry(countryId);
+    }
+    else{
+      model.addVisitedCountry(countryId);
+    }
     $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
-    model.addVisitedCountry(countryId);
     model.removeWantedCountry(countryId);
+    this.loadMap();
+    updateBubbles(model);
   },
 
   clickWanted: function(countryId){
     var model = this.model;
+    if($('#' + countryId + '.ui-icon-heart').hasClass("ui-icon-heart-on")){
+      model.removeWantedCountry(countryId);
+    }
+    else{
+      model.addWantedCountry(countryId);
+    }
     $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
-    model.addWantedCountry(countryId);
     model.removeVisitedCountry(countryId);
+    this.loadMap();
+    updateBubbles(model);
   },
 
   getMapParams: function(){
@@ -90,8 +93,8 @@ VisitedView.prototype = {
       series: {
         regions: [{
           scale: {
-            '1': '#4169E1',
-            '2': '#FF69B4'
+            '1': '#03a834',
+            '2': '#a80303'
           },
           attribute: 'fill',
           values: data
@@ -117,22 +120,6 @@ function addToList(country, container){
   container.append(countryCell);
   container.append(visistedIcon);
   container.append(wantedIcon);
-}
-
-function addCountryToList(country, indexCode){
-  var code = country['key'];
-  var regionName = country['value'];
-  var imgsrc = '<img src="img/' + code + '.png" alt="' + regionName + '" class="ui-li-icon countryIcon">';
-  var link = '<a href="#"</a>';
-  var liTag = $('<li id="' + code + '">' + imgsrc +  regionName + '</li>');
-  if(indexCode === undefined){
-      $("#" + country['continent']).append(liTag);
-  }
-  else{
-    liTag.insertAfter("#" + indexCode);
-  }
-
-  $("#visitedCountries").listview('refresh');
 }
 
 function updateBubbles(model){

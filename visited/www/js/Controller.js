@@ -12,7 +12,7 @@ Controller.prototype = {
 
     $(window).bind('hashchange', function() {
       model.changeMap();
-      view.load();
+      view.loadMap();
     });
     $( ".collapsing").on("collapsiblecollapse", function( event, ui ) {
       window.location.hash = "";
