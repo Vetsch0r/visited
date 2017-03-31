@@ -25,3 +25,34 @@
 .countryIcon{
   margin-top:-2px;
 }
+
+.ui-collapsible-content{
+    padding: .2em .5em;
+}
+
+.ui-block-a {
+  padding-top:7px;
+  width: 10% !important;
+}
+
+.ui-block-b {
+  width:66% !important;
+  padding-top:14px;
+  padding-left:5px;
+}
+
+.ui-block-c {
+  width: 12% !important;
+}
+
+.ui-block-d {
+  width: 12% !important;
+}
+
+.ui-icon-check-on {
+  background-color: #35f254 !important;
+}
+
+.ui-icon-heart-on {
+  background-color: red !important;
+}
