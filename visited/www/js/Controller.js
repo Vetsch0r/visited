@@ -17,12 +17,12 @@ Controller.prototype = {
     $( ".collapsing").on("collapsiblecollapse", function( event, ui ) {
       window.location.hash = "";
     });
-    $( "#africa").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#africa)").collapsible("collapse");
+    $( "#AF").on("collapsibleexpand", function( event, ui ) {
+      $(".collapsing:not(#AF)").collapsible("collapse");
       window.location.hash = "AF";
     });
-    $( "#asia").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#asia)").collapsible("collapse");
+    $( "#AS").on("collapsibleexpand", function( event, ui ) {
+      $(".collapsing:not(#AS)").collapsible("collapse");
       window.location.hash = "AS";
     });
     $( "#australia").on("collapsibleexpand", function( event, ui ) {

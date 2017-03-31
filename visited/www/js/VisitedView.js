@@ -90,6 +90,11 @@ VisitedView.prototype = {
       regionLabelStyle: {
         initial: {'display': 'none'},
       },
+      regionStyle: {
+        selected: {
+          fill: '#03a834'
+        }
+      },
       series: {
         regions: [{
           scale: {

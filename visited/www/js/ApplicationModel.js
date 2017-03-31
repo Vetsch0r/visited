@@ -207,24 +207,3 @@ function getTotalCountries(continentId){
     case AFRICA_ID: return AFRICA_COUNTRIES.length;
   }
 }
-
-function getContinentId(code){
-  if(EUROPE_COUNTRIES.includes(code)){
-   return EUROPE_ID;
-  }
-  if(ASIA_COUNTRIES.includes(code)){
-    return ASIA_ID;
-  }
-  if(AFRICA_COUNTRIES.includes(code)){
-    return AFRICA_ID;
-  }
-  if(NAMERICA_COUNTRIES.includes(code)){
-    return NAMERICA_ID;
-  }
-  if(SAMERICA_COUNTRIES.includes(code)){
-    return SAMERICA_ID;
-  }
-  if(AUSTRALIA_COUNTRIES.includes(code)){
-    return AUSTRALIA_ID;
-  }
-}
