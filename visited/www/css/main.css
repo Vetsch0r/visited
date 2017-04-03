@@ -10,6 +10,8 @@
   position: absolute;
   width: 100%;
   padding-top:2px;
+  overflow-y: auto;
+  height:65%;
 }
 
 .countryIcon{
@@ -40,14 +42,39 @@
   padding-left:5px;
 }
 
-.ui-block-c {
+.ui-block-c, .ui-block-d{
   width: 12% !important;
 }
 
-.ui-block-d {
-  width: 12% !important;
+@media all and (min-width: 42em) {
+
+  .ui-block-a {
+    width: 8% !important;
+  }
+
+  .ui-block-b {
+    width:76% !important;
+  }
+
+  .ui-block-c, .ui-block-d{
+    width: 8% !important;
+  }
 }
 
+@media all and (min-width: 55em) {
+  .ui-block-a {
+    width: 7% !important;
+  }
+
+  .ui-block-b {
+    width:79% !important;
+  }
+
+  .ui-block-c, .ui-block-d{
+    width: 7% !important;
+  }
+
+}
 .ui-icon-check-on {
   background-color: #35f254 !important;
 }
