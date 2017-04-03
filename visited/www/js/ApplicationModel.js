@@ -142,27 +142,10 @@ ApplicationModel.prototype = {
   changeMap: function(){
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
-      this.mapName = getMapName(code);
+      this.mapName = getMapOfId(code);
     }else{
       this.mapName = WORLD_MAP;
     }
-  },
-
-  getFilteredWantedCountriesByMap: function(){
-    var mapName = this.getMapName();
-    filteredCountries = [];
-    this.wantedCountries.forEach(function(country){
-      var code = country['key'];
-      if((mapName === EUROPE_MAP && EUROPE_COUNTRIES.includes(code)) ||
-          (mapName === ASIA_MAP && ASIA_COUNTRIES.includes(code)) ||
-          (mapName === AFRICA_MAP && AFRICA_COUNTRIES.includes(code)) ||
-          (mapName === AUSTRALIA_MAP && AUSTRALIA_COUNTRIES.includes(code)) ||
-          (mapName === NAMERICA_MAP && NAMERICA_COUNTRIES.includes(code)) ||
-          (mapName === SAMERICA_MAP && SAMERICA_COUNTRIES.includes(code))){
-        filteredCountries.push(code);
-      }
-    });
-    return filteredCountries;
   },
 
   getMapName: function(){
@@ -206,4 +189,16 @@ function getTotalCountries(continentId){
     case SAMERICA_ID: return SAMERICA_COUNTRIES.length;
     case AFRICA_ID: return AFRICA_COUNTRIES.length;
   }
+}
+
+function getMapOfId(code){
+  switch(code){
+    case 'EU': return EUROPE_MAP;
+    case 'AS': return ASIA_MAP;
+    case 'AF': return AFRICA_MAP;
+    case 'OC': return AUSTRALIA_MAP;
+    case 'NA': return NAMERICA_MAP;
+    case 'SA': return SAMERICA_MAP;
+  }
+  return CONTINENTS_MAP;
 }

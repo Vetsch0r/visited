@@ -17,12 +17,12 @@ Controller.prototype = {
     $( ".collapsing").on("collapsiblecollapse", function( event, ui ) {
       window.location.hash = "";
     });
-    $( "#AF").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#AF)").collapsible("collapse");
+    $( "#africa").on("collapsibleexpand", function( event, ui ) {
+      $(".collapsing:not(#africa)").collapsible("collapse");
       window.location.hash = "AF";
     });
-    $( "#AS").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#AS)").collapsible("collapse");
+    $( "#asia").on("collapsibleexpand", function( event, ui ) {
+      $(".collapsing:not(#asia)").collapsible("collapse");
       window.location.hash = "AS";
     });
     $( "#australia").on("collapsibleexpand", function( event, ui ) {
@@ -45,7 +45,7 @@ Controller.prototype = {
       view.clickVisited(e.target.id);
     });
     $(document).on('click', ".ui-block-d", function(e) {
-      view.clickWanted(e.target.id);
+      view.clickWanted(e.target.id)
     });
   },
 }

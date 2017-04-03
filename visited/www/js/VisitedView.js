@@ -93,6 +93,9 @@ VisitedView.prototype = {
       regionStyle: {
         selected: {
           fill: '#03a834'
+        },
+        hover: {
+          "fill-opacity": 1.0,
         }
       },
       series: {
@@ -109,7 +112,7 @@ VisitedView.prototype = {
       zoomMax: 40,
       regionsSelectable: true,
       onRegionClick: function(e, code){
-
+        e.preventDefault();
       }
     };
   },
@@ -134,16 +137,4 @@ function updateBubbles(model){
   $('#namericaBubble').text(model.getBubbleText(NAMERICA_ID));
   $('#samericaBubble').text(model.getBubbleText(SAMERICA_ID));
   $('#africaBubble').text(model.getBubbleText(AFRICA_ID));
-}
-
-function getMapName(code){
-  switch(code){
-    case 'EU': return EUROPE_MAP;
-    case 'AS': return ASIA_MAP;
-    case 'AF': return AFRICA_MAP;
-    case 'OC': return AUSTRALIA_MAP;
-    case 'NA': return NAMERICA_MAP;
-    case 'SA': return SAMERICA_MAP;
-  }
-  return CONTINENTS_MAP;
 }

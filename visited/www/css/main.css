@@ -7,9 +7,9 @@
 
 #content{
   top: 35%;
+  position: absolute;
   width: 100%;
   padding-top:2px;
-  position: absolute;
 }
 
 .countryIcon{
@@ -22,7 +22,7 @@
 }
 
 .custom-count-pos{
-  padding-top: 1px;
+  padding-top: 2px;
 }
 
 .ui-collapsible-content{
