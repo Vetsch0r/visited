@@ -18,6 +18,18 @@ VisitedView.prototype = {
   loadMap: function(){
     $('#map').empty();
     $('#map').vectorMap(this.getMapParams());
+
+    $("#content").scrollTop(0);
+
+    if(window.location.hash) {
+      var code = window.location.hash.substring(1);
+      if(code === ""){
+        $(".collapsing").collapsible("collapse");
+      }
+      else{
+        $(".collapsing:not(#" + code + ")").collapsible("collapse");
+      }
+    }
   },
 
   loadCountryList: function(){
@@ -121,8 +133,8 @@ VisitedView.prototype = {
 function addToList(country, container){
   var imgCell = "<div class='ui-block-a'><img src='./img/" + country["code"] + ".png'/></div>"
   var countryCell = "<div class='ui-block-b'>" + country["name"] + "</div>";
-  var visistedIcon = "<div class='ui-block-c ui-responsive'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
-  var wantedIcon = "<div class='ui-block-d .ui-responsive'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
+  var visistedIcon = "<div class='ui-block-c'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
+  var wantedIcon = "<div class='ui-block-d'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
 
   container.append(imgCell);
   container.append(countryCell);

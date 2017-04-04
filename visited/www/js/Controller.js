@@ -10,38 +10,32 @@ Controller.prototype = {
     var model = this.model;
     var view = this.view;
 
-    $(window).bind('hashchange', function() {
+    $(window).bind('hashchange', function(e) {
+      e.preventDefault();
       model.changeMap();
       view.loadMap();
-      $("#content").animate({
-        scrollTop: 0
-      }, 500);
     });
-    $( ".collapsing").on("collapsiblecollapse", function( event, ui ) {
-      window.location.hash = "";
+    $(".collapsing a").on("click", function(e) {
+      if(!$("#"+ e.target.parentNode.parentNode.id).collapsible("option", "collapsed")){
+        window.location.hash = "";
+      }
     });
-    $( "#africa").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#africa)").collapsible("collapse");
+    $( "#AF").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "AF";
     });
-    $( "#asia").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#asia)").collapsible("collapse");
+    $( "#AS").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "AS";
     });
-    $( "#australia").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#australia)").collapsible("collapse");
+    $( "#OC").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "OC";
     });
-    $( "#europe").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#europe)").collapsible("collapse");
+    $( "#EU").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "EU";
     });
-    $( "#namerica").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#namerica)").collapsible("collapse");
+    $( "#NA").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "NA";
     });
-    $( "#samerica").on("collapsibleexpand", function( event, ui ) {
-      $(".collapsing:not(#samerica)").collapsible("collapse");
+    $( "#SA").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "SA";
     });
     $(document).on('click', ".ui-block-c", function(e) {
