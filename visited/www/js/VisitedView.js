@@ -19,17 +19,19 @@ VisitedView.prototype = {
     $('#map').empty();
     $('#map').vectorMap(this.getMapParams());
 
-    $("#content").animate({
-      scrollTop:0
-    }, 100);
-    $(".collapsing").collapsible("collapse");
-
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
       if(code !== ""){
         $("#" + code).collapsible("expand");
       }
     }
+  },
+
+  resetScroll: function(){
+    $(".collapsing").collapsible("collapse");
+    $("#content").animate({
+      scrollTop:0
+    }, 100);
   },
 
   loadCountryList: function(){

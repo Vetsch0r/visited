@@ -13,6 +13,7 @@ Controller.prototype = {
     $(window).bind('hashchange', function(e) {
       e.preventDefault();
       model.changeMap();
+      view.resetScroll();
       view.loadMap();
     });
     $(".collapsing a").on("click", function(e) {
