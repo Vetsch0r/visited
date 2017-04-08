@@ -62,8 +62,23 @@
     <script id="template" type="x-tmpl-mustache">
       <div class='ui-block-a'><img src='./img/{{code}}.png'/></div>
       <div class='ui-block-b'>{{name}}</div>
-      <div class='ui-block-c'><a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a></div>
-      <div class='ui-block-d'><a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a></div>
+      <div class='ui-block-c'>
+        <table class='iconTable' cellspacing="0" cellpadding="0">
+          <tr>
+            <td class='inner-block-a'>
+              <div style="display:{{display}}">
+                <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-notext ui-btn-inline'>Button</a>
+              </div>
+            </td>
+            <td class='inner-block-b'>
+              <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a>
+            </td>
+            <td class='inner-block-c'>
+              <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a>
+            </td>
+          </tr>
+        </table>
+      </div>
     </script>
     <script type="text/javascript">
       $(function() {

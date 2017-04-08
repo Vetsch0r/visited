@@ -807,5 +807,86 @@ var countries = (
          "code":"CU",
          "name":"Cuba"
       }
-   ]
+   ],
+   "CH":[
+	{
+		"code": "CH-SO",
+		"name": "Solothurn"
+	},
+	{
+		"code": "CH-LU", "name": "Lucerne"
+	},
+	{
+		"code": "CH-SH", "name": "Schaffhausen"
+	},
+	{
+		"code": "CH-SG", "name": "Sankt Gallen"
+	},
+	{
+		"code": "CH-UR", "name": "Uri"
+	},
+	{
+		"code": "CH-NE", "name": "Neuchâtel"
+	},
+	{
+		"code": "CH-BS", "name": "Basel-Stadt"
+	},
+	{
+		"code": "CH-JU", "name": "Jura"
+	},
+	{
+		"code": "CH-BL", "name": "Basel-Landschaft"
+	},
+	{
+		"code": "CH-SZ", "name": "Schwyz"
+	},
+	{
+		"code": "CH-BE", "name": "Bern"
+	},
+	{
+		"code": "CH-NW", "name": "Nidwalden"
+	},
+	{
+		"code": "CH-ZG", "name": "Zug"
+	},
+	{
+		"code": "CH-FR", "name": "Fribourg"
+	},
+	{
+		"code": "CH-ZH", "name": "Zürich"
+	},
+	{
+		"code": "CH-VS", "name": "Valais"
+	},
+	{
+		"code": "CH-VD", "name": "Vaud"
+	},
+	{
+		"code": "CH-TI", "name": "Ticino"
+	},
+	{
+		"code": "CH-TG", "name": "Thurgau"
+	},
+	{
+		"code": "CH-OW", "name": "Obwalden"
+	},
+	{
+		"code": "CH-AG", "name": "Aargau"
+	},
+	{
+		"code": "CH-GE", "name": "Genève"
+	},
+	{
+		"code": "CH-AI", "name": "Appenzell Innerrhoden"
+	},
+	{
+		"code": "CH-GL", "name": "Glarus"
+	},
+	{
+		"code": "CH-GR", "name": "Graubünden"
+	},
+	{
+		"code": "CH-AR", "name": "Appenzell Ausserrhoden"
+	}
+]
 });

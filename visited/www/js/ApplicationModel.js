@@ -54,9 +54,16 @@ const AUSTRALIA_ID = 'australia';
 const AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
+const SWISS_REGIONS = [
+  'CH-SO', 'CH-LU', 'CH-SH', 'CH-SG', 'CH-UR', 'CH-NE', 'CH-BS', 'CH-JU', 'CH-BL', 'CH-SZ',
+  'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
+  'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
+
 var ApplicationModel = function () {
   this.visitedCountries = [];
   this.wantedCountries = [];
+  this.visitedRegions = [];
+  this.wantedRegions = [];
   this.mapName = WORLD_MAP;
   this.init();
 };
@@ -66,12 +73,25 @@ ApplicationModel.prototype = {
   init: function (){
     this.visitedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
     this.wantedCountries = JSON.parse( window.localStorage.getItem('wantedCountries') || '[]' );
+    this.visitedRegions = JSON.parse( window.localStorage.getItem('visitedRegions') || '[]' );
+    this.wantedRegions = JSON.parse( window.localStorage.getItem('wantedRegions') || '[]' );
   },
 
-  getCountries: function(continentId){
-    return countries[continentId].sort(function(countryA, countryB){
-      return countryA['name'].localeCompare(countryB['name']);
-    });
+  getData: function(searchId){
+    if(searchId != undefined){
+      return countries[searchId].sort(function(countryA, countryB){
+        return countryA['name'].localeCompare(countryB['name']);
+      });
+    }
+    else{
+      return countries[getParameterByName("country")].sort(function(countryA, countryB){
+        return countryA['name'].localeCompare(countryB['name']);
+      });
+    }
+  },
+
+  getDetailCountry: function(){
+    return getParameterByName("country");
   },
 
   getVisitedCountries: function(){
@@ -114,6 +134,46 @@ ApplicationModel.prototype = {
     window.localStorage.setItem('wantedCountries', JSON.stringify(this.wantedCountries));
   },
 
+  getVisitedRegions: function(){
+    return this.visitedRegions;
+  },
+
+  addVisitedRegion: function (regionId) {
+    if(!this.visitedRegions.includes(regionId)){
+      this.visitedRegions.push(regionId);
+    }
+    window.localStorage.setItem('visitedRegions', JSON.stringify(this.visitedRegions));
+  },
+
+  removeVisitedRegion: function (regionId) {
+    for(i in this.visitedRegions){
+      if(this.visitedRegions[i] === regionId){
+        this.visitedRegions.splice(i, 1);
+      }
+    }
+    window.localStorage.setItem('visitedRegions', JSON.stringify(this.visitedRegions));
+  },
+
+  getWantedRegions: function(){
+    return this.wantedRegions;
+  },
+
+  addWantedRegion: function (regionId) {
+    if(!this.wantedRegions.includes(regionId)){
+      this.wantedRegions.push(regionId);
+    }
+    window.localStorage.setItem('wantedRegions', JSON.stringify(this.wantedRegions));
+  },
+
+  removeWantedRegion: function (regionId) {
+    for(i in this.wantedRegions){
+      if(this.wantedRegions[i] === regionId){
+        this.wantedRegions.splice(i, 1);
+      }
+    }
+    window.localStorage.setItem('wantedRegions', JSON.stringify(this.wantedRegions));
+  },
+
   getDataByMap: function(){
     var countryList;
     var dataObject = {};
@@ -139,6 +199,25 @@ ApplicationModel.prototype = {
     return dataObject;
   },
 
+  getDetailMapData: function(){
+    var regionsList;
+    var dataObject = {};
+    switch (this.getDetailCountry()) {
+      case 'CH': regionsList = SWISS_REGIONS; break;
+    }
+    this.visitedRegions.forEach(function(regionId){
+      if(regionsList.includes(regionId)){
+        dataObject[regionId] = 1;
+      }
+    });
+    this.wantedRegions.forEach(function(regionId){
+      if(regionsList.includes(regionId)){
+        dataObject[regionId] = 2;
+      }
+    });
+    return dataObject;
+  },
+
   changeMap: function(){
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
@@ -150,6 +229,12 @@ ApplicationModel.prototype = {
 
   getMapName: function(){
     return this.mapName;
+  },
+
+  getDetailMapName: function(){
+    switch(getParameterByName("country")){
+      case 'CH': return "ch_mill";
+    }
   },
 
   getVisitedCountriesOfContinent: function (continentId) {
@@ -201,4 +286,16 @@ function getMapOfId(code){
     case 'SA': return SAMERICA_MAP;
   }
   return CONTINENTS_MAP;
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

@@ -39,11 +39,14 @@ Controller.prototype = {
     $( "#SA").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "SA";
     });
-    $(document).on('click', ".ui-block-c", function(e) {
+    $(document).on('click', ".inner-block-b", function(e) {
       view.clickVisited(e.target.id);
     });
-    $(document).on('click', ".ui-block-d", function(e) {
+    $(document).on('click', ".inner-block-c", function(e) {
       view.clickWanted(e.target.id)
+    });
+    $(document).on('click', ".inner-block-a", function(e) {
+      window.location="focus.html?country=" + e.target.id;
     });
   },
 }

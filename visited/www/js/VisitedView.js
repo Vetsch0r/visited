@@ -36,22 +36,22 @@ VisitedView.prototype = {
 
   loadCountryList: function(){
     var model = this.model;
-    model.getCountries(AFRICA_ID).forEach(function(country){
+    model.getData(AFRICA_ID).forEach(function(country){
       addToList(country, $("#africaList"));
     });
-    model.getCountries(ASIA_ID).forEach(function(country){
+    model.getData(ASIA_ID).forEach(function(country){
       addToList(country, $("#asiaList"));
     });
-    model.getCountries(AUSTRALIA_ID).forEach(function(country){
+    model.getData(AUSTRALIA_ID).forEach(function(country){
       addToList(country, $("#australiaList"));
     });
-    model.getCountries(EUROPE_ID).forEach(function(country){
+    model.getData(EUROPE_ID).forEach(function(country){
       addToList(country, $("#europeList"));
     });
-    model.getCountries(NAMERICA_ID).forEach(function(country){
+    model.getData(NAMERICA_ID).forEach(function(country){
       addToList(country, $("#namericaList"));
     });
-    model.getCountries(SAMERICA_ID).forEach(function(country){
+    model.getData(SAMERICA_ID).forEach(function(country){
       addToList(country, $("#samericaList"));
     });
   },
@@ -134,8 +134,12 @@ VisitedView.prototype = {
 
 function addToList(country, container){
   var template = document.getElementById('template').innerHTML;
-  var renderedTemplate = Mustache.render(template, {code: country["code"], name: country["name"]});
+  var renderedTemplate = Mustache.render(template, {code: country["code"], name: country["name"], display: hasDetailMap(country) ? 'inline' : 'none'});
   container.append(renderedTemplate);
+}
+
+function hasDetailMap(country){
+  return country['code'] == 'CH';
 }
 
 function updateBubbles(model){

@@ -36,14 +36,35 @@
   width: 10% !important;
 }
 
+.ui-block-a-CH{
+  padding-left: 5px;
+}
+
 .ui-block-b {
-  width:66% !important;
+  width:55% !important;
   padding-top:14px;
   padding-left:5px;
 }
 
-.ui-block-c, .ui-block-d{
-  width: 12% !important;
+.ui-block-b-detail {
+  width:65% !important;
+}
+
+.ui-block-c{
+  width: 35% !important;
+  display:inline;
+}
+
+.ui-block-c-detail{
+  width: 25% !important;
+}
+
+.inner-block-a, .inner-block-b, .inner-block-c {
+  width: 33%;
+}
+
+.inner-detail-a, .inner-detail-b {
+  display: inline;
 }
 
 @media all and (min-width: 42em) {
