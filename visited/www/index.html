@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <script src="js/lib/jquery-2.1.1.min.js"></script>
+    <script src="js/lib/mustache.min.js"></script>
     <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
     <script src="js/lib/jquery-jvectormap-europe-mill.js"></script>
@@ -58,6 +59,12 @@
     <script type="text/javascript" src="js/ApplicationModel.js"></script>
     <script type="text/javascript" src="js/VisitedView.js"></script>
     <script type="text/javascript" src="js/Controller.js"></script>
+    <script id="template" type="x-tmpl-mustache">
+      <div class='ui-block-a'><img src='./img/{{code}}.png'/></div>
+      <div class='ui-block-b'>{{name}}</div>
+      <div class='ui-block-c'><a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a></div>
+      <div class='ui-block-d'><a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a></div>
+    </script>
     <script type="text/javascript">
       $(function() {
         var model = new ApplicationModel();;

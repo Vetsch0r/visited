@@ -133,15 +133,9 @@ VisitedView.prototype = {
 }
 
 function addToList(country, container){
-  var imgCell = "<div class='ui-block-a'><img src='./img/" + country["code"] + ".png'/></div>"
-  var countryCell = "<div class='ui-block-b'>" + country["name"] + "</div>";
-  var visistedIcon = "<div class='ui-block-c'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
-  var wantedIcon = "<div class='ui-block-d'><a id=" + country["code"] +" class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a></div>";
-
-  container.append(imgCell);
-  container.append(countryCell);
-  container.append(visistedIcon);
-  container.append(wantedIcon);
+  var template = document.getElementById('template').innerHTML;
+  var renderedTemplate = Mustache.render(template, {code: country["code"], name: country["name"]});
+  container.append(renderedTemplate);
 }
 
 function updateBubbles(model){
