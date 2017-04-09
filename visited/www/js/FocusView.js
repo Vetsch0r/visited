@@ -27,14 +27,14 @@ FocusView.prototype = {
     return {
       map: model.getDetailMapName(),
       regionLabelStyle: {
-        initial: {'display': 'none'},
+        initial: {'display': 'none'}
       },
       regionStyle: {
         selected: {
           fill: '#03a834'
         },
         hover: {
-          "fill-opacity": 1.0,
+          "fill-opacity": 1.0
         }
       },
       series: {
