@@ -99,7 +99,7 @@ ApplicationModel.prototype = {
   },
 
   addVisitedCountry: function (countryId) {
-    if(!this.visitedCountries.includes(countryId)){
+    if(!this.visitedCountries.indexOf(countryId) >= 0){
       this.visitedCountries.push(countryId);
     }
     window.localStorage.setItem('visitedCountries', JSON.stringify(this.visitedCountries));
@@ -119,7 +119,7 @@ ApplicationModel.prototype = {
   },
 
   addWantedCountry: function (countryId) {
-    if(!this.wantedCountries.includes(countryId)){
+    if(!this.wantedCountries.indexOf(countryId) >= 0){
       this.wantedCountries.push(countryId);
     }
     window.localStorage.setItem('wantedCountries', JSON.stringify(this.wantedCountries));
@@ -139,7 +139,7 @@ ApplicationModel.prototype = {
   },
 
   addVisitedRegion: function (regionId) {
-    if(!this.visitedRegions.includes(regionId)){
+    if(!this.visitedRegions.indexOf(countryId) >= 0){
       this.visitedRegions.push(regionId);
     }
     window.localStorage.setItem('visitedRegions', JSON.stringify(this.visitedRegions));
@@ -159,7 +159,7 @@ ApplicationModel.prototype = {
   },
 
   addWantedRegion: function (regionId) {
-    if(!this.wantedRegions.includes(regionId)){
+    if(!this.wantedRegions.indexOf(countryId) >= 0){
       this.wantedRegions.push(regionId);
     }
     window.localStorage.setItem('wantedRegions', JSON.stringify(this.wantedRegions));
@@ -187,12 +187,12 @@ ApplicationModel.prototype = {
       case SAMERICA_MAP: countryList = SAMERICA_COUNTRIES; break;
     }
     this.visitedCountries.forEach(function(countryId){
-      if(countryList.includes(countryId)){
+      if(countryList.indexOf(countryId) >= 0){
         dataObject[countryId] = 1;
       }
     });
     this.wantedCountries.forEach(function(countryId){
-      if(countryList.includes(countryId)){
+      if(countryList.indexOf(countryId) >= 0){
         dataObject[countryId] = 2;
       }
     });
@@ -206,12 +206,12 @@ ApplicationModel.prototype = {
       case 'CH': regionsList = SWISS_REGIONS; break;
     }
     this.visitedRegions.forEach(function(regionId){
-      if(regionsList.includes(regionId)){
+      if(regionsList.indexOf(countryId) >= 0){
         dataObject[regionId] = 1;
       }
     });
     this.wantedRegions.forEach(function(regionId){
-      if(regionsList.includes(regionId)){
+      if(regionsList.indexOf(countryId) >= 0){
         dataObject[regionId] = 2;
       }
     });
@@ -252,12 +252,12 @@ ApplicationModel.prototype = {
     var total = getTotalCountries(continentId);
 
     this.visitedCountries.forEach(function(countryId){
-      if(continentId === EUROPE_ID && EUROPE_COUNTRIES.includes(countryId) ||
-        continentId === ASIA_ID && ASIA_COUNTRIES.includes(countryId) ||
-        continentId === AUSTRALIA_ID && AUSTRALIA_COUNTRIES.includes(countryId) ||
-        continentId === NAMERICA_ID && NAMERICA_COUNTRIES.includes(countryId) ||
-        continentId === SAMERICA_ID && SAMERICA_COUNTRIES.includes(countryId) ||
-        continentId === AFRICA_ID && AFRICA_COUNTRIES.includes(countryId)){
+      if(continentId === EUROPE_ID && EUROPE_COUNTRIES.indexOf(countryId) >= 0 ||
+        continentId === ASIA_ID && ASIA_COUNTRIES.indexOf(countryId) >= 0 ||
+        continentId === AUSTRALIA_ID && AUSTRALIA_COUNTRIES.indexOf(countryId) >= 0 ||
+        continentId === NAMERICA_ID && NAMERICA_COUNTRIES.indexOf(countryId) >= 0 ||
+        continentId === SAMERICA_ID && SAMERICA_COUNTRIES.indexOf(countryId) >= 0 ||
+        continentId === AFRICA_ID && AFRICA_COUNTRIES.indexOf(countryId) >= 0){
         count++;
       }
     });
