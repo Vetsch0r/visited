@@ -1,12 +1,12 @@
-const WORLD_MAP = 'world_mill';
-const EUROPE_MAP = 'europe_mill';
-const ASIA_MAP = 'asia_mill';
-const AFRICA_MAP = 'africa_mill';
-const SAMERICA_MAP = 'south_america_mill';
-const NAMERICA_MAP = 'north_america_mill';
-const AUSTRALIA_MAP = 'oceania_mill';
+var WORLD_MAP = 'world_mill';
+var EUROPE_MAP = 'europe_mill';
+var ASIA_MAP = 'asia_mill';
+var AFRICA_MAP = 'africa_mill';
+var SAMERICA_MAP = 'south_america_mill';
+var NAMERICA_MAP = 'north_america_mill';
+var AUSTRALIA_MAP = 'oceania_mill';
 
-const WORLD_COUNTRIES = [
+var WORLD_COUNTRIES = [
   'BD', 'BE', 'BF', 'BG', 'BA', 'BN', 'BO', 'JP', 'BI', 'BJ', 'BT', 'JM', 'BW', 'BR', 'BS',
   'BY', 'BZ', 'RU', 'RW', 'RS', 'TL', 'TM', 'TJ', 'RO', 'GW', 'GT', 'GR', 'GQ', 'GY', 'GE',
   'GB', 'GA', 'GN', 'GM', 'GL', 'GH', 'OM', 'TN', 'JO', 'HR', 'HT', 'HU', 'HN', 'PR', 'PS', 'PT',
@@ -21,40 +21,40 @@ const WORLD_COUNTRIES = [
   'QA', 'MZ',
 ]
 
-const EUROPE_ID = 'europe';
-const EUROPE_COUNTRIES = [
+var EUROPE_ID = 'europe';
+var EUROPE_COUNTRIES = [
   'BE',	'FR',	'BG',	'DK', 'HR',	'DE', 'BA', 'HU', 'JE', 'FI', 'BY', 'GR', 'RU', 'NL', 'PT',	'NO',
   'LI',	'LV',	'LT',	'LU',	'FO', 'PL',	'XK',	'CH',	'AD',	'EE',	'IS', 'AL',	'IT',	'GG', 'CZ', 'IM',
   'GB',	'AX',	'IE', 'ES',	'ME',	'MD',	'RO',	'RS',	'MK',	'SK',	'MT',	'SI',	'SM', 'UA', 'SE', 'AT'];
 
-const AFRICA_ID = 'africa';
-const AFRICA_COUNTRIES = [
+var AFRICA_ID = 'africa';
+var AFRICA_COUNTRIES = [
   'BF', 'DJ', 'BI', 'BJ', 'ZA', 'BW', 'DZ', 'ET', 'RW', 'TZ', 'GQ', 'NA', 'NE', 'NG', 'TN', 'LR',
   'LS', 'ZW', 'TG', 'TD', 'ER', 'LY', 'GW', 'ZM', 'CI', 'EH', 'CM', 'EG', 'SL', 'CG', 'CF', 'AO',
   'CD', 'GA', 'GN', 'GM', 'XS', 'CV', 'GH', 'SZ', 'MG', 'MA', 'KE', 'SS', 'ML', 'KM', 'ST', 'MW',
   'SO', 'SN', 'MR', 'UG', 'SD', 'MZ'];
 
-const ASIA_ID = 'asia';
-const ASIA_COUNTRIES = [
+var ASIA_ID = 'asia';
+var ASIA_COUNTRIES = [
   'BD', 'MN', 'BN', 'BH', 'BT', 'HK', 'JO', 'PS', 'LB', 'LA', 'TW', 'TR', 'LK', 'TL', 'TM', 'TJ',
   'TH', 'XC', 'NP', 'PK', 'PH', 'AE', 'CN', 'AF', 'IQ', 'JP', 'IR', 'AM', 'SY', 'VN', 'GE', 'IL',
   'IN', 'AZ', 'ID', 'OM', 'KG', 'UZ', 'MM', 'SG', 'KH', 'CY', 'QA', 'KR', 'KP', 'KW', 'KZ', 'SA',
   'MY', 'YE'];
 
-const SAMERICA_ID = 'samerica';
-const SAMERICA_COUNTRIES = [
+var SAMERICA_ID = 'samerica';
+var SAMERICA_COUNTRIES = [
   'PY', 'CO', 'VE', 'CL', 'SR', 'BO', 'EC', 'AR', 'GY', 'BR', 'PE', 'UY', 'FK'];
 
-const NAMERICA_ID = 'namerica';
-const NAMERICA_COUNTRIES =  [
+var NAMERICA_ID = 'namerica';
+var NAMERICA_COUNTRIES =  [
   'PR', 'DO', 'DM', 'LC', 'NI', 'PA', 'CA', 'SV', 'HT', 'TT', 'JM', 'GT', 'HN', 'BZ', 'BS', 'CR',
   'US', 'GL', 'MX', 'CU'];;
 
-const AUSTRALIA_ID = 'australia';
-const AUSTRALIA_COUNTRIES = [
+var AUSTRALIA_ID = 'australia';
+var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
-const SWISS_REGIONS = [
+var SWISS_REGIONS = [
   'CH-SO', 'CH-LU', 'CH-SH', 'CH-SG', 'CH-UR', 'CH-NE', 'CH-BS', 'CH-JU', 'CH-BL', 'CH-SZ',
   'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
   'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
