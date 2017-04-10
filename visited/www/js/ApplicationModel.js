@@ -285,7 +285,7 @@ function getMapOfId(code){
     case 'NA': return NAMERICA_MAP;
     case 'SA': return SAMERICA_MAP;
   }
-  return CONTINENTS_MAP;
+  return WORLD_MAP;
 }
 
 function getParameterByName(name, url) {
