@@ -48,7 +48,7 @@ var SAMERICA_COUNTRIES = [
 var NAMERICA_ID = 'namerica';
 var NAMERICA_COUNTRIES =  [
   'PR', 'DO', 'DM', 'LC', 'NI', 'PA', 'CA', 'SV', 'HT', 'TT', 'JM', 'GT', 'HN', 'BZ', 'BS', 'CR',
-  'US', 'GL', 'MX', 'CU'];;
+  'US', 'GL', 'MX', 'CU'];
 
 var AUSTRALIA_ID = 'australia';
 var AUSTRALIA_COUNTRIES = [
