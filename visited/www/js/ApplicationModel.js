@@ -139,7 +139,7 @@ ApplicationModel.prototype = {
   },
 
   addVisitedRegion: function (regionId) {
-    if(!this.visitedRegions.indexOf(countryId) >= 0){
+    if(!this.visitedRegions.indexOf(regionId) >= 0){
       this.visitedRegions.push(regionId);
     }
     window.localStorage.setItem('visitedRegions', JSON.stringify(this.visitedRegions));
@@ -159,7 +159,7 @@ ApplicationModel.prototype = {
   },
 
   addWantedRegion: function (regionId) {
-    if(!this.wantedRegions.indexOf(countryId) >= 0){
+    if(!this.wantedRegions.indexOf(regionId) >= 0){
       this.wantedRegions.push(regionId);
     }
     window.localStorage.setItem('wantedRegions', JSON.stringify(this.wantedRegions));
@@ -206,12 +206,12 @@ ApplicationModel.prototype = {
       case 'CH': regionsList = SWISS_REGIONS; break;
     }
     this.visitedRegions.forEach(function(regionId){
-      if(regionsList.indexOf(countryId) >= 0){
+      if(regionsList.indexOf(regionId) >= 0){
         dataObject[regionId] = 1;
       }
     });
     this.wantedRegions.forEach(function(regionId){
-      if(regionsList.indexOf(countryId) >= 0){
+      if(regionsList.indexOf(regionId) >= 0){
         dataObject[regionId] = 2;
       }
     });

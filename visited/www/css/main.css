@@ -13,6 +13,10 @@
   height:65%;
 }
 
+.header{
+  overflow:hidden;
+}
+
 .countryIcon{
   margin-top:-2px;
 }
@@ -27,74 +31,36 @@
 }
 
 .ui-collapsible-content{
-    padding: .2em .5em;
+  padding: .2em .5em;
 }
 
-.ui-block-a {
-  padding-top:7px;
-  width: 10% !important;
+.countryList, #regionList{
+  width:100%;
 }
 
-.ui-block-a-CH{
-  padding-left: 5px;
+.ui-cell-icon {
+  padding-top: 7px;
+  width:30px;
 }
 
-.ui-block-b {
-  width:55% !important;
-  padding-top:14px;
-  padding-left:5px;
+.ui-cell-text {
+  width:auto;
+  padding-top:6px;
+  padding-left:10px;
 }
 
-.ui-block-b-detail {
-  width:65% !important;
-}
-
-.ui-block-c{
-  width: 35% !important;
-  display:inline;
-}
-
-.ui-block-c-detail{
-  width: 25% !important;
-}
-
-.inner-block-a, .inner-block-b, .inner-block-c {
-  width: 33%;
-}
-
-.inner-detail-a, .inner-detail-b {
-  display: inline;
+.ui-cell-button{
+  width: 150px;
 }
 
 @media all and (min-width: 42em) {
 
-  .ui-block-a {
-    width: 8% !important;
-  }
-
-  .ui-block-b {
-    width:76% !important;
-  }
-
-  .ui-block-c, .ui-block-d{
-    width: 8% !important;
-  }
 }
 
 @media all and (min-width: 55em) {
-  .ui-block-a {
-    width: 7% !important;
-  }
-
-  .ui-block-b {
-    width:79% !important;
-  }
-
-  .ui-block-c, .ui-block-d{
-    width: 7% !important;
-  }
 
 }
+
 .ui-icon-check-on {
   background-color: #35f254 !important;
 }

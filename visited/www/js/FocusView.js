@@ -10,7 +10,7 @@ FocusView.prototype = {
     this.loadMap();
 
     model.getData().forEach(function(country){
-      addToList(country, $("#content"), model.getDetailCountry());
+      addToList(country, $("#regionList"), model.getDetailCountry());
     });
 
     this.markRegions();

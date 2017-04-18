@@ -7,6 +7,9 @@ VisitedView.prototype = {
 
   init: function(){
     var model = this.model;
+    if(window.location.hash){
+      model.changeMap();
+    }
     this.loadMap();
 
     this.loadCountryList();

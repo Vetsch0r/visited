@@ -18,23 +18,26 @@
       <div id="map"></div>
     </div>
     <div id="content">
+      <table id="regionList" cellpadding="0" cellspacing="0">
+      </table>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="data/country.js"></script>
+    <script type="text/javascript" src="data/country.js"></script>§
     <script type="text/javascript" src="js/ApplicationModel.js"></script>
     <script type="text/javascript" src="js/FocusView.js"></script>
     <script type="text/javascript" src="js/Controller.js"></script>
     <script id="template" type="x-tmpl-mustache">
-      <div class='ui-block-a ui-block-a-{{country}}'><img src='./img/{{code}}.png'/></div>
-      <div class='ui-block-b ui-block-b-detail'>{{name}}</div>
-      <div class='ui-block-c ui-block-c-detail'>
-        <div class='inner-block-b inner-detail-a'>
-          <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a>
-        </div>
-        <div class='inner-block-c inner-detail-b'>
-          <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a>
-        </div>
-      </div
+      <tr>
+        <td class='ui-cell-text'>{{name}}</td>
+        <td class='ui-cell-button' align='right'>
+          <span class='visitedButton'>
+            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a>
+          </span>
+          <span class='wantedButton'>
+            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a>
+          </span>
+        </td>
+      </tr>
     </script>
     <script type="text/javascript">
     $(function() {
