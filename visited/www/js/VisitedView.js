@@ -25,7 +25,7 @@ VisitedView.prototype = {
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
       if(code !== ""){
-        $("#" + code).collapsible("expand");
+        $(".collapsing#" + code).collapsible("expand");
       }
     }
   },
