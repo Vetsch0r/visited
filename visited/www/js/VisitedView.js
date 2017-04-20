@@ -40,23 +40,23 @@ VisitedView.prototype = {
 
   loadCountryList: function(){
     var model = this.model;
-    model.getData(AFRICA_ID).forEach(function(country){
-      addToList(country, $("#africaList"));
+    model.getData(AFRICA_ID).forEach(function(country, i){
+      addToList(country, $("#africaList"), i);
     });
-    model.getData(ASIA_ID).forEach(function(country){
-      addToList(country, $("#asiaList"));
+    model.getData(ASIA_ID).forEach(function(country, i){
+      addToList(country, $("#asiaList"), i);
     });
-    model.getData(AUSTRALIA_ID).forEach(function(country){
-      addToList(country, $("#australiaList"));
+    model.getData(AUSTRALIA_ID).forEach(function(country, i){
+      addToList(country, $("#australiaList"), i);
     });
-    model.getData(EUROPE_ID).forEach(function(country){
-      addToList(country, $("#europeList"));
+    model.getData(EUROPE_ID).forEach(function(country, i){
+      addToList(country, $("#europeList"), i);
     });
-    model.getData(NAMERICA_ID).forEach(function(country){
-      addToList(country, $("#namericaList"));
+    model.getData(NAMERICA_ID).forEach(function(country, i){
+      addToList(country, $("#namericaList"), i);
     });
-    model.getData(SAMERICA_ID).forEach(function(country){
-      addToList(country, $("#samericaList"));
+    model.getData(SAMERICA_ID).forEach(function(country, i){
+      addToList(country, $("#samericaList"), i);
     });
   },
 
@@ -136,9 +136,10 @@ VisitedView.prototype = {
   },
 }
 
-function addToList(country, container){
+function addToList(country, container, i){
   var template = document.getElementById('template').innerHTML;
-  var renderedTemplate = Mustache.render(template, {code: country["code"], name: country["name"], display: hasDetailMap(country) ? 'inline' : 'none'});
+  var myClass = i % 2 == 0 ? 'ui-collapsible-content-white' : 'ui-collapsible-content-gray';
+  var renderedTemplate = Mustache.render(template, {code: country["code"], name: country["name"], class: myClass, display: hasDetailMap(country) ? 'inline' : 'none'});
   container.append(renderedTemplate);
 }
 
