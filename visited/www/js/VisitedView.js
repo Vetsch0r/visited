@@ -1,3 +1,4 @@
+var FOCUS_COUNTRIES = ['CH', 'US'];
 
 var VisitedView = function (model) {
   this.model = model;
@@ -142,7 +143,7 @@ function addToList(country, container){
 }
 
 function hasDetailMap(country){
-  return country['code'] == 'CH';
+  return FOCUS_COUNTRIES.indexOf(country['code']) >= 0
 }
 
 function updateBubbles(model){

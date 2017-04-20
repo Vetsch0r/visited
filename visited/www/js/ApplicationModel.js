@@ -59,6 +59,15 @@ var SWISS_REGIONS = [
   'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
   'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
 
+var UNITED_STATES_REGIONS = [
+  'US-VA', 'US-PA', 'US-TN', 'US-WV', 'US-NV', 'US-TX', 'US-NH', 'US-NY', 'US-HI', 'US-VT',
+  'US-NM', 'US-NC', 'US-ND', 'US-NE', 'US-LA', 'US-SD', 'US-DC', 'US-DE', 'US-FL', 'US-CT',
+  'US-WA', 'US-KS', 'US-WI', 'US-OR', 'US-KY', 'US-ME', 'US-OH', 'US-OK', 'US-ID', 'US-WY',
+  'US-UT', 'US-IN', 'US-IL', 'US-AK', 'US-NJ', 'US-CO', 'US-MD', 'US-MA', 'US-AL', 'US-MO',
+  'US-MN', 'US-CA', 'US-IA', 'US-MI', 'US-GA', 'US-AZ', 'US-MT', 'US-MS', 'US-SC', 'US-RI',
+  'US-AR'
+];
+
 var ApplicationModel = function () {
   this.visitedCountries = [];
   this.wantedCountries = [];
@@ -204,6 +213,7 @@ ApplicationModel.prototype = {
     var dataObject = {};
     switch (this.getDetailCountry()) {
       case 'CH': regionsList = SWISS_REGIONS; break;
+      case 'US': regionsList = UNITED_STATES_REGIONS; break;
     }
     this.visitedRegions.forEach(function(regionId){
       if(regionsList.indexOf(regionId) >= 0){
@@ -234,6 +244,7 @@ ApplicationModel.prototype = {
   getDetailMapName: function(){
     switch(getParameterByName("country")){
       case 'CH': return "ch_mill";
+      case 'US': return "us_aea";
     }
   },
 
