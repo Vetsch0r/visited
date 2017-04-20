@@ -17,7 +17,7 @@ Controller.prototype = {
       view.loadMap();
     });
     $(".collapsing a").on("click", function(e) {
-      if(!$(e.target).parent(".collapsible").collapsible("option", "collapsed")){
+      if(!$(".collapsing#" + e.target.parentNode.parentNode.id).collapsible("option", "collapsed")){
         window.location.hash = "";
       }
     });
