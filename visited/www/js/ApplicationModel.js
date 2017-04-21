@@ -330,7 +330,6 @@ ApplicationModel.prototype = {
 function getTotalRegions(id){
   switch(id){
     case SWISS_ID: return SWISS_REGIONS.length;
-    case UNITED_STATES_ID: return UNITED_STATES_REGIONS.length;
     case ARGENTINA_ID: return ARGENTINA_REGIONS.length;
     case COLOMBIA_ID: return COLOMBIA_REGIONS.length;
     case GERMANY_ID: return GERMANY_REGIONS.length;
