@@ -1,4 +1,3 @@
-var FOCUS_COUNTRIES = ['CH', 'US'];
 
 var VisitedView = function (model) {
   this.model = model;
