@@ -9,8 +9,11 @@ FocusView.prototype = {
     var model = this.model;
     this.loadMap();
 
-    model.getData().forEach(function(country){
-      addToList(country, $("#regionList"), model.getDetailCountry());
+    $('#focusTitle').text(model.getDetailCountry());
+    updateBubbles(model);
+
+    model.getData().forEach(function(country, i){
+      addToList(country, $("#regionList"), i);
     });
 
     this.markRegions();
@@ -78,6 +81,7 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
     model.removeWantedRegion(regionId);
     this.loadMap();
+    updateBubbles(model);
   },
 
   clickWanted: function(regionId){
@@ -92,11 +96,17 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-check').removeClass("ui-icon-check-on");
     model.removeVisitedRegion(regionId);
     this.loadMap();
+    updateBubbles(model);
   },
 }
 
-function addToList(state, container, detailCountry){
+function addToList(state, container, i){
   var template = document.getElementById('template').innerHTML;
-  var renderedTemplate = Mustache.render(template, {code: state["code"], name: state["name"], country: detailCountry});
+  var myClass = i % 2 == 0 ? 'ui-collapsible-content-white' : 'ui-collapsible-content-gray';
+  var renderedTemplate = Mustache.render(template, {code: state["code"], name: state["name"], class: myClass});
   container.append(renderedTemplate);
+}
+
+function updateBubbles(model){
+  $('#focusBubble').text(model.getDetailBubbleText());
 }

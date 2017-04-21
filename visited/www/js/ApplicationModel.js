@@ -54,11 +54,13 @@ var AUSTRALIA_ID = 'australia';
 var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
+var SWISS_ID = 'CH';
 var SWISS_REGIONS = [
   'CH-SO', 'CH-LU', 'CH-SH', 'CH-SG', 'CH-UR', 'CH-NE', 'CH-BS', 'CH-JU', 'CH-BL', 'CH-SZ',
   'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
   'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
 
+var UNITED_STATES_ID = 'US';
 var UNITED_STATES_REGIONS = [
   'US-VA', 'US-PA', 'US-TN', 'US-WV', 'US-NV', 'US-TX', 'US-NH', 'US-NY', 'US-HI', 'US-VT',
   'US-NM', 'US-NC', 'US-ND', 'US-NE', 'US-LA', 'US-SD', 'US-DC', 'US-DE', 'US-FL', 'US-CT',
@@ -212,8 +214,8 @@ ApplicationModel.prototype = {
     var regionsList;
     var dataObject = {};
     switch (this.getDetailCountry()) {
-      case 'CH': regionsList = SWISS_REGIONS; break;
-      case 'US': regionsList = UNITED_STATES_REGIONS; break;
+      case SWISS_ID: regionsList = SWISS_REGIONS; break;
+      case UNITED_STATES_ID: regionsList = UNITED_STATES_REGIONS; break;
     }
     this.visitedRegions.forEach(function(regionId){
       if(regionsList.indexOf(regionId) >= 0){
@@ -243,8 +245,8 @@ ApplicationModel.prototype = {
 
   getDetailMapName: function(){
     switch(getParameterByName("country")){
-      case 'CH': return "ch_mill";
-      case 'US': return "us_aea";
+      case SWISS_ID: return "ch_mill";
+      case UNITED_STATES_ID: return "us_aea";
     }
   },
 
@@ -273,11 +275,34 @@ ApplicationModel.prototype = {
       }
     });
     return count + '/' + total;
+  },
+
+  getDetailBubbleText: function(){
+    var countryId = getParameterByName('country');
+    var count = 0;
+    var total = getTotalRegions(countryId);
+
+    if(countryId != null){
+      this.visitedRegions.forEach(function(regionId){
+        if(countryId === SWISS_ID && SWISS_REGIONS.indexOf(regionId) >= 0 ||
+          countryId === UNITED_STATES_ID && UNITED_STATES_REGIONS.indexOf(regionId) >= 0){
+          count++;
+        }
+      });
+      return count + '/' + total;
+    }
   }
 }
 
-function getTotalCountries(continentId){
-  switch(continentId){
+function getTotalRegions(id){
+  switch(id){
+    case SWISS_ID: return SWISS_REGIONS.length;
+    case UNITED_STATES_ID: return UNITED_STATES_REGIONS.length;
+  }
+}
+
+function getTotalCountries(id){
+  switch(id){
     case EUROPE_ID: return EUROPE_COUNTRIES.length;
     case ASIA_ID: return ASIA_COUNTRIES.length;
     case AUSTRALIA_ID: return AUSTRALIA_COUNTRIES.length;

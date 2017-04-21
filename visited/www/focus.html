@@ -19,8 +19,14 @@
       <div id="map"></div>
     </div>
     <div id="content">
-      <table id="regionList" cellpadding="0" cellspacing="0">
-      </table>
+      <div data-role="collapsible" class="collapsing" data-collapsed="false">
+        <h1>
+          <div id="focusBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>
+          <span id="focusTitle">Test</span>
+        </h1>
+        <table id="regionList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="data/country.js"></script>§
@@ -28,7 +34,7 @@
     <script type="text/javascript" src="js/FocusView.js"></script>
     <script type="text/javascript" src="js/Controller.js"></script>
     <script id="template" type="x-tmpl-mustache">
-      <tr>
+      <tr class="{{class}}">
         <td class='ui-cell-text'>{{name}}</td>
         <td class='ui-cell-button' align='right'>
           <span class='visitedButton'>
