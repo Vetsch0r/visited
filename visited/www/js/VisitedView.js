@@ -117,14 +117,14 @@ VisitedView.prototype = {
         }
       },
       series: {
-        regions: [{
+        regions: {
           scale: {
             '1': '#03a834',
             '2': '#a80303'
           },
           attribute: 'fill',
           values: data
-        }]
+        }
       },
       backgroundColor: '#383f47',
       zoomMax: 40,
