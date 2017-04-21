@@ -9,7 +9,8 @@ FocusView.prototype = {
     var model = this.model;
     this.loadMap();
 
-    $('#focusTitle').text(model.getDetailCountry());
+    $('#focusTitle').text(model.getCountryName(model.getDetailCountry()));
+    $('#focusCountryImg').attr("src", "img/" + model.getDetailCountry() + ".png");
     updateBubbles(model);
 
     model.getData().forEach(function(country, i){
@@ -41,14 +42,14 @@ FocusView.prototype = {
         }
       },
       series: {
-        regions: {
+        regions: [{
           scale: {
             '1': '#03a834',
             '2': '#a80303'
           },
           attribute: 'fill',
           values: data
-        }
+        }]
       },
       backgroundColor: '#383f47',
       zoomMax: 40,

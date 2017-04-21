@@ -250,14 +250,17 @@ ApplicationModel.prototype = {
     }
   },
 
-  getVisitedCountriesOfContinent: function (continentId) {
-    var visitedCountriesOfContinent = [];
-    this.getVisitedCountries().forEach(function(country){
-      if(country['continent'] === continentId){
-        visitedCountriesOfContinent.push(country['key']);
-      }
+  getCountryName: function (countryId){
+    var continentIds = [EUROPE_ID, ASIA_ID, AFRICA_ID, AUSTRALIA_ID, NAMERICA_ID, SAMERICA_ID];
+    var countryName;
+    continentIds.forEach(function(continentId){
+      countries[continentId].forEach(function(country){
+        if(countryId === country['code']){
+          countryName = country['name'];
+        }
+      });
     });
-    return visitedCountriesOfContinent.reverse();
+    return countryName;
   },
 
   getBubbleText: function (continentId){
