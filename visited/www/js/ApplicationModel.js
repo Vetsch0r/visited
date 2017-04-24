@@ -6,6 +6,9 @@ var SAMERICA_MAP = 'south_america_mill';
 var NAMERICA_MAP = 'north_america_mill';
 var AUSTRALIA_MAP = 'oceania_mill';
 
+var VISITED_DEFAULT_COLOR = "03a834";
+var WANTED_DEFAULT_COLOR = "a80303";
+
 var WORLD_COUNTRIES = [
   'BD', 'BE', 'BF', 'BG', 'BA', 'BN', 'BO', 'JP', 'BI', 'BJ', 'BT', 'JM', 'BW', 'BR', 'BS',
   'BY', 'BZ', 'RU', 'RW', 'RS', 'TL', 'TM', 'TJ', 'RO', 'GW', 'GT', 'GR', 'GQ', 'GY', 'GE',
@@ -286,6 +289,30 @@ ApplicationModel.prototype = {
       });
     });
     return countryName;
+  },
+
+  getVisitedColor: function(){
+    var visitedColor = window.localStorage.getItem('visitedColor');
+    if(visitedColor == undefined || visitedColor == null){
+      return VISITED_DEFAULT_COLOR;
+    }
+    return visitedColor;
+  },
+
+  getWantedColor: function(){
+    var wantedColor = window.localStorage.getItem('wantedColor');
+    if(wantedColor == undefined  || wantedColor == null){
+      return WANTED_DEFAULT_COLOR;
+    }
+    return wantedColor;
+  },
+
+  changeVisitedColor: function (color) {
+    window.localStorage.setItem('visitedColor', color);
+  },
+
+  changeWantedColor: function (color) {
+    window.localStorage.setItem('wantedColor', color);
   },
 
   getBubbleText: function (continentId){

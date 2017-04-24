@@ -48,5 +48,13 @@ Controller.prototype = {
     $(document).on('click', ".focusButton", function(e) {
       window.location="focus.html?country=" + e.target.id;
     });
+    $( "#visitedColor").on( "change", function(event, ui) {
+      model.changeVisitedColor(this.jscolor);
+      view.loadMap();
+    });
+    $( "#wantedColor").on( "change", function(event, ui) {
+      model.changeWantedColor(this.jscolor);
+      view.loadMap();
+    });
   },
 }

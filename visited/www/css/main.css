@@ -17,6 +17,11 @@
   overflow:hidden;
 }
 
+.ui-top-menu{
+  z-index: 200;
+  float:right;
+}
+
 .countryIcon{
   margin-top:-2px;
 }
@@ -34,6 +39,7 @@
 .ui-focus-header{
   margin:5px 0 5px 0;
   padding: 5px;
+  padding-top:7px;
 }
 
 #focusTitle{

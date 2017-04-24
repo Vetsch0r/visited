@@ -33,19 +33,11 @@ FocusView.prototype = {
       regionLabelStyle: {
         initial: {'display': 'none'}
       },
-      regionStyle: {
-        selected: {
-          fill: '#03a834'
-        },
-        hover: {
-          "fill-opacity": 1.0
-        }
-      },
       series: {
         regions: [{
           scale: {
-            '1': '#03a834',
-            '2': '#a80303'
+            '1': '#' + model.getVisitedColor(),
+            '2': '#' + model.getWantedColor()
           },
           attribute: 'fill',
           values: data
