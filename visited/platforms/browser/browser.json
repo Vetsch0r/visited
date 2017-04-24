@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "ch.vetsch.visited"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "ch.vetsch.visited"
         }
     },
     "dependent_plugins": {},
@@ -26,9 +29,18 @@
             "id": "cordova-plugin-splashscreen.SplashScreenProxy",
             "pluginId": "cordova-plugin-splashscreen",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+            "id": "cordova-plugin-screen-orientation.screenorientation",
+            "pluginId": "cordova-plugin-screen-orientation",
+            "clobbers": [
+                "cordova.plugins.screenorientation"
+            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-splashscreen": "4.0.2"
+        "cordova-plugin-splashscreen": "4.0.2",
+        "cordova-plugin-screen-orientation": "2.0.0"
     }
 }

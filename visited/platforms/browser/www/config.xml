@@ -14,7 +14,6 @@
     <icon gap:platform="ios" height="76" src="res/icons/ios/icon-76.png" width="76" />
     <icon gap:platform="ios" height="152" src="res/icons/ios/icon-76-2x.png" width="152" />
     <icon gap:platform="ios" height="40" src="res/icons/ios/icon-40.png" width="40" />
-    <icon gap:platform="ios" height="80" src="res/icons/ios/icon-40-2x.png" width="80" />
     <icon gap:platform="ios" height="57" src="res/icons/ios/icon-57.png" width="57" />
     <icon gap:platform="ios" height="114" src="res/icons/ios/icon-57-2x.png" width="114" />
     <icon gap:platform="ios" height="72" src="res/icons/ios/icon-72.png" width="72" />

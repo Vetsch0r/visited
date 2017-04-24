@@ -7,12 +7,21 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
+    },
+    {
+        "id": "cordova-plugin-screen-orientation.screenorientation",
+        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+        "pluginId": "cordova-plugin-screen-orientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-splashscreen": "4.0.2"
+    "cordova-plugin-splashscreen": "4.0.2",
+    "cordova-plugin-screen-orientation": "2.0.0"
 };
 // BOTTOM OF METADATA
 });

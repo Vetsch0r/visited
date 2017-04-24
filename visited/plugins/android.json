@@ -9,7 +9,14 @@
     "installed_plugins": {
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "ch.vetsch.visited"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "ch.vetsch.visited"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "ch.vetsch.visited"
+        }
+    }
 }

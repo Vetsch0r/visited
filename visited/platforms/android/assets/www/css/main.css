@@ -1,9 +1,3 @@
-.continent{
-  padding-top: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
 #map{
   width: 100%;
   height:35%;
@@ -11,17 +5,98 @@
   z-index:100;
 }
 
-#navigation {
-  padding-bottom: 2px;
-}
-
 #content{
   top: 35%;
-  width: 100%;
-  padding-top:2px;
   position: absolute;
+  width: 100%;
+  overflow-y: auto;
+  height:65%;
+}
+
+.header{
+  overflow:hidden;
+}
+
+.ui-top-menu{
+  z-index: 200;
+  float:right;
 }
 
 .countryIcon{
   margin-top:-2px;
+}
+
+.collapsing, .ui-focus-content{
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.collapsing .ui-collapsible-content{
+  padding: 0;
+  margin: 0;
+}
+
+.ui-focus-header{
+  margin:5px 0 5px 0;
+  padding: 5px;
+  padding-top:7px;
+}
+
+#focusTitle{
+  position:relative;
+  padding-left:3px;
+  top:-8px;
+}
+
+.custom-count-pos{
+  padding-top: 2px;
+}
+
+.ui-collapsible-content{
+  padding: .2em .5em;
+}
+
+.ui-collapsible-content-gray{
+  background-color: #EEEEEE;
+}
+
+.ui-collapsible-content-white{
+  background-color: #FFFFFF;
+}
+
+.countryList, #regionList{
+  width:100%;
+}
+
+.ui-cell-icon {
+  padding-left:5px;
+  padding-right:5px;
+  padding-top: 5px;
+  width:30px;
+}
+
+.ui-cell-text {
+  width:auto;
+  padding-top:4px;
+  padding-left:10px;§§
+}
+
+.ui-cell-button{
+  width: 150px;
+}
+
+@media all and (min-width: 42em) {
+
+}
+
+@media all and (min-width: 55em) {
+
+}
+
+.ui-icon-check-on {
+  background-color: #35f254 !important;
+}
+
+.ui-icon-heart-on {
+  background-color: red !important;
 }

@@ -1,69 +1,108 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>visited - World</title>
-        <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-        <link rel="stylesheet" href="css/main.css"/>
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="js/jquery-jvectormap-2.0.3.min.js"></script>
-        <script src="js/jquery-jvectormap-europe-mill.js"></script>
-        <script src="js/jquery-jvectormap-africa-mill.js"></script>
-        <script src="js/jquery-jvectormap-asia-mill.js"></script>
-        <script src="js/jquery-jvectormap-north_america-mill.js"></script>
-        <script src="js/jquery-jvectormap-oceania-mill.js"></script>
-        <script src="js/jquery-jvectormap-south_america-mill.js"></script>
-        <script src="js/jquery-jvectormap-continents-mill.js"></script>
-        <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    </head>
-    <body>
-        <div id="map"></div>
-        <div id="content">
-          <div data-role="navbar" id="navigation">
-            <ul>
-              <li><a href="#" class="ui-btn-active" id="visistedLink">visited</a></li>
-              <li><a href="#" id="wantedLink">wanted</a></li>
-            </ul>
-          </div>
-          <ul data-role="listview" id="visitedCountries" data-inset="true" data-divider-theme="a" data-split-icon="plus">
-            <li data-role="list-divider" id="africa">
-              <span class="ui-li-count" id="africaBubble">0</span>
-              <span>Africa</span>
-            </li>
-            <li data-role="list-divider" id="asia">
-              <span class="ui-li-count" id="asiaBubble">0</span>
-              <span>Asia</span>
-            </li>
-            <li data-role="list-divider" id="australia">
-              <span class="ui-li-count" id="australiaBubble">0</span>
-              <span>Australia</span>
-            </li>
-            <li data-role="list-divider" id="europe">
-              <span class="ui-li-count" id="europeBubble">0</span>
-              <span>Europe</span>
-            </li>
-            <li data-role="list-divider" id="namerica">
-              <span class="ui-li-count" id="namericaBubble">0</span>
-              <span>North America</span>
-            </li>
-            <li data-role="list-divider" id="samerica">
-              <span class="ui-li-count" id="samericaBubble">0</span>
-              <span>South America</span>
-            </li>
-          </ul>
-        </div>
-      <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript" src="js/ApplicationModel.js"></script>
-      <script type="text/javascript" src="js/View.js"></script>
-      <script type="text/javascript" src="js/Controller.js"></script>
-      <script type="text/javascript">
-        $(function() {
-          var model = new ApplicationModel();;
-          var view = new View(model);
-          var controller = new Controller(model, view);
-          view.init(true);
-        });
-      </script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>visited - World</title>
+    <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/lib/jquery-2.1.1.min.js"></script>
+    <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/lib/mustache.min.js"></script>
+    <script src="js/lib/jscolor.js"></script>
+    <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-europe-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-africa-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-asia-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-north_america-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-oceania-mill.js"></script>
+    <script src="js/lib/jquery-jvectormap-south_america-mill.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div id="map"></div>
+      <a href="#nav-panel" class='ui-shadow ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-inline ui-top-menu'>Menu</a>
+    </div>
+    <div id="content">
+      <div data-role="collapsible" id="AF" class="collapsing" >
+        <h1><div id="africaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Africa</h1>
+        <table id="africaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="AS" class="collapsing">
+        <h1><div id="asiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Asia</h1>
+        <table id="asiaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="OC" class="collapsing">
+        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Australia</h1>
+        <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="EU" class="collapsing">
+        <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Europe</h1>
+        <table id="europeList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="NA" class="collapsing">
+        <h1><div id="namericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>North America</h1>
+        <table id="namericaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="SA" class="collapsing">
+        <h1><div id="samericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>South America</h1>
+        <table id="samericaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+    </div>
+    <div data-role="panel" data-position="right" data-display="push" id="nav-panel">
+      <div class="ui-bar ui-bar-a">
+        <h3>Colors</h3>
+      </div>
+      <div class="ui-body ui-body-a">
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td>Visited</td>
+            <td width="70px"><input id="visitedColor" class="jscolor" value="03a834" type="text"></td>
+          </tr>
+          <tr>
+            <td>Wanted</td>
+            <td><input id="wantedColor" class="jscolor" value="a80303" type="text"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="data/country.js"></script>
+    <script type="text/javascript" src="js/ApplicationModel.js"></script>
+    <script type="text/javascript" src="js/VisitedView.js"></script>
+    <script type="text/javascript" src="js/Controller.js"></script>
+    <script id="template" type="x-tmpl-mustache">
+      <tr class="{{class}}">
+        <td class='ui-cell-icon'><img src='./img/{{code}}.png'/></td>
+        <td class='ui-cell-text'>{{name}}</td>
+        <td class='ui-cell-button' align='right'>
+          <span class='focusButton' style="display:{{display}}">
+            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-notext ui-btn-inline'>Button</a>
+          </span>
+          <span class='visitedButton'>
+            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a>
+          </span>
+          <span class='wantedButton'>
+            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a>
+          </span>
+        </td>
+      </tr>
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        var model = new ApplicationModel();;
+        var view = new VisitedView(model);
+        var controller = new Controller(model, view);
+        view.init();
+      });
+    </script>
+  </body>
 </html>
