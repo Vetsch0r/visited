@@ -57,7 +57,7 @@ var AUSTRALIA_ID = 'australia';
 var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
-var FOCUS_COUNTRIES = ['CH', 'US', 'AR', 'CO', 'DE', 'ES', 'FR'];
+var FOCUS_COUNTRIES = ['CH', 'US', 'AR', 'CO', 'DE', 'ES', 'FR', 'IT'];
 
 var SWISS_ID = 'CH';
 var SWISS_REGIONS = [
@@ -76,19 +76,65 @@ var UNITED_STATES_REGIONS = [
 ];
 
 var ARGENTINA_ID = 'AR';
-var ARGENTINA_REGIONS = [];
+var ARGENTINA_REGIONS = [
+  'AR-Z', 'AR-X', 'AR-Y', 'AR-V', 'AR-W', 'AR-T', 'AR-U', 'AR-R', 'AR-S', 'AR-P',
+  'AR-Q', 'AR-N', 'AR-L', 'AR-M', 'AR-J', 'AR-K', 'AR-H', 'AR-F', 'AR-G', 'AR-D',
+  'AR-E', 'AR-B', 'AR-C', 'AR-A'
+];
 
 var COLOMBIA_ID = 'CO';
-var COLOMBIA_REGIONS = [];
+var COLOMBIA_REGIONS = [
+  'CO-VAC', 'CO-BOY', 'CO-COR', 'CO-HUI', 'CO-VAU', 'CO-NSA', 'CO-RIS', 'CO-VID', 'CO-BOL', 'CO-CUN',
+  'CO-GUV', 'CO-CAU', 'CO-CAS', 'CO-CAQ', 'CO-CES', 'CO-SAN', 'CO-ATL', 'CO-AMA', 'CO-MET', 'CO-MAG',
+  'CO-ARA', 'CO-GUA', 'CO-SAP', 'CO-CAL', 'CO-QUI', 'CO-LAG', 'CO-TOL', 'CO-SUC', 'CO-PUT', 'CO-NAR',
+  'CO-CHO', 'CO-DC', 'CO-ANT'
+];
 
 var GERMANY_ID = 'DE';
-var GERMANY_REGIONS = [];
+var GERMANY_REGIONS = [
+  'DE-BE', 'DE-ST', 'DE-RP', 'DE-BB', 'DE-NI', 'DE-MV', 'DE-TH', 'DE-BW', 'DE-HH', 'DE-SH',
+  'DE-NW', 'DE-SN', 'DE-HB', 'DE-SL', 'DE-BY', 'DE-HE'
+];
 
 var SPAIN_ID = 'ES';
-var SPAIN_REGIONS = [];
+var SPAIN_REGIONS = [
+  'ES-NA', 'ES-B',  'ES-CS', 'ES-ZA', 'ES-O',  'ES-OR', 'ES-M',  'ES-L',  'ES-J',  'ES-H',
+  'ES-CU', 'ES-T',  'ES-C',  'ES-AV', 'ES-A',  'ES-CR', 'ES-CO', 'ES-VA', 'ES-TF', 'ES-Z',
+  'ES-MA', 'ES-AL', 'ES-CE', 'ES-PM', 'ES-VI', 'ES-S',  'ES-TE', 'ES-CC', 'ES-P',  'ES-PO',
+  'ES-GC', 'ES-GI', 'ES-TO', 'ES-MU', 'ES-GR', 'ES-GU', 'ES-AB', 'ES-SO', 'ES-ML', 'ES-LU',
+  'ES-SE', 'ES-CA', 'ES-SG', 'ES-BU', 'ES-SA', 'ES-V',  'ES-LE', 'ES-BI', 'ES-HU', 'ES-LO',
+  'ES-SS', 'ES-BA'
+];
 
 var FRANCE_ID = 'FR';
-var FRANCE_REGIONS = [];
+var FRANCE_REGIONS = [
+  'FR-28', 'FR-29', 'FR-22', 'FR-23', 'FR-21', 'FR-26', 'FR-27', 'FR-24', 'FR-25', 'FR-MQ',
+  'FR-94', 'FR-93', 'FR-92', 'FR-91', 'FR-90', 'FR-17', 'FR-16', 'FR-15', 'FR-14', 'FR-13',
+  'FR-12', 'FR-11', 'FR-10', 'FR-2B', 'FR-2A', 'FR-19', 'FR-18', 'FR-88', 'FR-89', 'FR-80',
+  'FR-81', 'FR-82', 'FR-83', 'FR-84', 'FR-85', 'FR-86', 'FR-87', 'FR-01', 'FR-02', 'FR-03',
+  'FR-04', 'FR-05', 'FR-06', 'FR-07', 'FR-08', 'FR-09', 'FR-RE', 'FR-75', 'FR-74', 'FR-77',
+  'FR-76', 'FR-71', 'FR-70', 'FR-73', 'FR-72', 'FR-79', 'FR-78', 'FR-YT', 'FR-66', 'FR-67',
+  'FR-64', 'FR-65', 'FR-62', 'FR-63', 'FR-60', 'FR-61', 'FR-68', 'FR-69', 'FR-53', 'FR-52',
+  'FR-51', 'FR-50', 'FR-57', 'FR-56', 'FR-55', 'FR-54', 'FR-59', 'FR-58', 'FR-48', 'FR-49',
+  'FR-44', 'FR-45', 'FR-46', 'FR-47', 'FR-40', 'FR-41', 'FR-42', 'FR-43', 'FR-95', 'FR-GF',
+  'FR-GP', 'FR-39', 'FR-38', 'FR-31', 'FR-30', 'FR-33', 'FR-32', 'FR-35', 'FR-34', 'FR-37',
+  'FR-36'
+];
+
+var ITALY_ID = "IT";
+var ITALY_REGIONS = [
+  'IT-BA', 'IT-BG', 'IT-BI', 'IT-BO', 'IT-BN', 'IT-BL', 'IT-BS', 'IT-BR', 'IT-BT', 'IT-BZ',
+  'IT-RC', 'IT-RA', 'IT-RG', 'IT-RE', 'IT-RI', 'IT-RO', 'IT-RN', 'IT-RM', 'IT-AG', 'IT-AN',
+  'IT-AO', 'IT-AL', 'IT-IS', 'IT-AV', 'IT-AT', 'IT-IM', 'IT-AR', 'IT-AP', 'IT-AQ', 'IT-VE',
+  'IT-LC', 'IT-LE', 'IT-LI', 'IT-TP', 'IT-TS', 'IT-TR', 'IT-LO', 'IT-TV', 'IT-LU', 'IT-LT',
+  'IT-TO', 'IT-TN', 'IT-TA', 'IT-TE', 'IT-CL', 'IT-CN', 'IT-CO', 'IT-CH', 'IT-CI', 'IT-CE',
+  'IT-CA', 'IT-CB', 'IT-CZ', 'IT-CT', 'IT-CR', 'IT-CS', 'IT-SV', 'IT-SP', 'IT-SR', 'IT-SS',
+  'IT-SO', 'IT-SI', 'IT-KR', 'IT-SA', 'IT-VR', 'IT-FR', 'IT-FG', 'IT-FE', 'IT-FC', 'IT-FM',
+  'IT-FI', 'IT-NO', 'IT-NA', 'IT-NU', 'IT-EN', 'IT-MB', 'IT-MC', 'IT-ME', 'IT-MI', 'IT-MN',
+  'IT-MO', 'IT-MS', 'IT-MT', 'IT-UD', 'IT-PU', 'IT-PT', 'IT-PV', 'IT-PR', 'IT-PZ', 'IT-PE',
+  'IT-PD', 'IT-PG', 'IT-PA', 'IT-PC', 'IT-PO', 'IT-PN', 'IT-PI', 'IT-GR', 'IT-VC', 'IT-VB',
+  'IT-VA', 'IT-VI', 'IT-VV', 'IT-VT', 'IT-VS', 'IT-GE', 'IT-GO', 'IT-OG', 'IT-OR', 'IT-OT'
+];
 
 var ApplicationModel = function () {
   this.visitedCountries = [];
@@ -241,6 +287,7 @@ ApplicationModel.prototype = {
       case GERMANY_ID: regionsList = GERMANY_REGIONS; break;
       case SPAIN_ID: regionsList = SPAIN_REGIONS; break;
       case FRANCE_ID: regionsList = FRANCE_REGIONS; break;
+      case ITALY_ID: regionsList = ITALY_REGIONS; break;
     }
     this.visitedRegions.forEach(function(regionId){
       if(regionsList.indexOf(regionId) >= 0){
@@ -345,6 +392,7 @@ ApplicationModel.prototype = {
           countryId === GERMANY_ID && GERMANY_REGIONS.indexOf(regionId) >= 0 ||
           countryId === SPAIN_ID && SPAIN_REGIONS.indexOf(regionId) >= 0 ||
           countryId === FRANCE_ID && FRANCE_REGIONS.indexOf(regionId) >= 0 ||
+          countryId === ITALY_ID && ITALY_REGIONS.indexOf(regionId) >= 0 ||
           countryId === UNITED_STATES_ID && UNITED_STATES_REGIONS.indexOf(regionId) >= 0){
           count++;
         }
@@ -362,6 +410,7 @@ function getTotalRegions(id){
     case GERMANY_ID: return GERMANY_REGIONS.length;
     case SPAIN_ID: return SPAIN_REGIONS.length;
     case FRANCE_ID: return FRANCE_REGIONS.length;
+    case ITALY_ID: return ITALY_REGIONS.length;
     case UNITED_STATES_ID: return UNITED_STATES_REGIONS.length;
   }
 }
