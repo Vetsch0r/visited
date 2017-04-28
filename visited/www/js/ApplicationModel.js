@@ -59,82 +59,7 @@ var AUSTRALIA_COUNTRIES = [
 
 var FOCUS_COUNTRIES = ['CH', 'US', 'AR', 'CO', 'DE', 'ES', 'FR', 'IT'];
 
-var SWISS_ID = 'CH';
-var SWISS_REGIONS = [
-  'CH-SO', 'CH-LU', 'CH-SH', 'CH-SG', 'CH-UR', 'CH-NE', 'CH-BS', 'CH-JU', 'CH-BL', 'CH-SZ',
-  'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
-  'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
-
-var UNITED_STATES_ID = 'US';
-var UNITED_STATES_REGIONS = [
-  'US-VA', 'US-PA', 'US-TN', 'US-WV', 'US-NV', 'US-TX', 'US-NH', 'US-NY', 'US-HI', 'US-VT',
-  'US-NM', 'US-NC', 'US-ND', 'US-NE', 'US-LA', 'US-SD', 'US-DC', 'US-DE', 'US-FL', 'US-CT',
-  'US-WA', 'US-KS', 'US-WI', 'US-OR', 'US-KY', 'US-ME', 'US-OH', 'US-OK', 'US-ID', 'US-WY',
-  'US-UT', 'US-IN', 'US-IL', 'US-AK', 'US-NJ', 'US-CO', 'US-MD', 'US-MA', 'US-AL', 'US-MO',
-  'US-MN', 'US-CA', 'US-IA', 'US-MI', 'US-GA', 'US-AZ', 'US-MT', 'US-MS', 'US-SC', 'US-RI',
-  'US-AR'
-];
-
-var ARGENTINA_ID = 'AR';
-var ARGENTINA_REGIONS = [
-  'AR-Z', 'AR-X', 'AR-Y', 'AR-V', 'AR-W', 'AR-T', 'AR-U', 'AR-R', 'AR-S', 'AR-P',
-  'AR-Q', 'AR-N', 'AR-L', 'AR-M', 'AR-J', 'AR-K', 'AR-H', 'AR-F', 'AR-G', 'AR-D',
-  'AR-E', 'AR-B', 'AR-C', 'AR-A'
-];
-
-var COLOMBIA_ID = 'CO';
-var COLOMBIA_REGIONS = [
-  'CO-VAC', 'CO-BOY', 'CO-COR', 'CO-HUI', 'CO-VAU', 'CO-NSA', 'CO-RIS', 'CO-VID', 'CO-BOL', 'CO-CUN',
-  'CO-GUV', 'CO-CAU', 'CO-CAS', 'CO-CAQ', 'CO-CES', 'CO-SAN', 'CO-ATL', 'CO-AMA', 'CO-MET', 'CO-MAG',
-  'CO-ARA', 'CO-GUA', 'CO-SAP', 'CO-CAL', 'CO-QUI', 'CO-LAG', 'CO-TOL', 'CO-SUC', 'CO-PUT', 'CO-NAR',
-  'CO-CHO', 'CO-DC', 'CO-ANT'
-];
-
-var GERMANY_ID = 'DE';
-var GERMANY_REGIONS = [
-  'DE-BE', 'DE-ST', 'DE-RP', 'DE-BB', 'DE-NI', 'DE-MV', 'DE-TH', 'DE-BW', 'DE-HH', 'DE-SH',
-  'DE-NW', 'DE-SN', 'DE-HB', 'DE-SL', 'DE-BY', 'DE-HE'
-];
-
-var SPAIN_ID = 'ES';
-var SPAIN_REGIONS = [
-  'ES-NA', 'ES-B',  'ES-CS', 'ES-ZA', 'ES-O',  'ES-OR', 'ES-M',  'ES-L',  'ES-J',  'ES-H',
-  'ES-CU', 'ES-T',  'ES-C',  'ES-AV', 'ES-A',  'ES-CR', 'ES-CO', 'ES-VA', 'ES-TF', 'ES-Z',
-  'ES-MA', 'ES-AL', 'ES-CE', 'ES-PM', 'ES-VI', 'ES-S',  'ES-TE', 'ES-CC', 'ES-P',  'ES-PO',
-  'ES-GC', 'ES-GI', 'ES-TO', 'ES-MU', 'ES-GR', 'ES-GU', 'ES-AB', 'ES-SO', 'ES-ML', 'ES-LU',
-  'ES-SE', 'ES-CA', 'ES-SG', 'ES-BU', 'ES-SA', 'ES-V',  'ES-LE', 'ES-BI', 'ES-HU', 'ES-LO',
-  'ES-SS', 'ES-BA'
-];
-
-var FRANCE_ID = 'FR';
-var FRANCE_REGIONS = [
-  'FR-28', 'FR-29', 'FR-22', 'FR-23', 'FR-21', 'FR-26', 'FR-27', 'FR-24', 'FR-25', 'FR-MQ',
-  'FR-94', 'FR-93', 'FR-92', 'FR-91', 'FR-90', 'FR-17', 'FR-16', 'FR-15', 'FR-14', 'FR-13',
-  'FR-12', 'FR-11', 'FR-10', 'FR-2B', 'FR-2A', 'FR-19', 'FR-18', 'FR-88', 'FR-89', 'FR-80',
-  'FR-81', 'FR-82', 'FR-83', 'FR-84', 'FR-85', 'FR-86', 'FR-87', 'FR-01', 'FR-02', 'FR-03',
-  'FR-04', 'FR-05', 'FR-06', 'FR-07', 'FR-08', 'FR-09', 'FR-RE', 'FR-75', 'FR-74', 'FR-77',
-  'FR-76', 'FR-71', 'FR-70', 'FR-73', 'FR-72', 'FR-79', 'FR-78', 'FR-YT', 'FR-66', 'FR-67',
-  'FR-64', 'FR-65', 'FR-62', 'FR-63', 'FR-60', 'FR-61', 'FR-68', 'FR-69', 'FR-53', 'FR-52',
-  'FR-51', 'FR-50', 'FR-57', 'FR-56', 'FR-55', 'FR-54', 'FR-59', 'FR-58', 'FR-48', 'FR-49',
-  'FR-44', 'FR-45', 'FR-46', 'FR-47', 'FR-40', 'FR-41', 'FR-42', 'FR-43', 'FR-95', 'FR-GF',
-  'FR-GP', 'FR-39', 'FR-38', 'FR-31', 'FR-30', 'FR-33', 'FR-32', 'FR-35', 'FR-34', 'FR-37',
-  'FR-36'
-];
-
-var ITALY_ID = "IT";
-var ITALY_REGIONS = [
-  'IT-BA', 'IT-BG', 'IT-BI', 'IT-BO', 'IT-BN', 'IT-BL', 'IT-BS', 'IT-BR', 'IT-BT', 'IT-BZ',
-  'IT-RC', 'IT-RA', 'IT-RG', 'IT-RE', 'IT-RI', 'IT-RO', 'IT-RN', 'IT-RM', 'IT-AG', 'IT-AN',
-  'IT-AO', 'IT-AL', 'IT-IS', 'IT-AV', 'IT-AT', 'IT-IM', 'IT-AR', 'IT-AP', 'IT-AQ', 'IT-VE',
-  'IT-LC', 'IT-LE', 'IT-LI', 'IT-TP', 'IT-TS', 'IT-TR', 'IT-LO', 'IT-TV', 'IT-LU', 'IT-LT',
-  'IT-TO', 'IT-TN', 'IT-TA', 'IT-TE', 'IT-CL', 'IT-CN', 'IT-CO', 'IT-CH', 'IT-CI', 'IT-CE',
-  'IT-CA', 'IT-CB', 'IT-CZ', 'IT-CT', 'IT-CR', 'IT-CS', 'IT-SV', 'IT-SP', 'IT-SR', 'IT-SS',
-  'IT-SO', 'IT-SI', 'IT-KR', 'IT-SA', 'IT-VR', 'IT-FR', 'IT-FG', 'IT-FE', 'IT-FC', 'IT-FM',
-  'IT-FI', 'IT-NO', 'IT-NA', 'IT-NU', 'IT-EN', 'IT-MB', 'IT-MC', 'IT-ME', 'IT-MI', 'IT-MN',
-  'IT-MO', 'IT-MS', 'IT-MT', 'IT-UD', 'IT-PU', 'IT-PT', 'IT-PV', 'IT-PR', 'IT-PZ', 'IT-PE',
-  'IT-PD', 'IT-PG', 'IT-PA', 'IT-PC', 'IT-PO', 'IT-PN', 'IT-PI', 'IT-GR', 'IT-VC', 'IT-VB',
-  'IT-VA', 'IT-VI', 'IT-VV', 'IT-VT', 'IT-VS', 'IT-GE', 'IT-GO', 'IT-OG', 'IT-OR', 'IT-OT'
-];
+var REGION_LIST = [];
 
 var ApplicationModel = function () {
   this.visitedCountries = [];
@@ -148,10 +73,22 @@ var ApplicationModel = function () {
 ApplicationModel.prototype = {
 
   init: function (){
+    this.initRegionList();
     this.visitedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
     this.wantedCountries = JSON.parse( window.localStorage.getItem('wantedCountries') || '[]' );
     this.visitedRegions = JSON.parse( window.localStorage.getItem('visitedRegions') || '[]' );
     this.wantedRegions = JSON.parse( window.localStorage.getItem('wantedRegions') || '[]' );
+  },
+
+  initRegionList: function() {
+    REGION_LIST.push({regionId: 'CH', codes: getRegionCodes('CH')})
+    REGION_LIST.push({regionId: 'US', codes: getRegionCodes('US')})
+    REGION_LIST.push({regionId: 'AR', codes: getRegionCodes('AR')})
+    REGION_LIST.push({regionId: 'CO', codes: getRegionCodes('CO')})
+    REGION_LIST.push({regionId: 'DE', codes: getRegionCodes('DE')})
+    REGION_LIST.push({regionId: 'ES', codes: getRegionCodes('ES')})
+    REGION_LIST.push({regionId: 'FR', codes: getRegionCodes('FR')})
+    REGION_LIST.push({regionId: 'IT', codes: getRegionCodes('IT')})
   },
 
   getData: function(searchId){
@@ -277,18 +214,8 @@ ApplicationModel.prototype = {
   },
 
   getDetailMapData: function(){
-    var regionsList;
+    var regionsList = getRegionListById(this.getDetailCountry());
     var dataObject = {};
-    switch (this.getDetailCountry()) {
-      case SWISS_ID: regionsList = SWISS_REGIONS; break;
-      case UNITED_STATES_ID: regionsList = UNITED_STATES_REGIONS; break;
-      case ARGENTINA_ID: regionsList = ARGENTINA_REGIONS; break;
-      case COLOMBIA_ID: regionsList = COLOMBIA_REGIONS; break;
-      case GERMANY_ID: regionsList = GERMANY_REGIONS; break;
-      case SPAIN_ID: regionsList = SPAIN_REGIONS; break;
-      case FRANCE_ID: regionsList = FRANCE_REGIONS; break;
-      case ITALY_ID: regionsList = ITALY_REGIONS; break;
-    }
     this.visitedRegions.forEach(function(regionId){
       if(regionsList.indexOf(regionId) >= 0){
         dataObject[regionId] = 1;
@@ -317,7 +244,7 @@ ApplicationModel.prototype = {
 
   getDetailMapName: function(){
     var detailCountry = getParameterByName("country");
-    if(detailCountry === UNITED_STATES_ID){
+    if(detailCountry === 'US'){
       return detailCountry.toLowerCase() + "_aea";
     }
     else{
@@ -382,19 +309,12 @@ ApplicationModel.prototype = {
   getDetailBubbleText: function(){
     var countryId = getParameterByName('country');
     var count = 0;
-    var total = getTotalRegions(countryId);
+    var total = getRegionListById(countryId).length;
 
     if(countryId != null){
       this.visitedRegions.forEach(function(regionId){
-        if(countryId === SWISS_ID && SWISS_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === ARGENTINA_ID && ARGENTINA_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === COLOMBIA_ID && COLOMBIA_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === GERMANY_ID && GERMANY_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === SPAIN_ID && SPAIN_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === FRANCE_ID && FRANCE_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === ITALY_ID && ITALY_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === UNITED_STATES_ID && UNITED_STATES_REGIONS.indexOf(regionId) >= 0){
-          count++;
+        if(getRegionListById(countryId).indexOf(regionId) >= 0){
+          count ++;
         }
       });
       return count + '/' + total;
@@ -402,17 +322,22 @@ ApplicationModel.prototype = {
   }
 }
 
-function getTotalRegions(id){
-  switch(id){
-    case SWISS_ID: return SWISS_REGIONS.length;
-    case ARGENTINA_ID: return ARGENTINA_REGIONS.length;
-    case COLOMBIA_ID: return COLOMBIA_REGIONS.length;
-    case GERMANY_ID: return GERMANY_REGIONS.length;
-    case SPAIN_ID: return SPAIN_REGIONS.length;
-    case FRANCE_ID: return FRANCE_REGIONS.length;
-    case ITALY_ID: return ITALY_REGIONS.length;
-    case UNITED_STATES_ID: return UNITED_STATES_REGIONS.length;
-  }
+function getRegionCodes(regionId){
+  var codes = [];
+  countries[regionId].forEach(function(obj){
+    codes.push(obj['code']);
+  });
+  return codes;
+}
+
+function getRegionListById(regionId){
+  var codesList;
+  REGION_LIST.forEach(function(region){
+    if(region['regionId'] == regionId){
+       codesList = region['codes'];
+    }
+  });
+  return codesList;
 }
 
 function getTotalCountries(id){

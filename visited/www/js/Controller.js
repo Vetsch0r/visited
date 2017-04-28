@@ -56,5 +56,14 @@ Controller.prototype = {
       model.changeWantedColor(this.jscolor);
       view.loadMap();
     });
+    window.addEventListener("orientationchange", function() {
+      var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+      if (orientation.type === "landscape-primary" || orientation.type == "landscape-secondary") {
+        $('#map').height('100%');
+      }
+      else{
+        $('#map').height('30%');
+      }
+    });
   },
 }
