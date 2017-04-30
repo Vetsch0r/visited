@@ -108,6 +108,22 @@ ApplicationModel.prototype = {
     return getParameterByName("country");
   },
 
+  isVisitedCountry: function(code){
+    return this.visitedCountries.indexOf(code) >= 0;
+  },
+
+  isWantedCountry: function(code){
+    return this.wantedCountries.indexOf(code) >= 0;
+  },
+
+  isVisitedRegion: function(code){
+    return this.visitedRegions.indexOf(code) >= 0;
+  },
+
+  isWantedRegion: function(code){
+    return this.wantedRegions.indexOf(code) >= 0;
+  },
+
   getVisitedCountries: function(){
     return this.visitedCountries;
   },

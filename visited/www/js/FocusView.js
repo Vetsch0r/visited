@@ -25,7 +25,15 @@ FocusView.prototype = {
     $('#map').vectorMap(this.getMapParams());
   },
 
+  updateColors: function(){
+    var model = this.model;
+    var map = $('#map').vectorMap('get', 'mapObject');
+    map.series.regions[0].clear();
+    map.series.regions[0].setValues(model.getDetailMapData());
+  },
+
   getMapParams: function(){
+    var view = this;
     var model = this.model;
     var data = model.getDetailMapData();
     return {
@@ -56,6 +64,12 @@ FocusView.prototype = {
       regionsSelectable: true,
       onRegionClick: function(e, code){
         e.preventDefault();
+        if(model.isVisitedRegion(code) || model.isWantedRegion(code)){
+          view.clickWanted(code);
+        }
+        else{
+          view.clickVisited(code);
+        }
       }
     };
   },
@@ -81,7 +95,7 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + regionId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
     model.removeWantedRegion(regionId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 
@@ -96,7 +110,7 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + regionId + '.ui-icon-check').removeClass("ui-icon-check-on");
     model.removeVisitedRegion(regionId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 }

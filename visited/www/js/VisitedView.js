@@ -31,6 +31,13 @@ VisitedView.prototype = {
     }
   },
 
+  updateColors: function(){
+    var model = this.model;
+    var map = $('#map').vectorMap('get', 'mapObject');
+    map.series.regions[0].clear();
+    map.series.regions[0].setValues(model.getDataByMap());
+  },
+
   resetScroll: function(){
     $(".collapsing").collapsible("collapse");
     $("#content").animate({
@@ -81,7 +88,7 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
     model.removeWantedCountry(countryId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 
@@ -96,11 +103,12 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
     model.removeVisitedCountry(countryId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 
   getMapParams: function(){
+    var view = this;
     var model = this.model;
     var data = model.getDataByMap();
     return {
@@ -131,6 +139,12 @@ VisitedView.prototype = {
       regionsSelectable: true,
       onRegionClick: function(e, code){
         e.preventDefault();
+        if(model.isVisitedCountry(code) || model.isWantedCountry(code)){
+          view.clickWanted(code);
+        }
+        else{
+          view.clickVisited(code);
+        }
       }
     };
   },
@@ -138,7 +152,9 @@ VisitedView.prototype = {
   loadSettings: function(){
     var model = this.model;
     $('#visitedColor').attr('value', model.getVisitedColor());
+    $('#visitedColor').blur();
     $('#wantedColor').attr('value', model.getWantedColor());
+    $('#wantedColor').blur();
   },
 }
 
