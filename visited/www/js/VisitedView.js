@@ -26,7 +26,7 @@ VisitedView.prototype = {
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
       if(code !== ""){
-        $(".collapsing#" + code).collapsible("expand");
+        $(".collapsing#" + getContinentIdOfHashCode(code)).collapsible("expand");
       }
     }
   },
@@ -152,9 +152,7 @@ VisitedView.prototype = {
   loadSettings: function(){
     var model = this.model;
     $('#visitedColor').attr('value', model.getVisitedColor());
-    $('#visitedColor').blur();
     $('#wantedColor').attr('value', model.getWantedColor());
-    $('#wantedColor').blur();
   },
 }
 
@@ -176,4 +174,15 @@ function updateBubbles(model){
   $('#namericaBubble').text(model.getBubbleText(NAMERICA_ID));
   $('#samericaBubble').text(model.getBubbleText(SAMERICA_ID));
   $('#africaBubble').text(model.getBubbleText(AFRICA_ID));
+}
+
+function getContinentIdOfHashCode(code){
+  switch(code){
+    case 'AF' : return AFRICA_ID;
+    case 'AS' : return ASIA_ID;
+    case 'EU' : return EUROPE_ID;
+    case 'OC' : return AUSTRALIA_ID;
+    case 'NA' : return NAMERICA_ID;
+    case 'SA' : return SAMERICA_ID;
+  }
 }

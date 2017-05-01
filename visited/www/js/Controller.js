@@ -21,22 +21,22 @@ Controller.prototype = {
         window.location.hash = "";
       }
     });
-    $( "#AF").on("collapsibleexpand", function( event, ui ) {
+    $( "#africa").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "AF";
     });
-    $( "#AS").on("collapsibleexpand", function( event, ui ) {
+    $( "#asia").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "AS";
     });
-    $( "#OC").on("collapsibleexpand", function( event, ui ) {
+    $( "#australia").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "OC";
     });
-    $( "#EU").on("collapsibleexpand", function( event, ui ) {
+    $( "#europe").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "EU";
     });
-    $( "#NA").on("collapsibleexpand", function( event, ui ) {
+    $( "#namerica").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "NA";
     });
-    $( "#SA").on("collapsibleexpand", function( event, ui ) {
+    $( "#samerica").on("collapsibleexpand", function( event, ui ) {
       window.location.hash = "SA";
     });
     $(document).on('click', ".visitedButton", function(e) {
@@ -62,7 +62,7 @@ Controller.prototype = {
         $('#map').height('100%');
       }
       else{
-        $('#map').height('30%');
+        $('#map').height('35%');
       }
     });
   },

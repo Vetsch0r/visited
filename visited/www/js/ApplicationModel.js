@@ -57,7 +57,8 @@ var AUSTRALIA_ID = 'australia';
 var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
-var FOCUS_COUNTRIES = ['CH', 'US', 'AR', 'CO', 'DE', 'ES', 'FR', 'IT'];
+var FOCUS_COUNTRIES = ['AR', 'AT', 'AU', 'BE', 'CA', 'CH', 'CO', 'CN', 'DE', 'DK',
+  'ES', 'FR', 'IT', 'NL', 'NZ', 'PL', 'PT', 'RU', 'US' ];
 
 var REGION_LIST = [];
 
@@ -81,14 +82,9 @@ ApplicationModel.prototype = {
   },
 
   initRegionList: function() {
-    REGION_LIST.push({regionId: 'CH', codes: getRegionCodes('CH')})
-    REGION_LIST.push({regionId: 'US', codes: getRegionCodes('US')})
-    REGION_LIST.push({regionId: 'AR', codes: getRegionCodes('AR')})
-    REGION_LIST.push({regionId: 'CO', codes: getRegionCodes('CO')})
-    REGION_LIST.push({regionId: 'DE', codes: getRegionCodes('DE')})
-    REGION_LIST.push({regionId: 'ES', codes: getRegionCodes('ES')})
-    REGION_LIST.push({regionId: 'FR', codes: getRegionCodes('FR')})
-    REGION_LIST.push({regionId: 'IT', codes: getRegionCodes('IT')})
+    FOCUS_COUNTRIES.forEach(function(code){
+      REGION_LIST.push({regionId: code, codes: getRegionCodes(code)})
+    })
   },
 
   getData: function(searchId){
@@ -262,6 +258,15 @@ ApplicationModel.prototype = {
     var detailCountry = getParameterByName("country");
     if(detailCountry === 'US'){
       return detailCountry.toLowerCase() + "_aea";
+    }
+    else if(detailCountry === 'FR' || detailCountry === 'IT'){
+      return detailCountry.toLowerCase() + "_regions_mill";
+    }
+    else if(detailCountry === 'RU'){
+      return detailCountry.toLowerCase() + "_fd_mill";
+    }
+    else if(detailCountry === 'CA'){
+      return detailCountry.toLowerCase() + "_lcc";
     }
     else{
       return detailCountry.toLowerCase() + "_mill";
