@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/spectrum.css"/>
     <script src="js/lib/jquery-2.1.1.min.js"></script>
     <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/lib/mustache.min.js"></script>
-    <script src="js/lib/jscolor.js"></script>
+    <script src="js/lib/spectrum.js"></script>
     <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
     <script src="js/lib/jquery-jvectormap-europe-mill.js"></script>
@@ -41,7 +42,7 @@
         <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
-      <div data-role="collapsible" id="europe" class="collapsing">
+      <div data-role="collapsible" id="EU" class="collapsing">
         <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Europe</h1>
         <table id="europeList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
@@ -64,14 +65,26 @@
       <div class="ui-body ui-body-a">
         <table cellpadding="0" cellspacing="0">
           <tr>
-            <td>Visited</td>
-            <td width="70px"><input id="visitedColor" class="jscolor" value="03a834" type="text"></td>
+            <td width="100px">Visited</td>
+            <td><input id="visitedColor" value="03a834" class="basic" type="text"></td>
           </tr>
           <tr>
             <td>Wanted</td>
-            <td><input id="wantedColor" class="jscolor" value="a80303" type="text"></td>
+            <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
           </tr>
         </table>
+      </div>
+      <div class="ui-bar ui-bar-a">
+        <h3>Numbers</h3>
+      </div>
+
+      <div class="ui-body ui-body-a">
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="on" checked="checked">
+          <label for="radio-choice-h-2a">fraction</label>
+          <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="off">
+          <label for="radio-choice-h-2b">in %</label>
+        </fieldset>
       </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>

@@ -118,7 +118,7 @@ VisitedView.prototype = {
       },
       regionStyle: {
         selected: {
-          fill: '#' + model.getVisitedColor()
+          fill: model.getVisitedColor()
         },
         hover: {
           "fill-opacity": 1.0
@@ -127,8 +127,8 @@ VisitedView.prototype = {
       series: {
         regions: [{
           scale: {
-            '1': '#' + model.getVisitedColor(),
-            '2': '#' + model.getWantedColor()
+            '1': model.getVisitedColor(),
+            '2': model.getWantedColor()
           },
           attribute: 'fill',
           values: data
