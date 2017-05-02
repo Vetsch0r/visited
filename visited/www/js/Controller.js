@@ -48,20 +48,36 @@ Controller.prototype = {
     $(document).on('click', ".focusButton", function(e) {
       window.location="focus.html?country=" + e.target.id;
     });
-    $("#visitedColor").spectrum({
-      color: model.getVisitedColor(),
-      change: function (color) {
-        model.changeVisitedColor(color.toHexString());
-        view.loadMap();
-      }
-    });
-    $("#wantedColor").spectrum({
-      color: model.getWantedColor(),
-      change: function (color) {
-        model.changeWantedColor(color.toHexString());
-        view.loadMap();
-      }
-    });
+
+    /**
+    * Settings color picker
+    **/
+    if($('#visitedColor').length) {
+      $("#visitedColor").spectrum({
+        color: model.getVisitedColor(),
+        replacerClassName: 'colorpicker',
+        containerClassName: 'colorpickerContainer',
+        change: function (color) {
+          model.changeVisitedColor(color.toHexString());
+          view.loadMap();
+        }
+      });
+    }
+    if($('#wantedColor').length) {
+      $("#wantedColor").spectrum({
+        color: model.getWantedColor(),
+        replacerClassName: 'colorpicker',
+        containerClassName: 'colorpickerContainer',
+        change: function (color) {
+          model.changeWantedColor(color.toHexString());
+          view.loadMap();
+        }
+      });
+    }
+
+    /**
+    * Orientation plugin
+    **/
     window.addEventListener("orientationchange", function() {
       var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
       if (orientation.type === "landscape-primary" || orientation.type == "landscape-secondary") {

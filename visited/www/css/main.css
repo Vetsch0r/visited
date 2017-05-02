@@ -22,6 +22,16 @@
   float:right;
 }
 
+.colorpicker {
+  background-color: white !important;
+  border: solid 1px #CCCCCC !important;
+}
+
+.colorpickerContainer {
+  background-color: #FCFCFC !important;
+  border: solid 1px #CCCCCC !important;
+}
+
 .countryIcon{
   margin-top:-2px;
 }
