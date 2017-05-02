@@ -11,12 +11,10 @@ VisitedView.prototype = {
       model.changeMap();
     }
     this.loadMap();
-
     this.loadCountryList();
     this.markCountries();
     this.loadSettings();
-
-    updateBubbles(model);
+    this.updateBubbles();
   },
 
   loadMap: function(){
@@ -89,7 +87,7 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
     model.removeWantedCountry(countryId);
     this.updateColors();
-    updateBubbles(model);
+    updateBubbles();
   },
 
   clickWanted: function(countryId){
@@ -104,7 +102,7 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
     model.removeVisitedCountry(countryId);
     this.updateColors();
-    updateBubbles(model);
+    updateBubbles();
   },
 
   getMapParams: function(){
@@ -150,8 +148,24 @@ VisitedView.prototype = {
   },
 
   loadSettings: function(){
-    var model = this.model
+    var model = this.model;
+    if(model.getNumberFormat() === 'fraction'){
+      $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
+    }
+    else{
+      $('#radio-number-format-1b').attr("checked",true).checkboxradio("refresh");
+
+    }
   },
+
+  updateBubbles: function(){
+    $('#europeBubble').text(this.model.getBubbleText(EUROPE_ID));
+    $('#asiaBubble').text(this.model.getBubbleText(ASIA_ID));
+    $('#australiaBubble').text(this.model.getBubbleText(AUSTRALIA_ID));
+    $('#namericaBubble').text(this.model.getBubbleText(NAMERICA_ID));
+    $('#samericaBubble').text(this.model.getBubbleText(SAMERICA_ID));
+    $('#africaBubble').text(this.model.getBubbleText(AFRICA_ID));
+  }
 }
 
 function addToList(country, container, i){
@@ -163,15 +177,6 @@ function addToList(country, container, i){
 
 function hasDetailMap(country){
   return FOCUS_COUNTRIES.indexOf(country['code']) >= 0
-}
-
-function updateBubbles(model){
-  $('#europeBubble').text(model.getBubbleText(EUROPE_ID));
-  $('#asiaBubble').text(model.getBubbleText(ASIA_ID));
-  $('#australiaBubble').text(model.getBubbleText(AUSTRALIA_ID));
-  $('#namericaBubble').text(model.getBubbleText(NAMERICA_ID));
-  $('#samericaBubble').text(model.getBubbleText(SAMERICA_ID));
-  $('#africaBubble').text(model.getBubbleText(AFRICA_ID));
 }
 
 function getContinentIdOfHashCode(code){

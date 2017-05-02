@@ -9,6 +9,8 @@ var AUSTRALIA_MAP = 'oceania_mill';
 var VISITED_DEFAULT_COLOR = "03a834";
 var WANTED_DEFAULT_COLOR = "a80303";
 
+var DEFAULT_NUMBER_FORMAT = "fraction";
+
 var WORLD_COUNTRIES = [
   'BD', 'BE', 'BF', 'BG', 'BA', 'BN', 'BO', 'JP', 'BI', 'BJ', 'BT', 'JM', 'BW', 'BR', 'BS',
   'BY', 'BZ', 'RU', 'RW', 'RS', 'TL', 'TM', 'TJ', 'RO', 'GW', 'GT', 'GR', 'GQ', 'GY', 'GE',
@@ -310,6 +312,18 @@ ApplicationModel.prototype = {
     window.localStorage.setItem('wantedColor', color);
   },
 
+  getNumberFormat: function(){
+    var numberFormat = window.localStorage.getItem('numberFormat');
+    if(numberFormat == undefined  || numberFormat == null){
+      return DEFAULT_NUMBER_FORMAT;
+    }
+    return numberFormat;
+  },
+
+  changeNumberFormat: function (numberFormat) {
+    window.localStorage.setItem('numberFormat', numberFormat);
+  },
+
   getBubbleText: function (continentId){
     var count = 0;
     var total = getTotalCountries(continentId);
@@ -324,7 +338,12 @@ ApplicationModel.prototype = {
         count++;
       }
     });
-    return count + '/' + total;
+    if(this.getNumberFormat() === 'percentage'){
+      return Number((count * 100 / total).toFixed(1)) + " %";
+    }
+    else{
+      return count + '/' + total;
+    }
   },
 
   getDetailBubbleText: function(){
@@ -338,7 +357,12 @@ ApplicationModel.prototype = {
           count ++;
         }
       });
-      return count + '/' + total;
+      if(this.getNumberFormat() === 'percentage'){
+        return Number((count * 100 / total).toFixed(1)) + " %";
+      }
+      else{
+        return count + '/' + total;
+      }
     }
   }
 }

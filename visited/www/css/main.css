@@ -20,6 +20,7 @@
 .ui-top-menu{
   z-index: 200;
   float:right;
+  top: 3px;
 }
 
 .colorpicker {

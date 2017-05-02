@@ -76,6 +76,15 @@ Controller.prototype = {
     }
 
     /**
+    * Settings number format
+    **/
+    $("input[name='radio-number-format-1']").bind("change", function(event, ui) {
+      model.changeNumberFormat($(this).val());
+      view.updateBubbles();
+    });
+
+
+    /**
     * Orientation plugin
     **/
     window.addEventListener("orientationchange", function() {
