@@ -6,8 +6,8 @@ var SAMERICA_MAP = 'south_america_mill';
 var NAMERICA_MAP = 'north_america_mill';
 var AUSTRALIA_MAP = 'oceania_mill';
 
-var VISITED_DEFAULT_COLOR = "03a834";
-var WANTED_DEFAULT_COLOR = "a80303";
+var VISITED_DEFAULT_COLOR = "#03a834";
+var WANTED_DEFAULT_COLOR = "#a80303";
 
 var DEFAULT_NUMBER_FORMAT = "fraction";
 
@@ -65,6 +65,7 @@ var FOCUS_COUNTRIES = ['AR', 'AT', 'AU', 'BE', 'CA', 'CH', 'CO', 'CN', 'DE', 'DK
 var REGION_LIST = [];
 
 var ApplicationModel = function () {
+  migrate();
   this.visitedCountries = [];
   this.wantedCountries = [];
   this.visitedRegions = [];
@@ -418,4 +419,14 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function migrate(){
+  var migration1000 = window.localStorage.getItem('migration1000');
+  if(migration1000 == undefined || migration1000 == null){
+    alert('migration starts')
+    window.localStorage.setItem('visitedColor', VISITED_DEFAULT_COLOR);
+    window.localStorage.setItem('wantedColor', WANTED_DEFAULT_COLOR);;
+    window.localStorage.setItem('migration1000', 'true');
+  }
 }
