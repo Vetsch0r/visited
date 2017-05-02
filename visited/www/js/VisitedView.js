@@ -150,9 +150,7 @@ VisitedView.prototype = {
   },
 
   loadSettings: function(){
-    var model = this.model;
-    $('#visitedColor').attr('value', model.getVisitedColor());
-    $('#wantedColor').attr('value', model.getWantedColor());
+    var model = this.model
   },
 }
 

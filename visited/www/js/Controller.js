@@ -86,6 +86,16 @@ Controller.prototype = {
       else{
         $('#map').height('35%');
       }
+
+      var map = $('#map').vectorMap('get', 'mapObject');
+      var center = map.pointToLatLng(map.width / 2, map.height / 2);
+
+      var config = {
+          lat: center.lat,
+          lng: center.lng,
+          scale: 1.0
+      }
+      map.setFocus(config)
     });
   },
 }
