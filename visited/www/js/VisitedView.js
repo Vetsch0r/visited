@@ -87,7 +87,7 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
     model.removeWantedCountry(countryId);
     this.updateColors();
-    updateBubbles();
+    this.updateBubbles();
   },
 
   clickWanted: function(countryId){
@@ -102,7 +102,7 @@ VisitedView.prototype = {
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
     model.removeVisitedCountry(countryId);
     this.updateColors();
-    updateBubbles();
+    this.updateBubbles();
   },
 
   getMapParams: function(){
