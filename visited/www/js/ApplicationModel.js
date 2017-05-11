@@ -60,7 +60,8 @@ var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
 var FOCUS_COUNTRIES = ['AR', 'AT', 'AU', 'BE', 'CA', 'CH', 'CO', 'CN', 'DE', 'DK',
-  'ES', 'FR', 'IT', 'NL', 'NZ', 'PL', 'PT', 'RU', 'US' ];
+  'ES', 'FR', 'GB', 'KR', 'IT', 'NL', 'NZ', 'PL', 'PT', 'RU', 'SE', 'TH', 'US',
+  'VE', 'ZA'];
 
 var REGION_LIST = [];
 
@@ -270,6 +271,9 @@ ApplicationModel.prototype = {
     }
     else if(detailCountry === 'CA'){
       return detailCountry.toLowerCase() + "_lcc";
+    }
+    else if(detailCountry === 'GB'){
+        return 'uk_regions_mill';
     }
     else{
       return detailCountry.toLowerCase() + "_mill";
