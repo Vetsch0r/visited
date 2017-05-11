@@ -63,10 +63,9 @@ var FOCUS_COUNTRIES = ['AR', 'AT', 'AU', 'BE', 'CA', 'CH', 'CO', 'CN', 'DE', 'DK
   'ES', 'FR', 'GB', 'KR', 'IT', 'NL', 'NZ', 'PL', 'PT', 'RU', 'SE', 'TH', 'US',
   'VE', 'ZA'];
 
-var REGION_LIST = [];
+var regionList = [];
 
 var ApplicationModel = function () {
-  migrate();
   this.visitedCountries = [];
   this.wantedCountries = [];
   this.visitedRegions = [];
@@ -78,17 +77,13 @@ var ApplicationModel = function () {
 ApplicationModel.prototype = {
 
   init: function (){
-    this.initRegionList();
+    FOCUS_COUNTRIES.forEach(function(code){
+      regionList.push({regionId: code, codes: getRegionCodes(code)})
+    })
     this.visitedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
     this.wantedCountries = JSON.parse( window.localStorage.getItem('wantedCountries') || '[]' );
     this.visitedRegions = JSON.parse( window.localStorage.getItem('visitedRegions') || '[]' );
     this.wantedRegions = JSON.parse( window.localStorage.getItem('wantedRegions') || '[]' );
-  },
-
-  initRegionList: function() {
-    FOCUS_COUNTRIES.forEach(function(code){
-      REGION_LIST.push({regionId: code, codes: getRegionCodes(code)})
-    })
   },
 
   getData: function(searchId){
@@ -382,7 +377,7 @@ function getRegionCodes(regionId){
 
 function getRegionListById(regionId){
   var codesList;
-  REGION_LIST.forEach(function(region){
+  regionList.forEach(function(region){
     if(region['regionId'] == regionId){
        codesList = region['codes'];
     }
@@ -423,14 +418,4 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-function migrate(){
-  var migration1000 = window.localStorage.getItem('migration1000');
-  if(migration1000 == undefined || migration1000 == null){
-    alert('migration starts')
-    window.localStorage.setItem('visitedColor', VISITED_DEFAULT_COLOR);
-    window.localStorage.setItem('wantedColor', WANTED_DEFAULT_COLOR);;
-    window.localStorage.setItem('migration1000', 'true');
-  }
 }
