@@ -78,9 +78,12 @@ FocusView.prototype = {
     var model = this.model;
     model.getVisitedRegions().forEach(function(regionId){
       $('#' + regionId + '.ui-icon-check').toggleClass("ui-icon-check-on");
+      $('#' + regionId + '.ui-icon-check').css("background-color", model.getVisitedColor());
+
     });
     model.getWantedRegions().forEach(function(regionId){
       $('#' + regionId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
+      $('#' + regionId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     });
   },
 
@@ -88,12 +91,15 @@ FocusView.prototype = {
     var model = this.model;
     if($('#' + regionId + '.ui-icon-check').hasClass("ui-icon-check-on")){
       model.removeVisitedRegion(regionId);
+      $('#' + regionId + '.ui-icon-check').css("background-color", "");
     }
     else{
       model.addVisitedRegion(regionId);
+      $('#' + regionId + '.ui-icon-check').css("background-color", model.getVisitedColor())
     }
     $('#' + regionId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + regionId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
+    $('#' + regionId + '.ui-icon-heart').css("background-color", "");
     model.removeWantedRegion(regionId);
     this.updateColors();
     updateBubbles(model);
@@ -103,12 +109,15 @@ FocusView.prototype = {
     var model = this.model;
     if($('#' + regionId + '.ui-icon-heart').hasClass("ui-icon-heart-on")){
       model.removeWantedRegion(regionId);
+      $('#' + regionId + '.ui-icon-heart').css("background-color", "");
     }
     else{
       model.addWantedRegion(regionId);
+      $('#' + regionId + '.ui-icon-heart').css("background-color", model.getWantedColor())
     }
     $('#' + regionId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + regionId + '.ui-icon-check').removeClass("ui-icon-check-on");
+    $('#' + regionId + '.ui-icon-check').css("background-color", "");
     model.removeVisitedRegion(regionId);
     this.updateColors();
     updateBubbles(model);

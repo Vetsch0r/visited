@@ -17,10 +17,23 @@
   overflow:hidden;
 }
 
-.ui-top-menu{
-  z-index: 200;
-  float:right;
-  top: 3px;
+.hamburger{
+  position:absolute;
+  right:0;
+  line-height:45px;
+  padding:5px 15px 0px 15px;
+  font-size:1.8em;
+  cursor:pointer;
+  z-index:200;
+}
+
+.hamburger:link{
+  text-decoration: none;
+  color:#CCCCCC;
+}
+
+.settingsNumberFormat{
+  padding-top: 6px !important;
 }
 
 .colorpicker {
@@ -102,12 +115,4 @@
 
 @media all and (min-width: 55em) {
 
-}
-
-.ui-icon-check-on {
-  background-color: #35f254 !important;
-}
-
-.ui-icon-heart-on {
-  background-color: red !important;
 }

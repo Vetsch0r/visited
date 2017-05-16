@@ -60,6 +60,7 @@ Controller.prototype = {
         change: function (color) {
           model.changeVisitedColor(color.toHexString());
           view.loadMap();
+          view.markCountries();
         }
       });
     }
@@ -71,6 +72,7 @@ Controller.prototype = {
         change: function (color) {
           model.changeWantedColor(color.toHexString());
           view.loadMap();
+          view.markCountries();
         }
       });
     }

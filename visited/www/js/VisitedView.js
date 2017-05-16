@@ -69,9 +69,11 @@ VisitedView.prototype = {
     var model = this.model;
     model.getVisitedCountries().forEach(function(countryId){
       $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
+      $('#' + countryId + '.ui-icon-check').css("background-color", model.getVisitedColor());
     });
     model.getWantedCountries().forEach(function(countryId){
       $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
+      $('#' + countryId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     });
   },
 
@@ -79,12 +81,15 @@ VisitedView.prototype = {
     var model = this.model;
     if($('#' + countryId + '.ui-icon-check').hasClass("ui-icon-check-on")){
       model.removeVisitedCountry(countryId);
+      $('#' + countryId + '.ui-icon-check').css("background-color", "");
     }
     else{
       model.addVisitedCountry(countryId);
+      $('#' + countryId + '.ui-icon-check').css("background-color", model.getVisitedColor())
     }
     $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
+    $('#' + countryId + '.ui-icon-heart').css("background-color", "");
     model.removeWantedCountry(countryId);
     this.updateColors();
     this.updateBubbles();
@@ -94,12 +99,15 @@ VisitedView.prototype = {
     var model = this.model;
     if($('#' + countryId + '.ui-icon-heart').hasClass("ui-icon-heart-on")){
       model.removeWantedCountry(countryId);
+      $('#' + countryId + '.ui-icon-heart').css("background-color", "");
     }
     else{
       model.addWantedCountry(countryId);
+      $('#' + countryId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     }
     $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
+    $('#' + countryId + '.ui-icon-check').css("background-color", "");
     model.removeVisitedCountry(countryId);
     this.updateColors();
     this.updateBubbles();
