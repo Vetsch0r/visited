@@ -91,11 +91,13 @@ Controller.prototype = {
     **/
     window.addEventListener("orientationchange", function() {
       var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-      if (orientation.type === "landscape-primary" || orientation.type == "landscape-secondary") {
+      if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
         $('#map').height('100%');
+        $('#screenshot').css("display", "block");
       }
       else{
         $('#map').height('35%');
+        $('#screenshot').css("display", "none");
       }
 
       var map = $('#map').vectorMap('get', 'mapObject');
@@ -110,18 +112,21 @@ Controller.prototype = {
     });
 
     /**
-    * Screenshot
+    * Screenshot handling
     **/
-    $(document).on('click', ".screenshot", function(e) {
+    $(document).on('click', "#screenshot", function(e) {
+      $("#screenshot").toggle();
+      $(".hamburger").toggle();
       navigator.screenshot.save(function(error,res){
         if(error){
-          alert('error')
+          alert('fail');
           console.error(error);
         }else{
-          alert('yep')
-          console.log('ok',res.filePath);
+          alert('Screenshot taken')
         }
       },'jpg',50);
+      $("#screenshot").toggle();
+      $(".hamburger").toggle();
     });
   },
 }
