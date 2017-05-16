@@ -36,6 +36,11 @@
   padding-top: 6px !important;
 }
 
+.screenshot{
+  position: absolute;
+  z-index:200;
+}
+
 .colorpicker {
   background-color: white !important;
   border: solid 1px #CCCCCC !important;

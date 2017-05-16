@@ -108,5 +108,20 @@ Controller.prototype = {
       }
       map.setFocus(config)
     });
+
+    /**
+    * Screenshot
+    **/
+    $(document).on('click', ".screenshot", function(e) {
+      navigator.screenshot.save(function(error,res){
+        if(error){
+          alert('error')
+          console.error(error);
+        }else{
+          alert('yep')
+          console.log('ok',res.filePath);
+        }
+      },'jpg',50);
+    });
   },
 }
