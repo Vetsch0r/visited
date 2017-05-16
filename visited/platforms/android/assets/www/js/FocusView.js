@@ -25,7 +25,15 @@ FocusView.prototype = {
     $('#map').vectorMap(this.getMapParams());
   },
 
+  updateColors: function(){
+    var model = this.model;
+    var map = $('#map').vectorMap('get', 'mapObject');
+    map.series.regions[0].clear();
+    map.series.regions[0].setValues(model.getDetailMapData());
+  },
+
   getMapParams: function(){
+    var view = this;
     var model = this.model;
     var data = model.getDetailMapData();
     return {
@@ -35,7 +43,7 @@ FocusView.prototype = {
       },
       regionStyle: {
         selected: {
-          fill: '#' + model.getVisitedColor()
+          fill: model.getVisitedColor()
         },
         hover: {
           "fill-opacity": 1.0
@@ -44,8 +52,8 @@ FocusView.prototype = {
       series: {
         regions: [{
           scale: {
-            '1': '#' + model.getVisitedColor(),
-            '2': '#' + model.getWantedColor()
+            '1': model.getVisitedColor(),
+            '2': model.getWantedColor()
           },
           attribute: 'fill',
           values: data
@@ -56,6 +64,12 @@ FocusView.prototype = {
       regionsSelectable: true,
       onRegionClick: function(e, code){
         e.preventDefault();
+        if(model.isVisitedRegion(code) || model.isWantedRegion(code)){
+          view.clickWanted(code);
+        }
+        else{
+          view.clickVisited(code);
+        }
       }
     };
   },
@@ -64,9 +78,12 @@ FocusView.prototype = {
     var model = this.model;
     model.getVisitedRegions().forEach(function(regionId){
       $('#' + regionId + '.ui-icon-check').toggleClass("ui-icon-check-on");
+      $('#' + regionId + '.ui-icon-check').css("background-color", model.getVisitedColor());
+
     });
     model.getWantedRegions().forEach(function(regionId){
       $('#' + regionId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
+      $('#' + regionId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     });
   },
 
@@ -74,14 +91,17 @@ FocusView.prototype = {
     var model = this.model;
     if($('#' + regionId + '.ui-icon-check').hasClass("ui-icon-check-on")){
       model.removeVisitedRegion(regionId);
+      $('#' + regionId + '.ui-icon-check').css("background-color", "");
     }
     else{
       model.addVisitedRegion(regionId);
+      $('#' + regionId + '.ui-icon-check').css("background-color", model.getVisitedColor())
     }
     $('#' + regionId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + regionId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
+    $('#' + regionId + '.ui-icon-heart').css("background-color", "");
     model.removeWantedRegion(regionId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 
@@ -89,14 +109,17 @@ FocusView.prototype = {
     var model = this.model;
     if($('#' + regionId + '.ui-icon-heart').hasClass("ui-icon-heart-on")){
       model.removeWantedRegion(regionId);
+      $('#' + regionId + '.ui-icon-heart').css("background-color", "");
     }
     else{
       model.addWantedRegion(regionId);
+      $('#' + regionId + '.ui-icon-heart').css("background-color", model.getWantedColor())
     }
     $('#' + regionId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + regionId + '.ui-icon-check').removeClass("ui-icon-check-on");
+    $('#' + regionId + '.ui-icon-check').css("background-color", "");
     model.removeVisitedRegion(regionId);
-    this.loadMap();
+    this.updateColors();
     updateBubbles(model);
   },
 }

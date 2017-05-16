@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/spectrum.css"/>
     <script src="js/lib/jquery-2.1.1.min.js"></script>
     <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/lib/mustache.min.js"></script>
-    <script src="js/lib/jscolor.js"></script>
+    <script src="js/lib/spectrum.js"></script>
     <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
     <script src="js/lib/jquery-jvectormap-europe-mill.js"></script>
@@ -23,35 +24,35 @@
   <body>
     <div class="header">
       <div id="map"></div>
-      <a href="#nav-panel" class='ui-shadow ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-inline ui-top-menu'>Menu</a>
+      <a href="#nav-panel" class="hamburger">&#9776;</a>
     </div>
     <div id="content">
-      <div data-role="collapsible" id="AF" class="collapsing" >
+      <div data-role="collapsible" id="africa" class="collapsing" >
         <h1><div id="africaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Africa</h1>
         <table id="africaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
-      <div data-role="collapsible" id="AS" class="collapsing">
+      <div data-role="collapsible" id="asia" class="collapsing">
         <h1><div id="asiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Asia</h1>
         <table id="asiaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
-      <div data-role="collapsible" id="OC" class="collapsing">
-        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Australia</h1>
-        <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="EU" class="collapsing">
+      <div data-role="collapsible" id="europe" class="collapsing">
         <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Europe</h1>
         <table id="europeList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
-      <div data-role="collapsible" id="NA" class="collapsing">
+      <div data-role="collapsible" id="namerica" class="collapsing">
         <h1><div id="namericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>North America</h1>
         <table id="namericaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
-      <div data-role="collapsible" id="SA" class="collapsing">
+      <div data-role="collapsible" id="australia" class="collapsing">
+        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Oceania</h1>
+        <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
+        </table>
+      </div>
+      <div data-role="collapsible" id="samerica" class="collapsing">
         <h1><div id="samericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>South America</h1>
         <table id="samericaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
@@ -59,20 +60,28 @@
     </div>
     <div data-role="panel" data-position="right" data-display="push" id="nav-panel">
       <div class="ui-bar ui-bar-a">
-        <h3>Colors</h3>
+        <h3>Display Settings</h3>
       </div>
       <div class="ui-body ui-body-a">
         <table cellpadding="0" cellspacing="0">
           <tr>
-            <td>Visited</td>
-            <td width="70px"><input id="visitedColor" class="jscolor" value="03a834" type="text"></td>
+            <td width="150px">Visited-Color</td>
+            <td><input id="visitedColor" value="03a834" class="basic" type="text"></td>
           </tr>
           <tr>
-            <td>Wanted</td>
-            <td><input id="wantedColor" class="jscolor" value="a80303" type="text"></td>
+            <td>Wanted-Color</td>
+            <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
           </tr>
         </table>
+        <fieldset data-role="controlgroup" data-type="horizontal" class="settingsNumberFormat">
+           <legend>Number-Format</legend>
+          <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
+          <label for="radio-number-format-1a">fractional</label>
+          <input type="radio" name="radio-number-format-1" id="radio-number-format-1b" value="percentage">
+          <label for="radio-number-format-1b">in %</label>
+        </fieldset>
       </div>
+
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="data/country.js"></script>
@@ -98,7 +107,7 @@
     </script>
     <script type="text/javascript">
       $(function() {
-        var model = new ApplicationModel();;
+        var model = new ApplicationModel();
         var view = new VisitedView(model);
         var controller = new Controller(model, view);
         view.init();

@@ -11,12 +11,10 @@ VisitedView.prototype = {
       model.changeMap();
     }
     this.loadMap();
-
     this.loadCountryList();
     this.markCountries();
     this.loadSettings();
-
-    updateBubbles(model);
+    this.updateBubbles();
   },
 
   loadMap: function(){
@@ -26,9 +24,16 @@ VisitedView.prototype = {
     if(window.location.hash) {
       var code = window.location.hash.substring(1);
       if(code !== ""){
-        $(".collapsing#" + code).collapsible("expand");
+        $(".collapsing#" + getContinentIdOfHashCode(code)).collapsible("expand");
       }
     }
+  },
+
+  updateColors: function(){
+    var model = this.model;
+    var map = $('#map').vectorMap('get', 'mapObject');
+    map.series.regions[0].clear();
+    map.series.regions[0].setValues(model.getDataByMap());
   },
 
   resetScroll: function(){
@@ -64,9 +69,11 @@ VisitedView.prototype = {
     var model = this.model;
     model.getVisitedCountries().forEach(function(countryId){
       $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
+      $('#' + countryId + '.ui-icon-check').css("background-color", model.getVisitedColor());
     });
     model.getWantedCountries().forEach(function(countryId){
       $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
+      $('#' + countryId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     });
   },
 
@@ -74,33 +81,40 @@ VisitedView.prototype = {
     var model = this.model;
     if($('#' + countryId + '.ui-icon-check').hasClass("ui-icon-check-on")){
       model.removeVisitedCountry(countryId);
+      $('#' + countryId + '.ui-icon-check').css("background-color", "");
     }
     else{
       model.addVisitedCountry(countryId);
+      $('#' + countryId + '.ui-icon-check').css("background-color", model.getVisitedColor())
     }
     $('#' + countryId + '.ui-icon-check').toggleClass("ui-icon-check-on");
     $('#' + countryId + '.ui-icon-heart').removeClass("ui-icon-heart-on");
+    $('#' + countryId + '.ui-icon-heart').css("background-color", "");
     model.removeWantedCountry(countryId);
-    this.loadMap();
-    updateBubbles(model);
+    this.updateColors();
+    this.updateBubbles();
   },
 
   clickWanted: function(countryId){
     var model = this.model;
     if($('#' + countryId + '.ui-icon-heart').hasClass("ui-icon-heart-on")){
       model.removeWantedCountry(countryId);
+      $('#' + countryId + '.ui-icon-heart').css("background-color", "");
     }
     else{
       model.addWantedCountry(countryId);
+      $('#' + countryId + '.ui-icon-heart').css("background-color", model.getWantedColor());
     }
     $('#' + countryId + '.ui-icon-heart').toggleClass("ui-icon-heart-on");
     $('#' + countryId + '.ui-icon-check').removeClass("ui-icon-check-on");
+    $('#' + countryId + '.ui-icon-check').css("background-color", "");
     model.removeVisitedCountry(countryId);
-    this.loadMap();
-    updateBubbles(model);
+    this.updateColors();
+    this.updateBubbles();
   },
 
   getMapParams: function(){
+    var view = this;
     var model = this.model;
     var data = model.getDataByMap();
     return {
@@ -110,7 +124,7 @@ VisitedView.prototype = {
       },
       regionStyle: {
         selected: {
-          fill: '#' + model.getVisitedColor()
+          fill: model.getVisitedColor()
         },
         hover: {
           "fill-opacity": 1.0
@@ -119,8 +133,8 @@ VisitedView.prototype = {
       series: {
         regions: [{
           scale: {
-            '1': '#' + model.getVisitedColor(),
-            '2': '#' + model.getWantedColor()
+            '1': model.getVisitedColor(),
+            '2': model.getWantedColor()
           },
           attribute: 'fill',
           values: data
@@ -131,15 +145,35 @@ VisitedView.prototype = {
       regionsSelectable: true,
       onRegionClick: function(e, code){
         e.preventDefault();
+        if(model.isVisitedCountry(code) || model.isWantedCountry(code)){
+          view.clickWanted(code);
+        }
+        else{
+          view.clickVisited(code);
+        }
       }
     };
   },
 
   loadSettings: function(){
     var model = this.model;
-    $('#visitedColor').attr('value', model.getVisitedColor());
-    $('#wantedColor').attr('value', model.getWantedColor());
+    if(model.getNumberFormat() === 'fraction'){
+      $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
+    }
+    else{
+      $('#radio-number-format-1b').attr("checked",true).checkboxradio("refresh");
+
+    }
   },
+
+  updateBubbles: function(){
+    $('#europeBubble').text(this.model.getBubbleText(EUROPE_ID));
+    $('#asiaBubble').text(this.model.getBubbleText(ASIA_ID));
+    $('#australiaBubble').text(this.model.getBubbleText(AUSTRALIA_ID));
+    $('#namericaBubble').text(this.model.getBubbleText(NAMERICA_ID));
+    $('#samericaBubble').text(this.model.getBubbleText(SAMERICA_ID));
+    $('#africaBubble').text(this.model.getBubbleText(AFRICA_ID));
+  }
 }
 
 function addToList(country, container, i){
@@ -153,11 +187,13 @@ function hasDetailMap(country){
   return FOCUS_COUNTRIES.indexOf(country['code']) >= 0
 }
 
-function updateBubbles(model){
-  $('#europeBubble').text(model.getBubbleText(EUROPE_ID));
-  $('#asiaBubble').text(model.getBubbleText(ASIA_ID));
-  $('#australiaBubble').text(model.getBubbleText(AUSTRALIA_ID));
-  $('#namericaBubble').text(model.getBubbleText(NAMERICA_ID));
-  $('#samericaBubble').text(model.getBubbleText(SAMERICA_ID));
-  $('#africaBubble').text(model.getBubbleText(AFRICA_ID));
+function getContinentIdOfHashCode(code){
+  switch(code){
+    case 'AF' : return AFRICA_ID;
+    case 'AS' : return ASIA_ID;
+    case 'EU' : return EUROPE_ID;
+    case 'OC' : return AUSTRALIA_ID;
+    case 'NA' : return NAMERICA_ID;
+    case 'SA' : return SAMERICA_ID;
+  }
 }

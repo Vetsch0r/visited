@@ -12,6 +12,9 @@
         },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "ch.vetsch.visited"
+        },
+        "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "ch.vetsch.visited"
         }
     },
     "dependent_plugins": {}

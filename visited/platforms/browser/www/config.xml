@@ -2,10 +2,10 @@
 <widget id="ch.vetsch.visited" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>visited</name>
     <description>
-        visited - An app to mark all the visisted countries
+        visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.
     </description>
     <author email="tvetsch@gmail.com" href="https://github.com/Vetsch0r">
-        Thomas Vetsch
+        Vetsch Thomas
     </author>
     <icon src="icon.png" />
     <icon gap:platform="ios" height="60" src="res/icons/ios/icon-60.png" width="60" />
@@ -50,4 +50,5 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="SplashScreen" value="splash" />
+    <preference name="windows-identity-name" value="55120VetschThomas.visited" />
 </widget>

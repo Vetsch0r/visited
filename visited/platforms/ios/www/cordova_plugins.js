@@ -15,13 +15,22 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.screenorientation"
         ]
+    },
+    {
+        "id": "com.darktalker.cordova.screenshot.screenshot",
+        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+        "pluginId": "com.darktalker.cordova.screenshot",
+        "merges": [
+            "navigator.screenshot"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-splashscreen": "4.0.2",
-    "cordova-plugin-screen-orientation": "2.0.0"
+    "cordova-plugin-screen-orientation": "2.0.0",
+    "com.darktalker.cordova.screenshot": "0.1.5"
 };
 // BOTTOM OF METADATA
 });

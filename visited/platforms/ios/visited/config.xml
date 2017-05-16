@@ -22,12 +22,15 @@
     <feature name="CDVOrientation">
         <param name="ios-package" value="CDVOrientation" />
     </feature>
+    <feature name="Screenshot">
+        <param name="ios-package" value="Screenshot" />
+    </feature>
     <name>visited</name>
     <description>
-        visited - An app to mark all the visisted countries
+        visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.
     </description>
     <author email="tvetsch@gmail.com" href="https://github.com/Vetsch0r">
-        Thomas Vetsch
+        Vetsch Thomas
     </author>
     <icon src="icon.png" />
     <icon gap:platform="ios" height="60" src="res/icons/ios/icon-60.png" width="60" />
@@ -85,4 +88,5 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="SplashScreen" value="splash" />
+    <preference name="windows-identity-name" value="55120VetschThomas.visited" />
 </widget>

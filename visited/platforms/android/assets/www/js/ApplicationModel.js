@@ -6,8 +6,10 @@ var SAMERICA_MAP = 'south_america_mill';
 var NAMERICA_MAP = 'north_america_mill';
 var AUSTRALIA_MAP = 'oceania_mill';
 
-var VISITED_DEFAULT_COLOR = "03a834";
-var WANTED_DEFAULT_COLOR = "a80303";
+var VISITED_DEFAULT_COLOR = "#03a834";
+var WANTED_DEFAULT_COLOR = "#a80303";
+
+var DEFAULT_NUMBER_FORMAT = "fraction";
 
 var WORLD_COUNTRIES = [
   'BD', 'BE', 'BF', 'BG', 'BA', 'BN', 'BO', 'JP', 'BI', 'BJ', 'BT', 'JM', 'BW', 'BR', 'BS',
@@ -57,38 +59,11 @@ var AUSTRALIA_ID = 'australia';
 var AUSTRALIA_COUNTRIES = [
   'GU', 'PW', 'KI', 'NC', 'NU', 'NZ', 'AU', 'PG', 'SB', 'PF', 'FJ', 'FM', 'WS', 'VU'];
 
-var FOCUS_COUNTRIES = ['CH', 'US', 'AR', 'CO', 'DE', 'ES', 'FR'];
+var FOCUS_COUNTRIES = ['AR', 'AT', 'AU', 'BE', 'CA', 'CH', 'CO', 'CN', 'DE', 'DK',
+  'ES', 'FR', 'GB', 'KR', 'IT', 'NL', 'NZ', 'PL', 'PT', 'RU', 'SE', 'TH', 'US',
+  'VE', 'ZA'];
 
-var SWISS_ID = 'CH';
-var SWISS_REGIONS = [
-  'CH-SO', 'CH-LU', 'CH-SH', 'CH-SG', 'CH-UR', 'CH-NE', 'CH-BS', 'CH-JU', 'CH-BL', 'CH-SZ',
-  'CH-BE', 'CH-NW', 'CH-ZG', 'CH-FR', 'CH-ZH', 'CH-VS', 'CH-VD', 'CH-TI', 'CH-TG', 'CH-OW',
-  'CH-AG', 'CH-GE', 'CH-AI', 'CH-GL', 'CH-GR', 'CH-AR'];
-
-var UNITED_STATES_ID = 'US';
-var UNITED_STATES_REGIONS = [
-  'US-VA', 'US-PA', 'US-TN', 'US-WV', 'US-NV', 'US-TX', 'US-NH', 'US-NY', 'US-HI', 'US-VT',
-  'US-NM', 'US-NC', 'US-ND', 'US-NE', 'US-LA', 'US-SD', 'US-DC', 'US-DE', 'US-FL', 'US-CT',
-  'US-WA', 'US-KS', 'US-WI', 'US-OR', 'US-KY', 'US-ME', 'US-OH', 'US-OK', 'US-ID', 'US-WY',
-  'US-UT', 'US-IN', 'US-IL', 'US-AK', 'US-NJ', 'US-CO', 'US-MD', 'US-MA', 'US-AL', 'US-MO',
-  'US-MN', 'US-CA', 'US-IA', 'US-MI', 'US-GA', 'US-AZ', 'US-MT', 'US-MS', 'US-SC', 'US-RI',
-  'US-AR'
-];
-
-var ARGENTINA_ID = 'AR';
-var ARGENTINA_REGIONS = [];
-
-var COLOMBIA_ID = 'CO';
-var COLOMBIA_REGIONS = [];
-
-var GERMANY_ID = 'DE';
-var GERMANY_REGIONS = [];
-
-var SPAIN_ID = 'ES';
-var SPAIN_REGIONS = [];
-
-var FRANCE_ID = 'FR';
-var FRANCE_REGIONS = [];
+var regionList = [];
 
 var ApplicationModel = function () {
   this.visitedCountries = [];
@@ -102,6 +77,9 @@ var ApplicationModel = function () {
 ApplicationModel.prototype = {
 
   init: function (){
+    FOCUS_COUNTRIES.forEach(function(code){
+      regionList.push({regionId: code, codes: getRegionCodes(code)})
+    })
     this.visitedCountries = JSON.parse( window.localStorage.getItem('visitedCountries') || '[]' );
     this.wantedCountries = JSON.parse( window.localStorage.getItem('wantedCountries') || '[]' );
     this.visitedRegions = JSON.parse( window.localStorage.getItem('visitedRegions') || '[]' );
@@ -123,6 +101,22 @@ ApplicationModel.prototype = {
 
   getDetailCountry: function(){
     return getParameterByName("country");
+  },
+
+  isVisitedCountry: function(code){
+    return this.visitedCountries.indexOf(code) >= 0;
+  },
+
+  isWantedCountry: function(code){
+    return this.wantedCountries.indexOf(code) >= 0;
+  },
+
+  isVisitedRegion: function(code){
+    return this.visitedRegions.indexOf(code) >= 0;
+  },
+
+  isWantedRegion: function(code){
+    return this.wantedRegions.indexOf(code) >= 0;
   },
 
   getVisitedCountries: function(){
@@ -231,17 +225,8 @@ ApplicationModel.prototype = {
   },
 
   getDetailMapData: function(){
-    var regionsList;
+    var regionsList = getRegionListById(this.getDetailCountry());
     var dataObject = {};
-    switch (this.getDetailCountry()) {
-      case SWISS_ID: regionsList = SWISS_REGIONS; break;
-      case UNITED_STATES_ID: regionsList = UNITED_STATES_REGIONS; break;
-      case ARGENTINA_ID: regionsList = ARGENTINA_REGIONS; break;
-      case COLOMBIA_ID: regionsList = COLOMBIA_REGIONS; break;
-      case GERMANY_ID: regionsList = GERMANY_REGIONS; break;
-      case SPAIN_ID: regionsList = SPAIN_REGIONS; break;
-      case FRANCE_ID: regionsList = FRANCE_REGIONS; break;
-    }
     this.visitedRegions.forEach(function(regionId){
       if(regionsList.indexOf(regionId) >= 0){
         dataObject[regionId] = 1;
@@ -270,8 +255,20 @@ ApplicationModel.prototype = {
 
   getDetailMapName: function(){
     var detailCountry = getParameterByName("country");
-    if(detailCountry === UNITED_STATES_ID){
+    if(detailCountry === 'US'){
       return detailCountry.toLowerCase() + "_aea";
+    }
+    else if(detailCountry === 'FR' || detailCountry === 'IT'){
+      return detailCountry.toLowerCase() + "_regions_mill";
+    }
+    else if(detailCountry === 'RU'){
+      return detailCountry.toLowerCase() + "_fd_mill";
+    }
+    else if(detailCountry === 'CA'){
+      return detailCountry.toLowerCase() + "_lcc";
+    }
+    else if(detailCountry === 'GB'){
+        return 'uk_regions_mill';
     }
     else{
       return detailCountry.toLowerCase() + "_mill";
@@ -315,6 +312,18 @@ ApplicationModel.prototype = {
     window.localStorage.setItem('wantedColor', color);
   },
 
+  getNumberFormat: function(){
+    var numberFormat = window.localStorage.getItem('numberFormat');
+    if(numberFormat == undefined  || numberFormat == null){
+      return DEFAULT_NUMBER_FORMAT;
+    }
+    return numberFormat;
+  },
+
+  changeNumberFormat: function (numberFormat) {
+    window.localStorage.setItem('numberFormat', numberFormat);
+  },
+
   getBubbleText: function (continentId){
     var count = 0;
     var total = getTotalCountries(continentId);
@@ -329,41 +338,51 @@ ApplicationModel.prototype = {
         count++;
       }
     });
-    return count + '/' + total;
+    if(this.getNumberFormat() === 'percentage'){
+      return Number((count * 100 / total).toFixed(1)) + " %";
+    }
+    else{
+      return count + '/' + total;
+    }
   },
 
   getDetailBubbleText: function(){
     var countryId = getParameterByName('country');
     var count = 0;
-    var total = getTotalRegions(countryId);
+    var total = getRegionListById(countryId).length;
 
     if(countryId != null){
       this.visitedRegions.forEach(function(regionId){
-        if(countryId === SWISS_ID && SWISS_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === ARGENTINA_ID && ARGENTINA_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === COLOMBIA_ID && COLOMBIA_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === GERMANY_ID && GERMANY_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === SPAIN_ID && SPAIN_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === FRANCE_ID && FRANCE_REGIONS.indexOf(regionId) >= 0 ||
-          countryId === UNITED_STATES_ID && UNITED_STATES_REGIONS.indexOf(regionId) >= 0){
-          count++;
+        if(getRegionListById(countryId).indexOf(regionId) >= 0){
+          count ++;
         }
       });
-      return count + '/' + total;
+      if(this.getNumberFormat() === 'percentage'){
+        return Number((count * 100 / total).toFixed(1)) + " %";
+      }
+      else{
+        return count + '/' + total;
+      }
     }
   }
 }
 
-function getTotalRegions(id){
-  switch(id){
-    case SWISS_ID: return SWISS_REGIONS.length;
-    case ARGENTINA_ID: return ARGENTINA_REGIONS.length;
-    case COLOMBIA_ID: return COLOMBIA_REGIONS.length;
-    case GERMANY_ID: return GERMANY_REGIONS.length;
-    case SPAIN_ID: return SPAIN_REGIONS.length;
-    case FRANCE_ID: return FRANCE_REGIONS.length;
-    case UNITED_STATES_ID: return UNITED_STATES_REGIONS.length;
-  }
+function getRegionCodes(regionId){
+  var codes = [];
+  countries[regionId].forEach(function(obj){
+    codes.push(obj['code']);
+  });
+  return codes;
+}
+
+function getRegionListById(regionId){
+  var codesList;
+  regionList.forEach(function(region){
+    if(region['regionId'] == regionId){
+       codesList = region['codes'];
+    }
+  });
+  return codesList;
 }
 
 function getTotalCountries(id){
