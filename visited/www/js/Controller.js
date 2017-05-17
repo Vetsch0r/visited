@@ -115,18 +115,28 @@ Controller.prototype = {
     * Screenshot handling
     **/
     $(document).on('click', "#screenshot", function(e) {
-      var toggelDivs = function() {
-        $("#screenshot").toggle();
-        $(".hamburger").toggle();
-      };
-      $.when(toggelDivs()).done( function() {
-        navigator.screenshot.save(function(error,res){
-          toggleDivs();
-          if(error){
-            console.error(error);
-          }
-        },'jpg',50);
+      var count = 0
+      $("#screenshot").toggle("fast", function(){
+        this.takeScreenshot(count++);
+      });
+      $(".hamburger").toggle("fast", function(){
+        this.takeScreenshot(count++);
       });
     });
   },
+
+  takeScreenshot: function(){
+    if(count == 2){
+      navigator.screenshot.save(function(error,res){
+        if(error){
+          console.error(error);
+        }
+        else{
+          alert("Screenshot taken")
+        }
+      },'jpg',50);
+      $("#screenshot").toggle();
+      $(".hamburger").toggle();
+    }
+  }
 }
