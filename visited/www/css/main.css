@@ -27,9 +27,9 @@
   z-index:200;
 }
 
-.hamburger:link{
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active {
   text-decoration: none;
-  color:#CCCCCC;
+  color:#CCCCCC !important;
 }
 
 .settingsNumberFormat{
