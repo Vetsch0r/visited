@@ -7,6 +7,7 @@ var Controller = function (model, view) {
 Controller.prototype = {
 
   registerHandlers: function(){
+    var controller = this;
     var model = this.model;
     var view = this.view;
 
@@ -117,15 +118,15 @@ Controller.prototype = {
     $(document).on('click', "#screenshot", function(e) {
       var count = 0
       $("#screenshot").toggle("fast", function(){
-        this.takeScreenshot(count++);
+        controller.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        this.takeScreenshot(count++);
+        controller.takeScreenshot(++count);
       });
     });
   },
 
-  takeScreenshot: function(){
+  takeScreenshot: function(count){
     if(count == 2){
       navigator.screenshot.save(function(error,res){
         if(error){
