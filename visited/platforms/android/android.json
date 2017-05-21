@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"Screenshot\"><param name=\"android-package\" value=\"com.darktalker.cordova.screenshot.Screenshot\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -28,6 +32,12 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 2
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<provider android:authorities=\"${applicationId}.sharing.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"nl.xservices.plugins.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/sharing_paths\" /></provider>",
                             "count": 1
                         }
                     ]
@@ -46,6 +56,9 @@
             "PACKAGE_NAME": "ch.vetsch.visited"
         },
         "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "ch.vetsch.visited"
+        },
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "ch.vetsch.visited"
         }
     },
@@ -80,12 +93,21 @@
             "merges": [
                 "navigator.screenshot"
             ]
+        },
+        {
+            "id": "cordova-plugin-x-socialsharing.SocialSharing",
+            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+            "pluginId": "cordova-plugin-x-socialsharing",
+            "clobbers": [
+                "window.plugins.socialsharing"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-splashscreen": "4.0.2",
         "es6-promise-plugin": "4.1.0",
         "cordova-plugin-screen-orientation": "2.0.0",
-        "com.darktalker.cordova.screenshot": "0.1.5"
+        "com.darktalker.cordova.screenshot": "0.1.5",
+        "cordova-plugin-x-socialsharing": "5.1.8"
     }
 }

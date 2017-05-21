@@ -29,6 +29,14 @@ module.exports = [
         "merges": [
             "navigator.screenshot"
         ]
+    },
+    {
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -37,7 +45,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "4.0.2",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-screen-orientation": "2.0.0",
-    "com.darktalker.cordova.screenshot": "0.1.5"
+    "com.darktalker.cordova.screenshot": "0.1.5",
+    "cordova-plugin-x-socialsharing": "5.1.8"
 };
 // BOTTOM OF METADATA
 });

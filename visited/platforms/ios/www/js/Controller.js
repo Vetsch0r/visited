@@ -7,6 +7,7 @@ var Controller = function (model, view) {
 Controller.prototype = {
 
   registerHandlers: function(){
+    var controller = this;
     var model = this.model;
     var view = this.view;
 
@@ -91,11 +92,13 @@ Controller.prototype = {
     **/
     window.addEventListener("orientationchange", function() {
       var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-      if (orientation.type === "landscape-primary" || orientation.type == "landscape-secondary") {
+      if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
         $('#map').height('100%');
+        $('#screenshot').css("display", "block");
       }
       else{
         $('#map').height('35%');
+        $('#screenshot').css("display", "none");
       }
 
       var map = $('#map').vectorMap('get', 'mapObject');
@@ -110,18 +113,31 @@ Controller.prototype = {
     });
 
     /**
-    * Screenshot
+    * Screenshot handling
     **/
-    $(document).on('click', ".screenshot", function(e) {
-      navigator.screenshot.save(function(error,res){
-        if(error){
-          alert('error')
-          console.error(error);
-        }else{
-          alert('yep')
-          console.log('ok',res.filePath);
-        }
-      },'jpg',50);
+    $(document).on('click', "#screenshot", function(e) {
+      var count = 0
+      $("#screenshot").toggle("fast", function(){
+        controller.takeScreenshot(++count);
+      });
+      $(".hamburger").toggle("fast", function(){
+        controller.takeScreenshot(++count);
+      });
     });
   },
+
+  takeScreenshot: function(count){
+    if(count == 2){
+      navigator.screenshot.save(function(error,res){
+        if(error){
+          console.error(error);
+        }
+        else{
+          alert("Screenshot taken")
+        }
+      },'jpg',50);
+      $("#screenshot").toggle();
+      $(".hamburger").toggle();
+    }
+  }
 }

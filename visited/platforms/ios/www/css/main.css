@@ -27,18 +27,25 @@
   z-index:200;
 }
 
-.hamburger:link{
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active {
   text-decoration: none;
-  color:#CCCCCC;
+  color:#CCCCCC !important;
 }
 
 .settingsNumberFormat{
   padding-top: 6px !important;
 }
 
-.screenshot{
+#screenshot{
+  width:25%;
   position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index:200;
+  display:none;
+  bottom:20px;
 }
 
 .colorpicker {

@@ -133,11 +133,23 @@ Controller.prototype = {
           console.error(error);
         }
         else{
-          alert("Screenshot taken")
+          window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp',
+            null /* img */,
+            null /* url */,
+            function() {
+              console.log('share ok')
+            },
+            function(errormsg)
+            {
+              alert(errormsg)
+            }
+          );
         }
+        $("#screenshot").toggle("fast");
+        $(".hamburger").toggle("fast");
       },'jpg',50);
-      $("#screenshot").toggle();
-      $(".hamburger").toggle();
     }
   }
 }
+
+<button onclick="window.plugins.socialsharing.">msg via WhatsApp (with errcallback)</button>

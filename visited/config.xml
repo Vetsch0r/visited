@@ -56,4 +56,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <plugin name="cordova-plugin-screen-orientation" spec="~2.0.0" />
     <plugin name="com.darktalker.cordova.screenshot" spec="https://github.com/gitawego/cordova-screenshot.git" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="~5.1.8" />
 </widget>
