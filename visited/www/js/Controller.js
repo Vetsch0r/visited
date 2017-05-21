@@ -151,5 +151,3 @@ Controller.prototype = {
     }
   }
 }
-
-<button onclick="window.plugins.socialsharing.">msg via WhatsApp (with errcallback)</button>
