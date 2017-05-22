@@ -127,6 +127,7 @@ Controller.prototype = {
   },
 
   takeScreenshot: function(count){
+    var model = this.model;
     if(count == 2){
       navigator.screenshot.save(function(error,res){
         if(error){
@@ -134,8 +135,8 @@ Controller.prototype = {
         }
         else{
           window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp',
-            null /* img */,
-            null /* url */,
+            res.filePath,
+            model.getMapName(),
             function() {
               console.log('share ok')
             },
