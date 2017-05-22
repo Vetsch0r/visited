@@ -134,9 +134,10 @@ Controller.prototype = {
           console.error(error);
         }
         else{
-          window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp',
-            res.URI,
+          window.plugins.socialsharing.shareViaWhatsApp(
             model.getMapName(),
+            res.URI,
+            null,
             function() {
               console.log('share ok')
             },
