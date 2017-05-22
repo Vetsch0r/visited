@@ -129,13 +129,11 @@ Controller.prototype = {
   takeScreenshot: function(count){
     var model = this.model;
     if(count == 2){
-      navigator.screenshot.save(function(error,res){
+      navigator.screenshot.URI(function(error,res){
         if(error){
           console.error(error);
         }
         else{
-          alert(res.filePath);
-          alert(res.URI);
           window.plugins.socialsharing.shareViaWhatsApp(
             model.getMapName(),
             res.URI,
