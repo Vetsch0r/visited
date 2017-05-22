@@ -134,6 +134,8 @@ Controller.prototype = {
           console.error(error);
         }
         else{
+          alert(res.filePath);
+          alert(res.URI);
           window.plugins.socialsharing.shareViaWhatsApp(
             model.getMapName(),
             res.URI,
