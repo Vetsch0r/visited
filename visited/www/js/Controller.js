@@ -135,7 +135,7 @@ Controller.prototype = {
         }
         else{
           window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp',
-            res.filePath,
+            res.URI,
             model.getMapName(),
             function() {
               console.log('share ok')
