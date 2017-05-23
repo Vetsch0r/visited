@@ -94,11 +94,11 @@ Controller.prototype = {
       var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
       if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
         $('#map').height('100%');
-        $('#screenshot').css("display", "block");
+        $('.sharingIcons').css("display", "block");
       }
       else{
         $('#map').height('35%');
-        $('#screenshot').css("display", "none");
+        $('.sharingIcons').css("display", "none");
       }
 
       var map = $('#map').vectorMap('get', 'mapObject');
@@ -112,17 +112,30 @@ Controller.prototype = {
       map.setFocus(config)
     });
 
-    /**
-    * Screenshot handling
-    **/
-    $(document).on('click', "#screenshot", function(e) {
+    /*
+    * Whatapp Icon
+    */
+    $(document).on('click', "#whatsapp", function(e) {
+      var res;
       var count = 0
-      $("#screenshot").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+      $(".sharingIcons").toggle("fast", function(){
+        res = controller.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+        res = controller.takeScreenshot(++count);
       });
+
+      window.plugins.socialsharing.shareViaWhatsApp(
+        model.getMapName(),
+        res.URI,
+        null,
+        function() {
+          console.log('share ok')
+        },
+        function(errormsg){
+          console.log(errormsg)
+        }
+      );
     });
   },
 
@@ -134,20 +147,9 @@ Controller.prototype = {
           console.error(error);
         }
         else{
-          window.plugins.socialsharing.shareViaWhatsApp(
-            model.getMapName(),
-            res.URI,
-            null,
-            function() {
-              console.log('share ok')
-            },
-            function(errormsg)
-            {
-              alert(errormsg)
-            }
-          );
+          return res;
         }
-        $("#screenshot").toggle("fast");
+        $(".sharingIcons").toggle("fast");
         $(".hamburger").toggle("fast");
       },'jpg',50);
     }
