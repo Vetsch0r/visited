@@ -116,30 +116,17 @@ Controller.prototype = {
     * Whatapp Icon
     */
     $(document).on('click', "#whatsapp", function(e) {
-      var res;
       var count = 0
       $(".sharingIcons").toggle("fast", function(){
-        res = controller.takeScreenshot(++count);
+        controller.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        res = controller.takeScreenshot(++count);
+        controller.takeScreenshot(++count);
       });
-
-      window.plugins.socialsharing.shareViaWhatsApp(
-        model.getMapName(),
-        res.URI,
-        null,
-        function() {
-          console.log('share ok')
-        },
-        function(errormsg){
-          console.log(errormsg)
-        }
-      );
-    });
+    }
   },
 
-  takeScreenshot: function(count){
+  takeUriScreenshot: function(count){
     var model = this.model;
     if(count == 2){
       navigator.screenshot.URI(function(error,res){
@@ -147,7 +134,18 @@ Controller.prototype = {
           console.error(error);
         }
         else{
-          return res;
+          window.plugins.socialsharing.shareViaWhatsApp(
+            model.getMapName(),
+            res.URI,
+            null,
+            function() {
+              console.log('share ok')
+            },
+            function(errormsg)
+            {
+              alert(errormsg)
+            }
+          );
         }
         $(".sharingIcons").toggle("fast");
         $(".hamburger").toggle("fast");
