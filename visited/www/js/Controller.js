@@ -123,7 +123,7 @@ Controller.prototype = {
       $(".hamburger").toggle("fast", function(){
         controller.takeScreenshot(++count);
       });
-    }
+    });
   },
 
   takeUriScreenshot: function(count){
