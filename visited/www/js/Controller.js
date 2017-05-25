@@ -135,10 +135,12 @@ Controller.prototype = {
         }
         else{
           window.plugins.socialsharing.shareViaWhatsApp(
+            alert(res.URI);
             model.getMapName(),
             res.URI,
             null,
             function() {
+              alert("shared")
               console.log('share ok')
             },
             function(errormsg)
