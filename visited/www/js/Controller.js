@@ -134,13 +134,14 @@ Controller.prototype = {
           console.error(error);
         }
         else{
+          alert("screenshot done")
+          alert(res.URI)
           window.plugins.socialsharing.shareViaWhatsApp(
-            alert(res.URI);
             model.getMapName(),
-            res.URI,
             null,
             function() {
               alert("shared")
+              alert(res.URI);
               console.log('share ok')
             },
             function(errormsg)
