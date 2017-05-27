@@ -130,22 +130,24 @@ Controller.prototype = {
 function takeScreenshot(count){
   var model = this.model;
   if(count == 2){
-    navigator.screenshot.URI(function(error,res){
+    navigator.screenshot.URI(function(error, res){
       $(".sharingIcons").toggle("fast");
       $(".hamburger").toggle("fast");
       if(error){
         console.log(error);
       }
       else{
+        alert('open sharing');
         window.plugins.socialsharing.shareViaWhatsApp(
           model.getMapName(),
           res.URI,
           null,
           function() {
-            console.log('share ok')
+            alert('share oke')
+            console.log('share ok');
           },
           function(errormsg){
-            console.log(errormsg)
+            console.log(errormsg);
           }
         );
       }
