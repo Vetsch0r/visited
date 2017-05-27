@@ -118,42 +118,42 @@ Controller.prototype = {
     $(document).on('click', "#whatsapp", function(e) {
       var count = 0
       $(".sharingIcons").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+        takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+        takeScreenshot(++count);
       });
     });
-  },
+  }
+}
 
-  takeUriScreenshot: function(count){
-    var model = this.model;
-    if(count == 2){
-      navigator.screenshot.URI(function(error,res){
-        alert("done");
-        if(error){
-          alert(error);
-        }
-        else{
-          alert("screenshot done")
-          alert(res.URI)
-          window.plugins.socialsharing.shareViaWhatsApp(
-            model.getMapName(),
-            null,
-            function() {
-              alert("shared")
-              alert(res.URI);
-              console.log('share ok')
-            },
-            function(errormsg)
-            {
-              alert(errormsg)
-            }
-          );
-        }
-        $(".sharingIcons").toggle("fast");
-        $(".hamburger").toggle("fast");
-      },'jpg',50);
-    }
+function takeScreenshot(count){
+  var model = this.model;
+  if(count == 2){
+    navigator.screenshot.URI(function(error,res){
+      alert("done");
+      if(error){
+        alert(error);
+      }
+      else{
+        alert("screenshot done")
+        alert(res.URI)
+        window.plugins.socialsharing.shareViaWhatsApp(
+          model.getMapName(),
+          null,
+          function() {
+            alert("shared")
+            alert(res.URI);
+            console.log('share ok')
+          },
+          function(errormsg)
+          {
+            alert(errormsg)
+          }
+        );
+      }
+      $(".sharingIcons").toggle("fast");
+      $(".hamburger").toggle("fast");
+    },'jpg',50);
   }
 }
