@@ -130,8 +130,9 @@ Controller.prototype = {
     var model = this.model;
     if(count == 2){
       navigator.screenshot.URI(function(error,res){
+        alert("done");
         if(error){
-          console.error(error);
+          alert(error);
         }
         else{
           alert("screenshot done")
