@@ -131,29 +131,25 @@ function takeScreenshot(count){
   var model = this.model;
   if(count == 2){
     navigator.screenshot.URI(function(error,res){
-      alert("done");
+      $(".sharingIcons").toggle("fast");
+      $(".hamburger").toggle("fast");
       if(error){
-        alert(error);
+        console.log(error);
       }
       else{
-        alert("screenshot done")
-        alert(res.URI)
         window.plugins.socialsharing.shareViaWhatsApp(
           model.getMapName(),
+          res.URI,
           null,
           function() {
-            alert("shared")
-            alert(res.URI);
             console.log('share ok')
           },
-          function(errormsg)
-          {
-            alert(errormsg)
+          function(errormsg){
+            console.log(errormsg)
           }
         );
       }
-      $(".sharingIcons").toggle("fast");
-      $(".hamburger").toggle("fast");
+
     },'jpg',50);
   }
 }
