@@ -118,36 +118,35 @@ Controller.prototype = {
     $(document).on('click', "#whatsapp", function(e) {
       var count = 0
       $(".sharingIcons").toggle("fast", function(){
-        takeScreenshot(++count);
+        controller.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        takeScreenshot(++count);
+        controller.takeScreenshot(++count);
       });
     });
-  }
-}
+  },
 
-function takeScreenshot(count){
-  var model = this.model;
-  if(count == 2){
-    navigator.screenshot.URI(function(error, res){
-      $(".sharingIcons").toggle("fast");
-      $(".hamburger").toggle("fast");
-      if(error){
-        console.log(error);
-      }
-      else{
-        window.plugins.socialsharing.shareViaWhatsApp(
-          'Message via WhatsApp',
-          null /* img */,
-          null /* url */,
-          function() {console.log('share ok')},
-          function(errormsg){
-            alert(errormsg);
-          }
-        );
-      }
-
-    },'jpg',50);
+  takeScreenshot: function(count){
+    var model = this.model;
+    if(count == 2){
+      navigator.screenshot.URI(function(error, res){
+        $(".sharingIcons").toggle("fast");
+        $(".hamburger").toggle("fast");
+        if(error){
+          console.log(error);
+        }
+        else{
+          window.plugins.socialsharing.shareViaWhatsApp(
+            model.getSharingDescription(),
+            null /* img */,
+            null /* url */,
+            function() {console.log('share ok')},
+            function(errormsg){
+              alert(errormsg);
+            }
+          );
+        }
+      },'jpg',50);
+    }
   }
 }

@@ -253,6 +253,20 @@ ApplicationModel.prototype = {
     return this.mapName;
   },
 
+  getSharingDescription: function(){
+    var description = "";
+    switch(this.getMapName()){
+      case EUROPE_MAP: description = "Europe: " + getBubbleText(EUROPE_ID);
+      case ASIA_MAP: description = "Asia: " + getBubbleText(ASIA_ID);
+      case SAMERICA_MAP: description = "South America: " + getBubbleText(SAMERICA_ID);
+      case NAMERICA_MAP: description = "North America: " + getBubbleText(NAMERICA_ID);
+      case AUSTRALIA_MAP: description = "Oceania: " + getBubbleText(AUSTRALIA_ID);
+      case AFRICA_MAP: description ="Africa: " + getBubbleText(AFRICA_ID);
+      default : description = "World: " + this.getBubbleTextWorld();
+    }
+    return description;
+  },
+
   getDetailMapName: function(){
     var detailCountry = getParameterByName("country");
     if(detailCountry === 'US'){
@@ -343,6 +357,18 @@ ApplicationModel.prototype = {
     }
     else{
       return count + '/' + total;
+    }
+  },
+
+  getBubbleTextWorld: function(){
+    var totalCountries = EUROPE_COUNTRIES.length + ASIA_COUNTRIES.length + AUSTRALIA_COUNTRIES.length +
+      NAMERICA_COUNTRIES.length +  SAMERICA_COUNTRIES.length + AFRICA_COUNTRIES.length;
+    var visited = this.visitedCountries.length;
+    if(this.getNumberFormat() === 'percentage'){
+      return Number((visited * 100 / totalCountries).toFixed(1)) + " %";
+    }
+    else{
+      return visited + '/' + totalCountries;
     }
   },
 
