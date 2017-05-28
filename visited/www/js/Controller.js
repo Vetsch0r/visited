@@ -137,17 +137,13 @@ function takeScreenshot(count){
         console.log(error);
       }
       else{
-        alert('open sharing');
         window.plugins.socialsharing.shareViaWhatsApp(
-          model.getMapName(),
-          res.URI,
-          null,
-          function() {
-            alert('share oke')
-            console.log('share ok');
-          },
+          'Message via WhatsApp',
+          null /* img */,
+          null /* url */,
+          function() {console.log('share ok')},
           function(errormsg){
-            console.log(errormsg);
+            alert(errormsg);
           }
         );
       }
