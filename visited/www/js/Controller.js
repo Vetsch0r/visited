@@ -138,7 +138,7 @@ Controller.prototype = {
         else{
           window.plugins.socialsharing.shareViaWhatsApp(
             model.getSharingDescription(),
-            null /* img */,
+            res.URI,
             null /* url */,
             function() {console.log('share ok')},
             function(errormsg){
