@@ -127,7 +127,7 @@ Controller.prototype = {
   },
 
   takeScreenshot: function(count){
-    var model = this.model;
+    var view = this.view;
     if(count == 2){
       navigator.screenshot.URI(function(error, res){
         $(".sharingIcons").toggle("fast");
@@ -137,10 +137,12 @@ Controller.prototype = {
         }
         else{
           window.plugins.socialsharing.shareViaWhatsApp(
-            model.getSharingDescription(),
+            view.getSharingDescription(),
             res.URI,
-            null /* url */,
-            function() {console.log('share ok')},
+            null,
+            function() {
+              console.log('share ok')
+            },
             function(errormsg){
               alert(errormsg);
             }

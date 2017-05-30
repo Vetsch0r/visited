@@ -173,6 +173,11 @@ VisitedView.prototype = {
     $('#namericaBubble').text(this.model.getBubbleText(NAMERICA_ID));
     $('#samericaBubble').text(this.model.getBubbleText(SAMERICA_ID));
     $('#africaBubble').text(this.model.getBubbleText(AFRICA_ID));
+  },
+
+  getSharingDescription: function(){
+    var model = this.model;
+    return model.getGlobalSharingDescription();
   }
 }
 

@@ -122,6 +122,11 @@ FocusView.prototype = {
     this.updateColors();
     updateBubbles(model);
   },
+
+  getSharingDescription: function(){
+    var model = this.model;
+    return model.getFocusSharingDescription();
+  }
 }
 
 function addToList(state, container, i){

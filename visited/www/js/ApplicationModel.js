@@ -253,18 +253,22 @@ ApplicationModel.prototype = {
     return this.mapName;
   },
 
-  getSharingDescription: function(){
+  getGlobalSharingDescription: function(){
     var description = "";
     switch(this.getMapName()){
-      case EUROPE_MAP: description = "Europe: " + getBubbleText(EUROPE_ID);
-      case ASIA_MAP: description = "Asia: " + getBubbleText(ASIA_ID);
-      case SAMERICA_MAP: description = "South America: " + getBubbleText(SAMERICA_ID);
-      case NAMERICA_MAP: description = "North America: " + getBubbleText(NAMERICA_ID);
-      case AUSTRALIA_MAP: description = "Oceania: " + getBubbleText(AUSTRALIA_ID);
-      case AFRICA_MAP: description ="Africa: " + getBubbleText(AFRICA_ID);
+      case EUROPE_MAP: description = "Europe: " + this.getBubbleText(EUROPE_ID);
+      case ASIA_MAP: description = "Asia: " + this.getBubbleText(ASIA_ID);
+      case SAMERICA_MAP: description = "South America: " + this.getBubbleText(SAMERICA_ID);
+      case NAMERICA_MAP: description = "North America: " + this.getBubbleText(NAMERICA_ID);
+      case AUSTRALIA_MAP: description = "Oceania: " + this.getBubbleText(AUSTRALIA_ID);
+      case AFRICA_MAP: description ="Africa: " + this.getBubbleText(AFRICA_ID);
       default : description = "World: " + this.getBubbleTextWorld();
     }
     return description;
+  },
+
+  getFocusSharingDescription: function(){
+    return this.getCountryName(this.getDetailCountry()) + ": " + getDetailBubbleText();
   },
 
   getDetailMapName: function(){
@@ -353,10 +357,10 @@ ApplicationModel.prototype = {
       }
     });
     if(this.getNumberFormat() === 'percentage'){
-      return Number((count * 100 / total).toFixed(1)) + " %";
+      return Number((count * 100 / total).toFixed(0)) + " %";
     }
     else{
-      return count + '/' + total;
+      return  count + '/' + total;
     }
   },
 
