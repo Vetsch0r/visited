@@ -254,17 +254,24 @@ ApplicationModel.prototype = {
   },
 
   getGlobalSharingDescription: function(){
-    var description = "";
-    switch(this.getMapName()){
-      case EUROPE_MAP: description = "Europe: " + this.getBubbleText(EUROPE_ID);
-      case ASIA_MAP: description = "Asia: " + this.getBubbleText(ASIA_ID);
-      case SAMERICA_MAP: description = "South America: " + this.getBubbleText(SAMERICA_ID);
-      case NAMERICA_MAP: description = "North America: " + this.getBubbleText(NAMERICA_ID);
-      case AUSTRALIA_MAP: description = "Oceania: " + this.getBubbleText(AUSTRALIA_ID);
-      case AFRICA_MAP: description ="Africa: " + this.getBubbleText(AFRICA_ID);
-      default : description = "World: " + this.getBubbleTextWorld();
+    if(this.getMapName() === EUROPE_MAP){
+      return "Europe: " + this.getBubbleText(EUROPE_ID);
     }
-    return description;
+    if(this.getMapName() === ASIA_MAP){
+      return "Aaia: " + this.getBubbleText(ASIA_ID);
+    }
+    if(this.getMapName() === SAMERICA_MAP){
+      return "South America: " + this.getBubbleText(SAMERICA_ID);
+    }
+    if(this.getMapName() === NAMERICA_MAP){
+      return "North America: " + this.getBubbleText(NAMERICA_ID);
+    }
+    if(this.getMapName() === AUSTRALIA_MAP){
+      return "Australia: " + this.getBubbleText(AUSTRALIA_ID);
+    }
+    if(this.getMapName() === AFRICA_MAP){
+      return "Africa: " + this.getBubbleText(AFRICA_ID);
+    }
   },
 
   getFocusSharingDescription: function(){
