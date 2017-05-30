@@ -257,20 +257,23 @@ ApplicationModel.prototype = {
     if(this.getMapName() === EUROPE_MAP){
       return "Europe: " + this.getBubbleText(EUROPE_ID);
     }
-    if(this.getMapName() === ASIA_MAP){
+    else if(this.getMapName() === ASIA_MAP){
       return "Aaia: " + this.getBubbleText(ASIA_ID);
     }
-    if(this.getMapName() === SAMERICA_MAP){
+    else if(this.getMapName() === SAMERICA_MAP){
       return "South America: " + this.getBubbleText(SAMERICA_ID);
     }
-    if(this.getMapName() === NAMERICA_MAP){
+    else if(this.getMapName() === NAMERICA_MAP){
       return "North America: " + this.getBubbleText(NAMERICA_ID);
     }
-    if(this.getMapName() === AUSTRALIA_MAP){
+    else if(this.getMapName() === AUSTRALIA_MAP){
       return "Australia: " + this.getBubbleText(AUSTRALIA_ID);
     }
-    if(this.getMapName() === AFRICA_MAP){
+    else if(this.getMapName() === AFRICA_MAP){
       return "Africa: " + this.getBubbleText(AFRICA_ID);
+    }
+    else{
+      return "World: " + this.getBubbleTextWorld();
     }
   },
 
