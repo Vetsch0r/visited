@@ -118,37 +118,13 @@ Controller.prototype = {
     $(document).on('click', "#whatsapp", function(e) {
       var count = 0
       $(".sharingIcons").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+        view.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+        view.takeScreenshot(++count);
       });
     });
   },
 
-  takeScreenshot: function(count){
-    var view = this.view;
-    if(count == 2){
-      navigator.screenshot.URI(function(error, res){
-        $(".sharingIcons").toggle("fast");
-        $(".hamburger").toggle("fast");
-        if(error){
-          console.log(error);
-        }
-        else{
-          window.plugins.socialsharing.shareViaWhatsApp(
-            view.getSharingDescription(),
-            res.URI,
-            null,
-            function() {
-              console.log('share ok')
-            },
-            function(errormsg){
-              alert(errormsg);
-            }
-          );
-        }
-      },'jpg',50);
-    }
-  }
+
 }

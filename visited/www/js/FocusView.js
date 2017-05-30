@@ -123,9 +123,28 @@ FocusView.prototype = {
     updateBubbles(model);
   },
 
-  getSharingDescription: function(){
+  takeScreenshot: function(count){
     var model = this.model;
-    return model.getFocusSharingDescription();
+    navigator.screenshot.URI(function(error, res){
+      $(".sharingIcons").toggle("fast");
+      $(".hamburger").toggle("fast");
+      if(error){
+        console.log(error);
+      }
+      else{
+        window.plugins.socialsharing.shareViaWhatsApp(
+          model.getFocusSharingDescription(),
+          res.URI,
+          null,
+          function() {
+            console.log('share ok')
+          },
+          function(errormsg){
+            alert(errormsg);
+          }
+        );
+      }
+    },'jpg',50);
   }
 }
 

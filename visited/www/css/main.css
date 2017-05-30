@@ -85,7 +85,7 @@
 }
 
 .bubble{
-  width:30px;
+  width:35px;
 }
 
 .ui-focus-header{
@@ -102,6 +102,7 @@
 
 .custom-count-pos{
   padding-top: 2px;
+  padding-bottom:1px;
 }
 
 .ui-collapsible-content{
