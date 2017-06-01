@@ -21,7 +21,7 @@
   overflow:hidden;
 }
 
-.hamburger{
+.hamburger, .shareIcon{
   position:absolute;
   right:0;
   line-height:45px;
@@ -31,7 +31,14 @@
   z-index:200;
 }
 
-.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active {
+.shareIcon{
+  top:50px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active,
+.shareIcon:link, .shareIcon:visited, .shareIcon:hover, .shareIcon:active {
   text-decoration: none;
   color:#CCCCCC !important;
 }
@@ -40,24 +47,19 @@
   padding-top: 6px !important;
 }
 
-.sharingIcons{
-  display:none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 10px;
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 180px;
-  z-index:200;
-  bottom:20px;
+.sharingPanel{
+  width:76px;
 }
 
 #whatsapp, #facebook, #twitter, #instagram {
   display:block;
-  margin-top: 5px;
-  width: 40px;
+  margin-top: 10px;
+  width: 45px;
   border-radius: 10%;
+}
+
+#whatsapp {
+  margin-top:0px;
 }
 
 .colorpicker {

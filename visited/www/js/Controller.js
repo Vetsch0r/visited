@@ -94,11 +94,9 @@ Controller.prototype = {
       var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
       if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
         $('#map').height('100%');
-        $('.sharingIcons').css("display", "block");
       }
       else{
         $('#map').height('35%');
-        $('.sharingIcons').css("display", "none");
       }
 
       var map = $('#map').vectorMap('get', 'mapObject');
@@ -116,15 +114,43 @@ Controller.prototype = {
     * Whatapp Icon
     */
     $(document).on('click', "#whatsapp", function(e) {
-      var count = 0
-      $(".sharingIcons").toggle("fast", function(){
-        view.takeScreenshot(++count);
+      var count = 0;
+      $("[data-role=panel]").panel("close");
+      $(".shareIcon").toggle("fast", function(){
+        controller.takeScreenshot(++count);
       });
       $(".hamburger").toggle("fast", function(){
-        view.takeScreenshot(++count);
+        controller.takeScreenshot(++count);
       });
     });
   },
 
-
+  takeScreenshot: function(count){
+    var model = this.model;
+    if(count == 2){
+      try{
+        navigator.screenshot.URI(function(error, res){
+          if(error){
+            console.log(error);
+          }
+          else{
+            window.plugins.socialsharing.shareViaWhatsApp(
+              model.getGlobalSharingDescription(),
+              res.URI,
+              null,
+              function() {},
+              function(error){
+                console.log(error);
+              }
+            );
+          }
+        },'jpg',50);
+        $(".shareIcon").toggle("fast");
+        $(".hamburger").toggle("fast");
+      }catch(err){
+        $(".shareIcon").toggle("fast");
+        $(".hamburger").toggle("fast");
+      }
+    }
+  }
 }

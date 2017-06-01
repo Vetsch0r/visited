@@ -8,10 +8,11 @@ FocusView.prototype = {
   init: function(){
     var model = this.model;
     this.loadMap();
+    this.loadSettings();
 
     $('#focusTitle').text(model.getCountryName(model.getDetailCountry()));
     $('#focusCountryImg').attr("src", "img/" + model.getDetailCountry() + ".png");
-    updateBubbles(model);
+    this.updateBubbles(model);
 
     model.getData().forEach(function(country, i){
       addToList(country, $("#regionList"), i);
@@ -74,6 +75,10 @@ FocusView.prototype = {
     };
   },
 
+  markCountries: function(){
+    this.markRegions();
+  },
+
   markRegions: function(){
     var model = this.model;
     model.getVisitedRegions().forEach(function(regionId){
@@ -102,7 +107,7 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-heart').css("background-color", "");
     model.removeWantedRegion(regionId);
     this.updateColors();
-    updateBubbles(model);
+    this.updateBubbles(model);
   },
 
   clickWanted: function(regionId){
@@ -120,31 +125,21 @@ FocusView.prototype = {
     $('#' + regionId + '.ui-icon-check').css("background-color", "");
     model.removeVisitedRegion(regionId);
     this.updateColors();
-    updateBubbles(model);
+    this.updateBubbles(model);
   },
 
-  takeScreenshot: function(count){
+  updateBubbles: function(){
+    $('#focusBubble').text(this.model.getDetailBubbleText());
+  },
+
+  loadSettings: function(){
     var model = this.model;
-    navigator.screenshot.URI(function(error, res){
-      $(".sharingIcons").toggle("fast");
-      $(".hamburger").toggle("fast");
-      if(error){
-        console.log(error);
-      }
-      else{
-        window.plugins.socialsharing.shareViaWhatsApp(
-          model.getFocusSharingDescription(),
-          res.URI,
-          null,
-          function() {
-            console.log('share ok')
-          },
-          function(errormsg){
-            alert(errormsg);
-          }
-        );
-      }
-    },'jpg',50);
+    if(model.getNumberFormat() === 'fraction'){
+      $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
+    }
+    else{
+      $('#radio-number-format-1b').attr("checked",true).checkboxradio("refresh");
+    }
   }
 }
 
@@ -153,8 +148,4 @@ function addToList(state, container, i){
   var myClass = i % 2 == 0 ? 'ui-collapsible-content-white' : 'ui-collapsible-content-gray';
   var renderedTemplate = Mustache.render(template, {code: state["code"], name: state["name"], class: myClass});
   container.append(renderedTemplate);
-}
-
-function updateBubbles(model){
-  $('#focusBubble').text(model.getDetailBubbleText());
 }

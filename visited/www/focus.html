@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/spectrum.css"/>
     <script src="js/lib/jquery-2.1.1.min.js"></script>
     <script src="js/lib/mustache.min.js"></script>
+    <script src="js/lib/spectrum.js"></script>
     <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/lib/jquery-jvectormap-ar-mill.js"></script>
@@ -40,12 +42,8 @@
   <body>
     <div class="header">
       <div id="map"></div>
-      <div class="sharingIcons">
-        <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
-        <img src="./img/facebook.png" id="facebook" alt="facebook"/>
-        <img src="./img/twitter.png" id="twitter" alt="twitter"/>
-        <img src="./img/instagram.png" id="instagram" alt="instagram"/>
-      </div>
+      <a href="#settingsPanel" class="hamburger">&#9776;</a>
+      <a href="#sharingPanel" class="shareIcon">&#x21E5;</a>
     </div>
     <div id="content">
       <div class="ui-focus-content">
@@ -55,6 +53,36 @@
           <span id="focusTitle"></span>
         </h3>
         <table id="regionList" cellpadding="0" cellspacing="0"></table>
+      </div>
+    </div>
+    <div data-role="panel" class="sharingPanel" data-position="right" data-display="push" id="sharingPanel">
+      <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
+      <img src="./img/facebook.png" id="facebook" alt="facebook"/>
+      <img src="./img/twitter.png" id="twitter" alt="twitter"/>
+      <img src="./img/instagram.png" id="instagram" alt="instagram"/>
+    </div>
+    <div data-role="panel" data-position="right" data-display="push" id="settingsPanel">
+      <div class="ui-bar ui-bar-a">
+        <h3>Display Settings</h3>
+      </div>
+      <div class="ui-body ui-body-a">
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="150px">Visited-Color</td>
+            <td><input id="visitedColor" value="03a834" class="basic" type="text"></td>
+          </tr>
+          <tr>
+            <td>Wanted-Color</td>
+            <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
+          </tr>
+        </table>
+        <fieldset data-role="controlgroup" data-type="horizontal" class="settingsNumberFormat">
+          <legend>Number-Format</legend>
+          <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
+          <label for="radio-number-format-1a">fractional</label>
+          <input type="radio" name="radio-number-format-1" id="radio-number-format-1b" value="percentage">
+          <label for="radio-number-format-1b">in %</label>
+        </fieldset>
       </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>

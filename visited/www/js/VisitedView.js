@@ -162,7 +162,6 @@ VisitedView.prototype = {
     }
     else{
       $('#radio-number-format-1b').attr("checked",true).checkboxradio("refresh");
-
     }
   },
 
@@ -173,32 +172,6 @@ VisitedView.prototype = {
     $('#namericaBubble').text(this.model.getBubbleText(NAMERICA_ID));
     $('#samericaBubble').text(this.model.getBubbleText(SAMERICA_ID));
     $('#africaBubble').text(this.model.getBubbleText(AFRICA_ID));
-  },
-
-  takeScreenshot: function(count){
-    var model = this.model;
-    if(count == 2){
-      navigator.screenshot.URI(function(error, res){
-        $(".sharingIcons").toggle("fast");
-        $(".hamburger").toggle("fast");
-        if(error){
-          console.log(error);
-        }
-        else{
-          window.plugins.socialsharing.shareViaWhatsApp(
-            model.getGlobalSharingDescription(),
-            res.URI,
-            null,
-            function() {
-              console.log('share ok')
-            },
-            function(errormsg){
-              alert(errormsg);
-            }
-          );
-        }
-      },'jpg',50);
-    }
   }
 }
 
