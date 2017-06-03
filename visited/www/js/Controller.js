@@ -17,6 +17,9 @@ Controller.prototype = {
       view.resetScroll();
       view.loadMap();
     });
+    $(document).ready(function() {
+      orientationChange();
+    });
     $(".collapsing a").on("click", function(e) {
       if(!$(".collapsing#" + e.target.parentNode.parentNode.id).collapsible("option", "collapsed")){
         window.location.hash = "";
@@ -91,23 +94,7 @@ Controller.prototype = {
     * Orientation plugin
     **/
     window.addEventListener("orientationchange", function() {
-      var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-      if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
-        $('#map').height('100%');
-      }
-      else{
-        $('#map').height('35%');
-      }
-
-      var map = $('#map').vectorMap('get', 'mapObject');
-      var center = map.pointToLatLng(map.width / 2, map.height / 2);
-
-      var config = {
-          lat: center.lat,
-          lng: center.lng,
-          scale: 1.0
-      }
-      map.setFocus(config)
+      orientationChange();
     });
 
     /*
@@ -148,9 +135,30 @@ Controller.prototype = {
         $(".shareIcon").toggle("fast");
         $(".hamburger").toggle("fast");
       }catch(err){
+        console.log(err);
         $(".shareIcon").toggle("fast");
         $(".hamburger").toggle("fast");
       }
     }
   }
+}
+
+function orientationChange(){
+  var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+  if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
+    $('#map').height('100%');
+  }
+  else{
+    $('#map').height('35%');
+  }
+  var map = $('#map').vectorMap('get', 'mapObject');
+  var center = map.pointToLatLng(map.width / 2, map.height / 2);
+
+  var config = {
+      lat: center.lat,
+      lng: center.lng,
+      scale: 1.0
+  }
+  map.setFocus(config);
+  $('#map').resize();
 }

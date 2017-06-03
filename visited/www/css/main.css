@@ -21,7 +21,7 @@
   overflow:hidden;
 }
 
-.hamburger, .shareIcon{
+.hamburger{
   position:absolute;
   right:0;
   line-height:45px;
@@ -31,24 +31,13 @@
   z-index:200;
 }
 
-.shareIcon{
-  top:50px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-}
-
-.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active,
-.shareIcon:link, .shareIcon:visited, .shareIcon:hover, .shareIcon:active {
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active{
   text-decoration: none;
   color:#CCCCCC !important;
 }
 
 .settingsNumberFormat{
   padding-top: 6px !important;
-}
-
-.sharingPanel{
-  width:76px;
 }
 
 #whatsapp, #facebook, #twitter, #instagram {
