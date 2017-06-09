@@ -103,7 +103,7 @@ Controller.prototype = {
     $(document).on('click', "#whatsapp", function(e) {
       $("[data-role=panel]").panel("close");
       $(".hamburger").toggle();
-      $(".icon").toggle("fast", function(){
+      $(".icon").toggle("slow", function(){
         controller.takeScreenshot();
       });
     });
