@@ -101,20 +101,16 @@ Controller.prototype = {
     * Whatapp Icon
     */
     $(document).on('click', "#whatsapp", function(e) {
-      var count = 0;
       $("[data-role=panel]").panel("close");
-      $(".shareIcon").toggle("fast", function(){
-        controller.takeScreenshot(++count);
-      });
-      $(".hamburger").toggle("fast", function(){
-        controller.takeScreenshot(++count);
+      $(".hamburger").toggle();
+      $(".icon").toggle("fast", function(){
+        controller.takeScreenshot();
       });
     });
   },
 
-  takeScreenshot: function(count){
+  takeScreenshot: function(){
     var model = this.model;
-    if(count == 2){
       try{
         navigator.screenshot.URI(function(error, res){
           if(error){
@@ -122,7 +118,7 @@ Controller.prototype = {
           }
           else{
             window.plugins.socialsharing.shareViaWhatsApp(
-              model.getGlobalSharingDescription(),
+              null,
               res.URI,
               null,
               function() {},
@@ -132,15 +128,15 @@ Controller.prototype = {
             );
           }
         },'jpg',50);
-        $(".shareIcon").toggle("fast");
-        $(".hamburger").toggle("fast");
+        $(".icon").toggle();
+        $(".hamburger").toggle();
       }catch(err){
         console.log(err);
-        $(".shareIcon").toggle("fast");
-        $(".hamburger").toggle("fast");
+        $(".icon").toggle();
+        $(".hamburger").toggle();
       }
     }
-  }
+
 }
 
 function orientationChange(){

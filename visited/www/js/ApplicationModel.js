@@ -253,34 +253,6 @@ ApplicationModel.prototype = {
     return this.mapName;
   },
 
-  getGlobalSharingDescription: function(){
-    if(this.getMapName() === EUROPE_MAP){
-      return "Europe: " + this.getBubbleText(EUROPE_ID);
-    }
-    else if(this.getMapName() === ASIA_MAP){
-      return "Aaia: " + this.getBubbleText(ASIA_ID);
-    }
-    else if(this.getMapName() === SAMERICA_MAP){
-      return "South America: " + this.getBubbleText(SAMERICA_ID);
-    }
-    else if(this.getMapName() === NAMERICA_MAP){
-      return "North America: " + this.getBubbleText(NAMERICA_ID);
-    }
-    else if(this.getMapName() === AUSTRALIA_MAP){
-      return "Australia: " + this.getBubbleText(AUSTRALIA_ID);
-    }
-    else if(this.getMapName() === AFRICA_MAP){
-      return "Africa: " + this.getBubbleText(AFRICA_ID);
-    }
-    else{
-      return "World: " + this.getBubbleTextWorld();
-    }
-  },
-
-  getFocusSharingDescription: function(){
-    return this.getCountryName(this.getDetailCountry()) + ": " + getDetailBubbleText();
-  },
-
   getDetailMapName: function(){
     var detailCountry = getParameterByName("country");
     if(detailCountry === 'US'){

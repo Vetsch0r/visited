@@ -25,6 +25,7 @@
     <div class="header">
       <div id="map"></div>
       <a href="#settingsPanel" class="hamburger">&#9776;</a>
+      <img src="./img/icon_name.png" alt="icon" class="icon"/>
     </div>
     <div id="content">
       <div data-role="collapsible" id="africa" class="collapsing" >
@@ -73,18 +74,20 @@
             <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
           </tr>
         </table>
-        <fieldset data-role="controlgroup" data-type="horizontal" class="settingsNumberFormat">
-          <legend>Number-Format</legend>
+        <fieldset data-role="controlgroup"  class="settingsNumberFormat">
+          <legend class="numberFormatTitle">Number-Format</legend>
           <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
           <label for="radio-number-format-1a">fractional</label>
           <input type="radio" name="radio-number-format-1" id="radio-number-format-1b" value="percentage">
           <label for="radio-number-format-1b">in %</label>
         </fieldset>
       </div>
-      <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
-      <img src="./img/facebook.png" id="facebook" alt="facebook"/>
-      <img src="./img/twitter.png" id="twitter" alt="twitter"/>
-      <img src="./img/instagram.png" id="instagram" alt="instagram"/>
+      <div class="shareContainer">
+        <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
+        <img src="./img/facebook.png" id="facebook" alt="facebook"/>
+        <!--<img src="./img/twitter.png" id="twitter" alt="twitter"/>
+        <img src="./img/instagram.png" id="instagram" alt="instagram"/><!-->
+      </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="data/country.js"></script>

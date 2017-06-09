@@ -21,11 +21,18 @@
   overflow:hidden;
 }
 
+.icon{
+  z-index:200;
+  position:relative;
+  width:18%;
+  display:none;
+}
+
 .hamburger{
   position:absolute;
   right:0;
   line-height:45px;
-  padding:5px 15px 0px 15px;
+  padding:5px 10px 0px 10px;
   font-size:1.8em;
   cursor:pointer;
   z-index:200;
@@ -36,14 +43,21 @@
   color:#CCCCCC !important;
 }
 
+.numberFormatTitle{
+  padding-bottom:3px;
+}
+
 .settingsNumberFormat{
   padding-top: 6px !important;
 }
 
-#whatsapp, #facebook, #twitter, #instagram {
-  display:block;
+.shareContainer{
   margin-top: 10px;
-  width: 45px;
+}
+
+#whatsapp, #facebook, #twitter, #instagram {
+  margin-right:5px;
+  width: 50px;
   border-radius: 10%;
 }
 
