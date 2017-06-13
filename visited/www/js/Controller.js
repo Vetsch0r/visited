@@ -97,9 +97,7 @@ Controller.prototype = {
       orientationChange();
     });
 
-    document.addEventListener("resume", function() {
-      orientationChange();
-    });
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     /*
     * Whatapp Icon
@@ -148,7 +146,14 @@ Controller.prototype = {
         $(".hamburger").toggle();
       }
     }
+}
 
+function onDeviceReady() {
+    document.addEventListener("resume", returnedFromBackground, false);
+}
+
+function returnedFromBackground() {
+    orientationChange();
 }
 
 function orientationChange(){
