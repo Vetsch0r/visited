@@ -125,7 +125,6 @@ Controller.prototype = {
     var model = this.model;
       try{
         navigator.screenshot.URI(function(error, res){
-          alert(res.URI);
           if(error){
             console.log(error);
           }
