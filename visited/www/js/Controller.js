@@ -112,7 +112,7 @@ Controller.prototype = {
 
     /*
     * Back button should close the settings panel
-    */
+
     document.addEventListener("backbutton", function(e){
       if( $("#settingsPanel").hasClass("ui-panel-open")){
         e.preventDefault();
@@ -120,7 +120,7 @@ Controller.prototype = {
       }else{
         navigator.app.backHistory();
       }
-    }, false);
+    }, false);*/
   },
 
   takeScreenshot: function(){
@@ -154,7 +154,7 @@ Controller.prototype = {
 }
 
 function onResume() {
-  alert('resume');
+  orientationChange();
 }
 
 function orientationChange(){
