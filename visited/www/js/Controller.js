@@ -18,6 +18,7 @@ Controller.prototype = {
       view.loadMap();
     });
     $(document).ready(function() {
+      document.addEventListener("resume", onResume, false);
       orientationChange();
     });
     $(".collapsing a").on("click", function(e) {
@@ -97,8 +98,6 @@ Controller.prototype = {
       orientationChange();
     });
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
     /*
     * Whatapp Icon
     */
@@ -111,49 +110,51 @@ Controller.prototype = {
       }, 500);
     });
 
+    /*
+    * Back button should close the settings panel
+    */
     document.addEventListener("backbutton", function(e){
       if( $("#settingsPanel").hasClass("ui-panel-open")){
         e.preventDefault();
         $("#settingsPanel").panel("close");
+      }else{
+        navigator.app.backHistory();
       }
     }, false);
   },
 
   takeScreenshot: function(){
     var model = this.model;
-      try{
-        navigator.screenshot.URI(function(error, res){
-          if(error){
-            console.log(error);
-          }
-          else{
-            window.plugins.socialsharing.shareViaWhatsApp(
-              null,
-              res.URI,
-              null,
-              function() {},
-              function(error){
-                console.log(error);
-              }
-            );
-          }
-        },'jpg',50);
-        $(".icon").toggle();
-        $(".hamburger").toggle();
-      }catch(err){
-        console.log(err);
-        $(".icon").toggle();
-        $(".hamburger").toggle();
-      }
+    try{
+      navigator.screenshot.URI(function(error, res){
+        if(error){
+          console.log(error);
+        }
+        else{
+          window.plugins.socialsharing.shareViaWhatsApp(
+            null,
+            res.URI,
+            null,
+            function() {},
+            function(error){
+              console.log(error);
+            }
+          );
+        }
+      },'jpg',50);
+      $(".icon").toggle();
+      $(".hamburger").toggle();
     }
+    catch(err){
+      console.log(err);
+      $(".icon").toggle();
+      $(".hamburger").toggle();
+    }
+  }
 }
 
-function onDeviceReady() {
-    document.addEventListener("resume", returnedFromBackground, false);
-}
-
-function returnedFromBackground() {
-    orientationChange();
+function onResume() {
+  alert('resume');
 }
 
 function orientationChange(){
