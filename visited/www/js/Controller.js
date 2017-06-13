@@ -101,12 +101,20 @@ Controller.prototype = {
     * Whatapp Icon
     */
     $(document).on('click', "#whatsapp", function(e) {
-      $("[data-role=panel]").panel("close");
+      $("#settingsPanel").panel("close");
       $(".hamburger").toggle();
-      $(".icon").toggle("slow", function(){
+      $(".icon").toggle();
+      setTimeout(function(){
         controller.takeScreenshot();
-      });
+      }, 1000);
     });
+
+    document.addEventListener("backbutton", function(e){
+      if( $("#settingsPanel").hasClass("ui-panel-open")){
+        e.preventDefault();
+        $("#settingsPanel").panel("close");
+      }
+    }, false);
   },
 
   takeScreenshot: function(){

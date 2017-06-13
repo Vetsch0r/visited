@@ -44,7 +44,11 @@
 }
 
 .numberFormatTitle{
-  padding-bottom:3px;
+  padding-bottom:2px;
+}
+
+.settingsIcon{
+  margin-bottom:12px;
 }
 
 .settingsNumberFormat{
