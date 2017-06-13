@@ -97,6 +97,10 @@ Controller.prototype = {
       orientationChange();
     });
 
+    document.addEventListener("resume", function() {
+      orientationChange();
+    });
+
     /*
     * Whatapp Icon
     */
@@ -106,7 +110,7 @@ Controller.prototype = {
       $(".icon").toggle();
       setTimeout(function(){
         controller.takeScreenshot();
-      }, 1000);
+      }, 500);
     });
 
     document.addEventListener("backbutton", function(e){
@@ -121,6 +125,7 @@ Controller.prototype = {
     var model = this.model;
       try{
         navigator.screenshot.URI(function(error, res){
+          alert(res.URI);
           if(error){
             console.log(error);
           }
