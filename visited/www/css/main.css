@@ -23,8 +23,9 @@
 
 .icon{
   z-index:200;
-  position:relative;
+  position:absolute;
   width:18%;
+  right:0;
   display:none;
 }
 

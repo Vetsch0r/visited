@@ -18,7 +18,9 @@ Controller.prototype = {
       view.loadMap();
     });
     $(document).ready(function() {
-      document.addEventListener("resume", onResume, false);
+      document.addEventListener("resume", function(){
+        orientationChange();
+      }, false);
       orientationChange();
     });
     $(".collapsing a").on("click", function(e) {
@@ -112,7 +114,7 @@ Controller.prototype = {
 
     /*
     * Back button should close the settings panel
-
+    */
     document.addEventListener("backbutton", function(e){
       if( $("#settingsPanel").hasClass("ui-panel-open")){
         e.preventDefault();
@@ -120,18 +122,18 @@ Controller.prototype = {
       }else{
         navigator.app.backHistory();
       }
-    }, false);*/
+    }, false);
   },
 
   takeScreenshot: function(){
     var model = this.model;
     try{
-      navigator.screenshot.URI(function(error, res){
+      navigator.screenshot.save(function(error, res){
         if(error){
           console.log(error);
         }
         else{
-          window.plugins.socialsharing.shareViaWhatsApp(
+          /*window.plugins.socialsharing.shareViaWhatsApp(
             null,
             res.URI,
             null,
@@ -139,7 +141,7 @@ Controller.prototype = {
             function(error){
               console.log(error);
             }
-          );
+          );*/
         }
       },'jpg',50);
       $(".icon").toggle();
@@ -153,11 +155,8 @@ Controller.prototype = {
   }
 }
 
-function onResume() {
-  orientationChange();
-}
-
 function orientationChange(){
+  alert('orientationChange ')
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
   if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
     $('#map').height('100%');
