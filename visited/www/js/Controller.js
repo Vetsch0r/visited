@@ -128,11 +128,12 @@ Controller.prototype = {
   takeScreenshot: function(){
     var model = this.model;
     try{
-      navigator.screenshot.save(function(error, res){
+      navigator.screenshot.URI(function(error, res){
         if(error){
           console.log(error);
         }
         else{
+          window.location.href = res.URI;
           /*window.plugins.socialsharing.shareViaWhatsApp(
             null,
             res.URI,
@@ -156,7 +157,6 @@ Controller.prototype = {
 }
 
 function orientationChange(){
-  alert('orientationChange ')
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
   if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
     $('#map').height('100%');
