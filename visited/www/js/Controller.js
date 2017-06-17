@@ -133,8 +133,7 @@ Controller.prototype = {
           console.log(error);
         }
         else{
-          window.location.href = res.URI;
-          /*window.plugins.socialsharing.shareViaWhatsApp(
+          window.plugins.socialsharing.shareViaWhatsApp(
             null,
             res.URI,
             null,
@@ -142,7 +141,7 @@ Controller.prototype = {
             function(error){
               console.log(error);
             }
-          );*/
+          );
         }
       },'jpg',50);
       $(".icon").toggle();
