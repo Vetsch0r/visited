@@ -133,7 +133,7 @@ Controller.prototype = {
           console.log(error);
         }
         else{
-          window.plugins.socialsharing.shareViaWhatsApp(
+          /*window.plugins.socialsharing.shareViaWhatsApp(
             null,
             res.URI,
             null,
@@ -142,6 +142,9 @@ Controller.prototype = {
               console.log(error);
             }
           );
+          */
+          var html = '<img style="width:50%;" src="'+res.URI+'">';
+          document.body.innerHTML = html;
         }
       },'jpg',50);
       $(".icon").toggle();

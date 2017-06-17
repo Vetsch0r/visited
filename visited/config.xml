@@ -9,7 +9,6 @@
     </author>
     <preference name="SplashScreen" value="splash" />
     <preference name="windows-identity-name" value="55120VetschThomas.visited" />
-    <preference name="CrosswalkAnimatable" value="true" />
     <icon src="icon.png" />
     <icon gap:platform="ios" height="60" src="res/icons/ios/icon-60.png" width="60" />
     <icon gap:platform="ios" height="120" src="res/icons/ios/icon-60-2x.png" width="120" />
