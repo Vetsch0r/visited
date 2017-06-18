@@ -157,7 +157,7 @@ Controller.prototype = {
 
 function orientationChange(){
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-  alert(orientation);
+  alert(orientation.type);
   if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
     $('#map').height('100%');
   }
