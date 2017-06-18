@@ -133,7 +133,7 @@ Controller.prototype = {
           console.log(error);
         }
         else{
-          /*window.plugins.socialsharing.shareViaWhatsApp(
+          window.plugins.socialsharing.shareViaWhatsApp(
             null,
             res.URI,
             null,
@@ -142,9 +142,6 @@ Controller.prototype = {
               console.log(error);
             }
           );
-          */
-          var html = '<img style="width:50%;" src="'+res.URI+'">';
-          document.body.innerHTML = html;
         }
       },'jpg',50);
       $(".icon").toggle();
@@ -160,6 +157,7 @@ Controller.prototype = {
 
 function orientationChange(){
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+  alert(orientation);
   if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
     $('#map').height('100%');
   }
