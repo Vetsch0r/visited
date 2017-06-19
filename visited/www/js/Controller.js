@@ -150,7 +150,7 @@ Controller.prototype = {
               null,
               res.URI,
               null,
-              unction() {console.log('share ok')},
+              function() {console.log('share ok')},
               function(errormsg){alert(errormsg)}
             );
           }
