@@ -108,7 +108,7 @@ Controller.prototype = {
       $(".hamburger").toggle();
       $(".icon").toggle();
       setTimeout(function(){
-        takeScreenshot('whatsapp');
+        controller.takeScreenshot('whatsapp');
       }, 500);
     });
 
@@ -120,7 +120,7 @@ Controller.prototype = {
       $(".hamburger").toggle();
       $(".icon").toggle();
       setTimeout(function(){
-        takeScreenshot('facebook');
+        controller.takeScreenshot('facebook');
       }, 500);
     });
 
