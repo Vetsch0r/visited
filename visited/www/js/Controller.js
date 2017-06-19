@@ -164,7 +164,7 @@ Controller.prototype = {
             );
           }
         }
-      },'jpg',50);
+      },'png',50);
       $(".icon").toggle();
       $(".hamburgerLink").toggle();
     }
@@ -174,7 +174,7 @@ Controller.prototype = {
       $(".hamburgerLink").toggle();
     }
   }
-}
+
 
 function orientationChange(){
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
