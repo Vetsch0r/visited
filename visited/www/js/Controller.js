@@ -154,15 +154,6 @@ Controller.prototype = {
               function(errormsg){alert(errormsg)}
             );
           }
-          if(target === 'facebook'){
-            window.plugins.socialsharing.shareViaFacebook(
-              'Message via Facebook',
-              null /* img */,
-              null /* url */,
-              function() {console.log('share ok')},
-              function(errormsg){alert(errormsg)}
-            );
-          }
         }
       },'png',50);
       $(".icon").toggle();
@@ -174,7 +165,7 @@ Controller.prototype = {
       $(".hamburgerLink").toggle();
     }
   }
-
+}
 
 function orientationChange(){
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
