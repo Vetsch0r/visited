@@ -108,15 +108,7 @@ Controller.prototype = {
       $(".hamburger").toggle();
       $(".icon").toggle();
       setTimeout(function(){
-        window.plugins.socialsharing.shareViaWhatsApp(
-          null,
-          controller.takeScreenshot(),
-          null,
-          function() {},
-          function(error){
-            console.log(error);
-          }
-        );
+        takeScreenshot('whatsapp');
       }, 500);
     });
 
@@ -128,15 +120,7 @@ Controller.prototype = {
       $(".hamburger").toggle();
       $(".icon").toggle();
       setTimeout(function(){
-        window.plugins.socialsharing.shareViaFacebook(
-          null,
-          controller.takeScreenshot(),
-          null,
-          function() {},
-          function(error){
-            console.log(error);
-          }
-        );
+        takeScreenshot('facebook');
       }, 500);
     });
 
@@ -153,7 +137,7 @@ Controller.prototype = {
     }, false);
   },
 
-  takeScreenshot: function(){
+  takeScreenshot: function(target){
     var model = this.model;
     try{
       navigator.screenshot.URI(function(error, res){
@@ -161,7 +145,28 @@ Controller.prototype = {
           console.log(error);
         }
         else{
-          return res.URI;
+          if(target === 'whatsapp'){
+            window.plugins.socialsharing.shareViaWhatsApp(
+              null,
+              res.URI,
+              null,
+              function() {},
+              function(error){
+                console.log(error);
+              }
+            );
+          }
+          if(target === 'facebook'){
+            window.plugins.socialsharing.shareViaFacebook(
+              null,
+              res.URI,
+              null,
+              function() {},
+              function(error){
+                console.log(error);
+              }
+            );
+          }
         }
       },'jpg',50);
       $(".icon").toggle();
