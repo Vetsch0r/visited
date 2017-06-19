@@ -29,14 +29,27 @@
   display:none;
 }
 
+.hamburgerLink{
+  padding-left:10px;
+  width:30px;
+  height:40px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  top: 0px;
+}
+
 .hamburger{
-  position:absolute;
-  right:0;
-  line-height:45px;
-  padding:5px 10px 0px 10px;
-  font-size:1.8em;
-  cursor:pointer;
-  z-index:200;
+  content: "";
+  top: 4px;
+  right: 2px;
+  position:relative;
+
+  display: block;
+  width: 18px;
+  height: 0;
+  -webkit-box-shadow: 1px 10px 1px 2px #CCCCCC,1px 18px 1px 2px     #CCCCCC,1px 26px 1px 2px #CCCCCC;
+  box-shadow: 0 10px 0 2px #CCCCCC,0 18px 0 2px #CCCCCC,0 26px 0 2px #CCCCCC;
 }
 
 .hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active{
