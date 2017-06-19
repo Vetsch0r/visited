@@ -105,7 +105,7 @@ Controller.prototype = {
     */
     $(document).on('click', "#whatsapp", function(e) {
       $("#settingsPanel").panel("close");
-      $(".hamburger").toggle();
+      $(".hamburgerLink").toggle();
       $(".icon").toggle();
       setTimeout(function(){
         controller.takeScreenshot('whatsapp');
@@ -117,7 +117,7 @@ Controller.prototype = {
     */
     $(document).on('click', "#facebook", function(e) {
       $("#settingsPanel").panel("close");
-      $(".hamburger").toggle();
+      $(".hamburgerLink").toggle();
       $(".icon").toggle();
       setTimeout(function(){
         controller.takeScreenshot('facebook');
@@ -150,32 +150,28 @@ Controller.prototype = {
               null,
               res.URI,
               null,
-              function() {},
-              function(error){
-                console.log(error);
-              }
+              unction() {console.log('share ok')},
+              function(errormsg){alert(errormsg)}
             );
           }
           if(target === 'facebook'){
             window.plugins.socialsharing.shareViaFacebook(
-              null,
-              res.URI,
-              null,
-              function() {},
-              function(error){
-                console.log(error);
-              }
+              'Message via Facebook',
+              null /* img */,
+              null /* url */,
+              function() {console.log('share ok')},
+              function(errormsg){alert(errormsg)}
             );
           }
         }
       },'jpg',50);
       $(".icon").toggle();
-      $(".hamburger").toggle();
+      $(".hamburgerLink").toggle();
     }
     catch(err){
       console.log(err);
       $(".icon").toggle();
-      $(".hamburger").toggle();
+      $(".hamburgerLink").toggle();
     }
   }
 }
