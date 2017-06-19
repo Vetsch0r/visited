@@ -108,7 +108,35 @@ Controller.prototype = {
       $(".hamburger").toggle();
       $(".icon").toggle();
       setTimeout(function(){
-        controller.takeScreenshot();
+        window.plugins.socialsharing.shareViaWhatsApp(
+          null,
+          controller.takeScreenshot(),
+          null,
+          function() {},
+          function(error){
+            console.log(error);
+          }
+        );
+      }, 500);
+    });
+
+    /*
+    * Whatapp Icon
+    */
+    $(document).on('click', "#facebook", function(e) {
+      $("#settingsPanel").panel("close");
+      $(".hamburger").toggle();
+      $(".icon").toggle();
+      setTimeout(function(){
+        window.plugins.socialsharing.shareViaFacebook(
+          null,
+          controller.takeScreenshot(),
+          null,
+          function() {},
+          function(error){
+            console.log(error);
+          }
+        );
       }, 500);
     });
 
@@ -133,15 +161,7 @@ Controller.prototype = {
           console.log(error);
         }
         else{
-          window.plugins.socialsharing.shareViaWhatsApp(
-            null,
-            res.URI,
-            null,
-            function() {},
-            function(error){
-              console.log(error);
-            }
-          );
+          return res.URI;
         }
       },'jpg',50);
       $(".icon").toggle();
@@ -157,7 +177,6 @@ Controller.prototype = {
 
 function orientationChange(){
   var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-  alert(orientation.type);
   if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
     $('#map').height('100%');
   }

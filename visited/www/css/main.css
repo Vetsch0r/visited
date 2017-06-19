@@ -29,16 +29,17 @@
   display:none;
 }
 
-.settings{
+.hamburger{
   position:absolute;
   right:0;
-  padding:8px 5px 5px 5px;
+  line-height:45px;
+  padding:5px 10px 0px 10px;
+  font-size:1.8em;
   cursor:pointer;
   z-index:200;
-  width: 30px;
 }
 
-.settings:link, .settings:visited, .settings:hover, .settings:active{
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active{
   text-decoration: none;
   color:#CCCCCC !important;
 }
