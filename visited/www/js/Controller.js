@@ -140,7 +140,7 @@ Controller.prototype = {
   takeScreenshot: function(target){
     var model = this.model;
     try{
-      navigator.screenshot.save(function(error, res){
+      navigator.screenshot.URI(function(error, res){
         if(error){
           console.log(error);
         }
@@ -148,9 +148,17 @@ Controller.prototype = {
           if(target === 'whatsapp'){
             window.plugins.socialsharing.shareViaWhatsApp(
               null,
-              getBase64Image(res.filePath()),
               res.URI,
               null,
+              function() {console.log('share ok')},
+              function(errormsg){alert(errormsg)}
+            );
+          }
+          if(target === 'facebook'){
+            window.plugins.socialsharing.shareViaFacebook(
+              'Message via Facebook',
+              null /* img */,
+              null /* url */,
               function() {console.log('share ok')},
               function(errormsg){alert(errormsg)}
             );
@@ -166,18 +174,6 @@ Controller.prototype = {
       $(".hamburgerLink").toggle();
     }
   }
-}
-
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 function orientationChange(){
