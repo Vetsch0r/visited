@@ -156,6 +156,8 @@ VisitedView.prototype = {
   },
 
   loadSettings: function(){
+        window.plugins.socialsharing.canShareVia('instagram', 'msg', null, null, null, function(e){$("#instagram").hide()}, function(e){$("#instagram").hide()})
+
     var model = this.model;
     if(model.getNumberFormat() === 'fraction'){
       $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
