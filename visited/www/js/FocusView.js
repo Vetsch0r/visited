@@ -134,8 +134,6 @@ FocusView.prototype = {
 
   loadSettings: function(){
     var model = this.model;
-    //hide instagram icon when not possible
-    window.plugins.socialsharing.canShareVia('instagram', 'msg', null, null, null, function(e){}, function(e){$("#instagram").hide()})
     if(model.getNumberFormat() === 'fraction'){
       $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
     }

@@ -163,7 +163,7 @@ Controller.prototype = {
               res.URI,
               null,
               function() {console.log('share ok')},
-              function(errormsg){alert(errormsg)}
+              function(errormsg){alert('not available')}
             );
           }
           if(target === 'facebook'){
@@ -172,7 +172,7 @@ Controller.prototype = {
               res.URI, 
               null, 
               function() {console.log('share ok')}, 
-              function(errormsg){alert(errormsg)}
+              function(errormsg){alert('not available')}
             );
           }
           if(target === 'instagram'){
@@ -180,7 +180,7 @@ Controller.prototype = {
               null, 
               res.URI, 
               function() {console.log('share ok')}, 
-              function(errormsg){alert(errormsg)}
+              function(errormsg){alert('not available')}
             );
           }
         }

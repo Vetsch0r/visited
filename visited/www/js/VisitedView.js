@@ -38,9 +38,7 @@ VisitedView.prototype = {
 
   resetScroll: function(){
     $(".collapsing").collapsible("collapse");
-    $("#content").animate({
-      scrollTop:0
-    }, 100);
+    $("#content").scrollTop();
   },
 
   loadCountryList: function(){
@@ -156,8 +154,6 @@ VisitedView.prototype = {
   },
 
   loadSettings: function(){
-        window.plugins.socialsharing.canShareVia('instagram', 'msg', null, null, null, function(e){$("#instagram").hide()}, function(e){$("#instagram").hide()})
-
     var model = this.model;
     if(model.getNumberFormat() === 'fraction'){
       $('#radio-number-format-1a').attr("checked",true).checkboxradio("refresh");
