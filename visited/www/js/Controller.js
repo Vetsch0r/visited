@@ -163,7 +163,14 @@ Controller.prototype = {
               res.URI,
               null,
               function() {console.log('share ok')},
-              function(errormsg){alert('not available')}
+              function(errormsg){
+                navigator.notification.alert(
+                  'Whatsapp is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                );   
+              }
             );
           }
           if(target === 'facebook'){
@@ -172,7 +179,14 @@ Controller.prototype = {
               res.URI, 
               null, 
               function() {console.log('share ok')}, 
-              function(errormsg){alert('not available')}
+              function(errormsg){
+                navigator.notification.alert(
+                  'Facebook is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                ); 
+              }
             );
           }
           if(target === 'instagram'){
@@ -182,11 +196,12 @@ Controller.prototype = {
               function() {console.log('share ok')}, 
               function(errormsg){
                 navigator.notification.alert(
-                  'Not available',  // message
-                  null,             // callback
-                  'Information',    // title
-                  'Ok');            // buttonName
-                }
+                  'Instagram is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                ); 
+              }
             );
           }
         }
