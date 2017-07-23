@@ -180,7 +180,13 @@ Controller.prototype = {
               null, 
               res.URI, 
               function() {console.log('share ok')}, 
-              function(errormsg){alert('not available')}
+              function(errormsg){
+                navigator.notification.alert(
+                  'Not available',  // message
+                  null,             // callback
+                  'Information',    // title
+                  'Ok');            // buttonName
+                }
             );
           }
         }
