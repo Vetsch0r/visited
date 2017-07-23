@@ -5,6 +5,10 @@
   z-index:100;
 }
 
+.jvectormap-zoomin, .jvectormap-zoomout{
+  display:none;
+}
+
 #content{
   top: 35%;
   position: absolute;
@@ -17,35 +21,66 @@
   overflow:hidden;
 }
 
-.hamburger{
-  position:absolute;
-  right:0;
-  line-height:45px;
-  padding:5px 15px 0px 15px;
-  font-size:1.8em;
-  cursor:pointer;
+.icon{
   z-index:200;
+  position:absolute;
+  width:18%;
+  right:0;
+  display:none;
 }
 
-.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active {
+.hamburgerLink{
+  padding-left:10px;
+  width:30px;
+  height:40px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  top: 0px;
+}
+
+.hamburger{
+  content: "";
+  top: 4px;
+  right: 2px;
+  position:relative;
+
+  display: block;
+  width: 18px;
+  height: 0;
+  -webkit-box-shadow: 1px 10px 1px 2px #CCCCCC,1px 18px 1px 2px     #CCCCCC,1px 26px 1px 2px #CCCCCC;
+  box-shadow: 0 10px 0 2px #CCCCCC,0 18px 0 2px #CCCCCC,0 26px 0 2px #CCCCCC;
+}
+
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active{
   text-decoration: none;
   color:#CCCCCC !important;
+}
+
+.numberFormatTitle{
+  padding-bottom:2px;
+}
+
+.settingsIcon{
+  margin-bottom:12px;
 }
 
 .settingsNumberFormat{
   padding-top: 6px !important;
 }
 
-#screenshot{
-  width:25%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index:200;
-  display:none;
-  bottom:20px;
+.shareContainer{
+  margin-top: 10px;
+}
+
+#whatsapp, #facebook, #twitter, #instagram {
+  margin-right:5px;
+  width: 40px;
+  border-radius: 10%;
+}
+
+#whatsapp {
+  margin-top:0px;
 }
 
 .colorpicker {
@@ -72,6 +107,10 @@
   margin: 0;
 }
 
+.bubble{
+  width:35px;
+}
+
 .ui-focus-header{
   margin:5px 0 5px 0;
   padding: 5px;
@@ -86,6 +125,7 @@
 
 .custom-count-pos{
   padding-top: 2px;
+  padding-bottom:1px;
 }
 
 .ui-collapsible-content{

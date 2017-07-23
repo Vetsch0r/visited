@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>visited - World</title>
+    <title>visited - World and continents</title>
     <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
@@ -24,65 +24,73 @@
   <body>
     <div class="header">
       <div id="map"></div>
-      <a href="#nav-panel" class="hamburger">&#9776;</a>
-      <button id="screenshot" class="ui-btn ui-corner-all ui-mini">Take Screenshot</button>
+      <a href="#settingsPanel" class="hamburgerLink">
+        <div class="hamburger"></div>
+      </a>
+      <img src="./img/icon_name.png" alt="icon" class="icon"/>
     </div>
     <div id="content">
       <div data-role="collapsible" id="africa" class="collapsing" >
-        <h1><div id="africaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Africa</h1>
+        <h1><div id="africaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Africa</h1>
         <table id="africaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
       <div data-role="collapsible" id="asia" class="collapsing">
-        <h1><div id="asiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Asia</h1>
+        <h1><div id="asiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Asia</h1>
         <table id="asiaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
       <div data-role="collapsible" id="europe" class="collapsing">
-        <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Europe</h1>
+        <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Europe</h1>
         <table id="europeList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
       <div data-role="collapsible" id="namerica" class="collapsing">
-        <h1><div id="namericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>North America</h1>
+        <h1><div id="namericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>North America</h1>
         <table id="namericaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
       <div data-role="collapsible" id="australia" class="collapsing">
-        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>Oceania</h1>
+        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Oceania</h1>
         <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
       <div data-role="collapsible" id="samerica" class="collapsing">
-        <h1><div id="samericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos">0/0</div>South America</h1>
+        <h1><div id="samericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>South America</h1>
         <table id="samericaList" class="countryList" cellpadding="0" cellspacing="0">
         </table>
       </div>
     </div>
-    <div data-role="panel" data-position="right" data-display="push" id="nav-panel">
+    <div data-role="panel" data-position="right" data-display="push" id="settingsPanel">
       <div class="ui-bar ui-bar-a">
-        <h3>Display Settings</h3>
+        <h3>Settings</h3>
       </div>
       <div class="ui-body ui-body-a">
         <table cellpadding="0" cellspacing="0">
           <tr>
-            <td width="150px">Visited-Color</td>
+            <td width="150px">
+              <a class='settingsIcon ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'></a>background</td>
             <td><input id="visitedColor" value="03a834" class="basic" type="text"></td>
           </tr>
           <tr>
-            <td>Wanted-Color</td>
+            <td><a class='settingsIcon ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'></a>background</td>
             <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
           </tr>
         </table>
-        <fieldset data-role="controlgroup" data-iconpos="right" class="settingsNumberFormat">
-          <legend>Number-Format</legend>
-          <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
-          <label for="radio-number-format-1a">fractional</label>
+        <fieldset data-role="controlgroup" data-type="horizontal" class="settingsNumberFormat">
+          <legend class="numberFormatTitle">display format:</legend>
           <input type="radio" name="radio-number-format-1" id="radio-number-format-1b" value="percentage">
           <label for="radio-number-format-1b">in %</label>
+          <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
+          <label for="radio-number-format-1a">fractional</label>
         </fieldset>
       </div>
-
+      <div class="shareContainer">
+        <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
+        <!--<img src="./img/facebook.png" id="facebook" alt="facebook"/>
+        <img src="./img/twitter.png" id="twitter" alt="twitter"/>
+        <img src="./img/instagram.png" id="instagram" alt="instagram"/><!-->
+      </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="data/country.js"></script>

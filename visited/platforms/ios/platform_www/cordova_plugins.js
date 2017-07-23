@@ -37,6 +37,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -46,7 +54,8 @@ module.exports.metadata =
     "cordova-plugin-screen-orientation": "2.0.0",
     "com.darktalker.cordova.screenshot": "0.1.5",
     "es6-promise-plugin": "4.1.0",
-    "cordova-plugin-x-socialsharing": "5.1.8"
+    "cordova-plugin-x-socialsharing": "5.1.8",
+    "cordova-plugin-dialogs": "1.3.3"
 };
 // BOTTOM OF METADATA
 });

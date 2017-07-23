@@ -24,6 +24,9 @@
 		28AEE25EC8E04C559AC926F6 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AB9EA18399464493473E5E /* SocialSharing.m */; };
 		AB6CD84411CE46A386760F20 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5E8A8A8E584415921DD728 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		06AE76A72A4349ACB20EFEE5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD892A61BB494E7D98C26462 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3673700B6927418B8CDA8489 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = E67B40D80C8649B4AC7741FE /* CDVNotification.m */; };
+		4F4EEC4B0DE640FB8EAF9589 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 101A5AAC5AD4418F9C3AC451 /* CDVNotification.bundle */; };
+		D5C69D9325C14DE88327BCC1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D98523AC5446E89D62AE97 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,10 @@
 		04B78CE77AD44C49A87D984F /* SocialSharing.h */ = {isa = PBXFileReference; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7F5E8A8A8E584415921DD728 /* Social.framework */ = {isa = PBXFileReference; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		FD892A61BB494E7D98C26462 /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		E67B40D80C8649B4AC7741FE /* CDVNotification.m */ = {isa = PBXFileReference; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		92397A278F054F31BAB3EE3F /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		101A5AAC5AD4418F9C3AC451 /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
+		B5D98523AC5446E89D62AE97 /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +95,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				AB6CD84411CE46A386760F20 /* Social.framework in Frameworks */,
 				06AE76A72A4349ACB20EFEE5 /* MessageUI.framework in Frameworks */,
+				D5C69D9325C14DE88327BCC1 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +158,7 @@
 				3047A50E1AB8057F00498E2A /* config */,
 				8D1107310486CEB800E47090 /* visited-Info.plist */,
 				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
+				101A5AAC5AD4418F9C3AC451 /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = "visited/Resources";
@@ -160,6 +169,7 @@
 			children = (
 				7F5E8A8A8E584415921DD728 /* Social.framework */,
 				FD892A61BB494E7D98C26462 /* MessageUI.framework */,
+				B5D98523AC5446E89D62AE97 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,6 +207,8 @@
 				C4AB9EA18399464493473E5E /* SocialSharing.m */,
 				2B48590CEB5C43EDAA2A1BE4 /* NSString+SSURLEncoding.h */,
 				04B78CE77AD44C49A87D984F /* SocialSharing.h */,
+				E67B40D80C8649B4AC7741FE /* CDVNotification.m */,
+				92397A278F054F31BAB3EE3F /* CDVNotification.h */,
 			);
 			name = Plugins;
 			path = "visited/Plugins";
@@ -278,6 +290,7 @@
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
+				4F4EEC4B0DE640FB8EAF9589 /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +328,7 @@
 				5CEB752AF36442EC8FEFB45B /* Screenshot.m in Sources */,
 				E3116F42C9734DB49D3A56D1 /* NSString+SSURLEncoding.m in Sources */,
 				28AEE25EC8E04C559AC926F6 /* SocialSharing.m in Sources */,
+				3673700B6927418B8CDA8489 /* CDVNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

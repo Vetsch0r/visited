@@ -13,6 +13,9 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <name>visited</name>
     <description>
         visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.

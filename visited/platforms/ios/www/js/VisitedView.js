@@ -162,7 +162,6 @@ VisitedView.prototype = {
     }
     else{
       $('#radio-number-format-1b').attr("checked",true).checkboxradio("refresh");
-
     }
   },
 

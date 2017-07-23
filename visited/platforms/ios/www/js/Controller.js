@@ -17,6 +17,12 @@ Controller.prototype = {
       view.resetScroll();
       view.loadMap();
     });
+    $(document).ready(function() {
+      document.addEventListener("resume", function(){
+        orientationChange();
+      }, false);
+      orientationChange();
+    });
     $(".collapsing a").on("click", function(e) {
       if(!$(".collapsing#" + e.target.parentNode.parentNode.id).collapsible("option", "collapsed")){
         window.location.hash = "";
@@ -91,53 +97,92 @@ Controller.prototype = {
     * Orientation plugin
     **/
     window.addEventListener("orientationchange", function() {
-      var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-      if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
-        $('#map').height('100%');
-        $('#screenshot').css("display", "block");
-      }
-      else{
-        $('#map').height('35%');
-        $('#screenshot').css("display", "none");
-      }
-
-      var map = $('#map').vectorMap('get', 'mapObject');
-      var center = map.pointToLatLng(map.width / 2, map.height / 2);
-
-      var config = {
-          lat: center.lat,
-          lng: center.lng,
-          scale: 1.0
-      }
-      map.setFocus(config)
+      orientationChange();
     });
 
-    /**
-    * Screenshot handling
-    **/
-    $(document).on('click', "#screenshot", function(e) {
-      var count = 0
-      $("#screenshot").toggle("fast", function(){
-        controller.takeScreenshot(++count);
-      });
-      $(".hamburger").toggle("fast", function(){
-        controller.takeScreenshot(++count);
-      });
+    /*
+    * Whatapp Icon
+    */
+    $(document).on('click', "#whatsapp", function(e) {
+      $("#settingsPanel").panel("close");
+      $(".hamburgerLink").toggle();
+      $(".icon").toggle();
+      setTimeout(function(){
+        controller.takeScreenshot('whatsapp');
+      }, 500);
     });
+
+    /*
+    * Whatapp Icon
+    */
+    $(document).on('click', "#facebook", function(e) {
+      $("#settingsPanel").panel("close");
+      $(".hamburgerLink").toggle();
+      $(".icon").toggle();
+      setTimeout(function(){
+        controller.takeScreenshot('facebook');
+      }, 500);
+    });
+
+    /*
+    * Back button should close the settings panel
+    */
+    document.addEventListener("backbutton", function(e){
+      if( $("#settingsPanel").hasClass("ui-panel-open")){
+        e.preventDefault();
+        $("#settingsPanel").panel("close");
+      }else{
+        navigator.app.backHistory();
+      }
+    }, false);
   },
 
-  takeScreenshot: function(count){
-    if(count == 2){
-      navigator.screenshot.save(function(error,res){
+  takeScreenshot: function(target){
+    var model = this.model;
+    try{
+      navigator.screenshot.URI(function(error, res){
         if(error){
-          console.error(error);
+          console.log(error);
         }
         else{
-          alert("Screenshot taken")
+          if(target === 'whatsapp'){
+            window.plugins.socialsharing.shareViaWhatsApp(
+              null,
+              res.URI,
+              null,
+              function() {console.log('share ok')},
+              function(errormsg){alert(errormsg)}
+            );
+          }
         }
-      },'jpg',50);
-      $("#screenshot").toggle();
-      $(".hamburger").toggle();
+      },'png',50);
+      $(".icon").toggle();
+      $(".hamburgerLink").toggle();
+    }
+    catch(err){
+      console.log(err);
+      $(".icon").toggle();
+      $(".hamburgerLink").toggle();
     }
   }
+}
+
+function orientationChange(){
+  var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+  if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
+    $('#map').height('100%');
+  }
+  else{
+    $('#map').height('35%');
+  }
+  var map = $('#map').vectorMap('get', 'mapObject');
+  var center = map.pointToLatLng(map.width / 2, map.height / 2);
+
+  var config = {
+      lat: center.lat,
+      lng: center.lng,
+      scale: 1.0
+  }
+  map.setFocus(config);
+  $('#map').resize();
 }

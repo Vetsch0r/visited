@@ -29,6 +29,9 @@
         <param name="ios-package" value="SocialSharing" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
     <name>visited</name>
     <description>
         visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.

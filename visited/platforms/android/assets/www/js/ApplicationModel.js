@@ -339,10 +339,22 @@ ApplicationModel.prototype = {
       }
     });
     if(this.getNumberFormat() === 'percentage'){
-      return Number((count * 100 / total).toFixed(1)) + " %";
+      return Number((count * 100 / total).toFixed(0)) + " %";
     }
     else{
-      return count + '/' + total;
+      return  count + '/' + total;
+    }
+  },
+
+  getBubbleTextWorld: function(){
+    var totalCountries = EUROPE_COUNTRIES.length + ASIA_COUNTRIES.length + AUSTRALIA_COUNTRIES.length +
+      NAMERICA_COUNTRIES.length +  SAMERICA_COUNTRIES.length + AFRICA_COUNTRIES.length;
+    var visited = this.visitedCountries.length;
+    if(this.getNumberFormat() === 'percentage'){
+      return Number((visited * 100 / totalCountries).toFixed(1)) + " %";
+    }
+    else{
+      return visited + '/' + totalCountries;
     }
   },
 
