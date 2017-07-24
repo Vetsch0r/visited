@@ -8,6 +8,7 @@
         Vetsch Thomas
     </author>
     <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="2000" />
     <preference name="windows-identity-name" value="55120VetschThomas.visited" />
     <icon src="icon.png" />
     <icon gap:platform="ios" height="60" src="res/icons/ios/icon-60.png" width="60" />
