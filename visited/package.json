@@ -1,0 +1,27 @@
+{
+  "name": "ch.vetsch.visited",
+  "version": "1.0.0",
+  "displayName": "visited",
+  "cordova": {
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-screen-orientation": {},
+      "com.darktalker.cordova.screenshot": {},
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-bluetooth-serial": {}
+    }
+  },
+  "dependencies": {
+    "com.darktalker.cordova.screenshot": "https://github.com/gitawego/cordova-screenshot.git",
+    "cordova-ios": "~4.3.1",
+    "cordova-plugin-dialogs": "^1.3.4",
+    "cordova-plugin-screen-orientation": "~2.0.0",
+    "cordova-plugin-splashscreen": "~4.0.2",
+    "cordova-plugin-x-socialsharing": "~5.1.8"
+  }
+}

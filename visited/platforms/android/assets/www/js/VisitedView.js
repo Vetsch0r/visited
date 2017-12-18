@@ -38,9 +38,7 @@ VisitedView.prototype = {
 
   resetScroll: function(){
     $(".collapsing").collapsible("collapse");
-    $("#content").animate({
-      scrollTop:0
-    }, 100);
+    $("#content").scrollTop();
   },
 
   loadCountryList: function(){

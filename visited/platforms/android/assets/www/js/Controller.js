@@ -113,7 +113,7 @@ Controller.prototype = {
     });
 
     /*
-    * Whatapp Icon
+    * Facebook Icon
     */
     $(document).on('click', "#facebook", function(e) {
       $("#settingsPanel").panel("close");
@@ -121,6 +121,18 @@ Controller.prototype = {
       $(".icon").toggle();
       setTimeout(function(){
         controller.takeScreenshot('facebook');
+      }, 500);
+    });
+        
+    /*
+    * Instagram Icon
+    */
+    $(document).on('click', "#instagram", function(e) {
+      $("#settingsPanel").panel("close");
+      $(".hamburgerLink").toggle();
+      $(".icon").toggle();
+      setTimeout(function(){
+        controller.takeScreenshot('instagram');
       }, 500);
     });
 
@@ -151,7 +163,45 @@ Controller.prototype = {
               res.URI,
               null,
               function() {console.log('share ok')},
-              function(errormsg){alert(errormsg)}
+              function(errormsg){
+                navigator.notification.alert(
+                  'Whatsapp is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                );   
+              }
+            );
+          }
+          if(target === 'facebook'){
+            window.plugins.socialsharing.shareViaFacebook(
+              null, 
+              res.URI, 
+              null, 
+              function() {console.log('share ok')}, 
+              function(errormsg){
+                navigator.notification.alert(
+                  'Facebook is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                ); 
+              }
+            );
+          }
+          if(target === 'instagram'){
+            window.plugins.socialsharing.shareViaInstagram(
+              null, 
+              res.URI, 
+              function() {console.log('share ok')}, 
+              function(errormsg){
+                navigator.notification.alert(
+                  'Instagram is not available',
+                  null, 
+                  'Problem', 
+                  'Ok'
+                ); 
+              }
             );
           }
         }
