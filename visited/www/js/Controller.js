@@ -158,11 +158,15 @@ Controller.prototype = {
   },
   
   onBluetoothConnect: function(){
-    $('#wallDisplay').prev('span.ui-btn-inner').css('color','green');
+    $('#wallDisplay').css('color','white');
+    $('#wallDisplay').css('background','#03a834');
+    $('#wallDisplay').text('Connected');
   },
   
   onBluetoothDisconnect: function(){
-    $('#wallDisplay').prev('span.ui-btn-inner').css('color','red');
+    $('#wallDisplay').css('color','white');
+    $('#wallDisplay').css('background','#a80303');
+    $('#wallDisplay').text('Disconnected');
   },
 
   takeScreenshot: function(target){
