@@ -1,11 +1,19 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
+        "id": "com.darktalker.cordova.screenshot.screenshot",
+        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+        "pluginId": "com.darktalker.cordova.screenshot",
+        "merges": [
+            "navigator.screenshot"
+        ]
+    },
+    {
+        "id": "cordova-plugin-bluetooth-serial.bluetoothSerial",
+        "file": "plugins/cordova-plugin-bluetooth-serial/www/bluetoothSerial.js",
+        "pluginId": "cordova-plugin-bluetooth-serial",
         "clobbers": [
-            "navigator.splashscreen"
+            "window.bluetoothSerial"
         ]
     },
     {
@@ -23,11 +31,11 @@ module.exports = [
         ]
     },
     {
-        "id": "com.darktalker.cordova.screenshot.screenshot",
-        "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
-        "pluginId": "com.darktalker.cordova.screenshot",
-        "merges": [
-            "navigator.screenshot"
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
         ]
     },
     {
@@ -58,12 +66,13 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-splashscreen": "4.0.2",
+    "com.darktalker.cordova.screenshot": "0.1.5",
+    "cordova-plugin-bluetooth-serial": "0.4.7",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-screen-orientation": "2.0.0",
-    "com.darktalker.cordova.screenshot": "0.1.5",
+    "cordova-plugin-splashscreen": "4.0.2",
     "cordova-plugin-x-socialsharing": "5.1.8",
-    "cordova-plugin-dialogs": "1.3.3"
+    "cordova-plugin-dialogs": "1.3.4"
 };
 // BOTTOM OF METADATA
 });
