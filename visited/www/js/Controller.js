@@ -135,6 +135,14 @@ Controller.prototype = {
         controller.takeScreenshot('instagram');
       }, 500);
     });
+    
+    /*
+    * Bluetooth connector
+    */
+    $(document).on('click', "#wallDisplay", function(e) {
+      var macAddress = "98:D3:31:FB:5E:63";
+      bluetoothSerial.connect(macAddress, controller.onBluetoothConnect, controller.onBluetoothDisconnect);
+    });
 
     /*
     * Back button should close the settings panel
@@ -147,6 +155,14 @@ Controller.prototype = {
         navigator.app.backHistory();
       }
     }, false);
+  },
+  
+  onBluetoothConnect: function(){
+    $('#wallDisplay').prev('span.ui-btn-inner').css('color','green');
+  },
+  
+  onBluetoothDisconnect: function(){
+    $('#wallDisplay').prev('span.ui-btn-inner').css('color','red');
   },
 
   takeScreenshot: function(target){
