@@ -1,4 +1,14 @@
 
+// Init F7 Vue Plugin
+Vue.use(Framework7Vue)
+
+new Vue({
+  el: '#app',
+  framework7: {
+    root: '#app'
+  }
+});
+
 var VisitedView = function (model) {
   this.model = model;
 };
@@ -38,9 +48,7 @@ VisitedView.prototype = {
 
   resetScroll: function(){
     $(".collapsing").collapsible("collapse");
-    $("#content").animate({
-      scrollTop:0
-    }, 100);
+    $("#content").scrollTop();
   },
 
   loadCountryList: function(){

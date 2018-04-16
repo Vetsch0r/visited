@@ -32,6 +32,9 @@
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
     </feature>
+    <feature name="BluetoothSerial">
+        <param name="ios-package" onload="true" value="MEGBluetoothSerial" />
+    </feature>
     <name>visited</name>
     <description>
         visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.
@@ -96,7 +99,4 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="SplashScreen" value="splash" />
     <preference name="windows-identity-name" value="55120VetschThomas.visited" />
-    <feature name="BluetoothSerial">
-        <param name="ios-package" onload="true" value="MEGBluetoothSerial" />
-    </feature>
 </widget>

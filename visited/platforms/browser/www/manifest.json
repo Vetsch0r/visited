@@ -1,0 +1,117 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "visited",
+  "short_name": "visited",
+  "version": "ch.vetsch.visited",
+  "description": "visited - A cross platform app to visualize all visited countries, and mark all countries for future traveling.",
+  "author": "Vetsch Thomas",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/ios/icon-60.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "res/icons/ios/icon-60-2x.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "res/icons/ios/icon-60-3x.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "res/icons/ios/icon-76.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+    {
+      "src": "res/icons/ios/icon-76-2x.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "res/icons/ios/icon-40.png",
+      "type": "image/png",
+      "sizes": "40x40"
+    },
+    {
+      "src": "res/icons/ios/icon-57.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "res/icons/ios/icon-57-2x.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "res/icons/ios/icon-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "res/icons/ios/icon-72-2x.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "res/icons/ios/icon-small.png",
+      "type": "image/png",
+      "sizes": "29x29"
+    },
+    {
+      "src": "res/icons/ios/icon-small-2x.png",
+      "type": "image/png",
+      "sizes": "58x58"
+    },
+    {
+      "src": "res/icons/ios/icon-50.png",
+      "type": "image/png",
+      "sizes": "50x50"
+    },
+    {
+      "src": "res/icons/ios/icon-50-2x.png",
+      "type": "image/png",
+      "sizes": "100x100"
+    },
+    {
+      "src": "res/icons/android/icon-36-ldpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/android/icon-48-mdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/android/icon-72-hdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/android/icon-96-xhdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/android/icon-144-xxhdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    },
+    {
+      "src": "res/icons/android/icon-192-xxxhdpi.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "start_url": "index.html"
+}

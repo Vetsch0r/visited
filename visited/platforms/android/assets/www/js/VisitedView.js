@@ -1,4 +1,14 @@
 
+// Init F7 Vue Plugin
+Vue.use(Framework7Vue)
+
+new Vue({
+  el: '#app',
+  framework7: {
+    root: '#app'
+  }
+});
+
 var VisitedView = function (model) {
   this.model = model;
 };

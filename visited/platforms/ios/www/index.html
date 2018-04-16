@@ -1,126 +1,246 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>visited - World and continents</title>
-    <link rel="stylesheet" href="css/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="css/main.css"/>
-    <link rel="stylesheet" href="css/spectrum.css"/>
-    <script src="js/lib/jquery-2.1.1.min.js"></script>
-    <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/lib/mustache.min.js"></script>
-    <script src="js/lib/spectrum.js"></script>
-    <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-europe-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-africa-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-asia-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-north_america-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-oceania-mill.js"></script>
-    <script src="js/lib/jquery-jvectormap-south_america-mill.js"></script>
-  </head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>My App</title>
+  
+  <script src="js/lib/jquery-2.1.1.min.js"></script>
+  <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/framework7.ios.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+  
+</head>
   <body>
-    <div class="header">
-      <div id="map"></div>
-      <a href="#settingsPanel" class="hamburgerLink">
-        <div class="hamburger"></div>
-      </a>
-      <img src="./img/icon_name.png" alt="icon" class="icon"/>
-    </div>
-    <div id="content">
-      <div data-role="collapsible" id="africa" class="collapsing" >
-        <h1><div id="africaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Africa</h1>
-        <table id="africaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="asia" class="collapsing">
-        <h1><div id="asiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Asia</h1>
-        <table id="asiaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="europe" class="collapsing">
-        <h1><div id="europeBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Europe</h1>
-        <table id="europeList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="namerica" class="collapsing">
-        <h1><div id="namericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>North America</h1>
-        <table id="namericaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="australia" class="collapsing">
-        <h1><div id="australiaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>Oceania</h1>
-        <table id="australiaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-      <div data-role="collapsible" id="samerica" class="collapsing">
-        <h1><div id="samericaBubble" class="ui-btn-up-c ui-btn-corner-al ui-li-count custom-count-pos bubble">0/0</div>South America</h1>
-        <table id="samericaList" class="countryList" cellpadding="0" cellspacing="0">
-        </table>
-      </div>
-    </div>
-    <div data-role="panel" data-position="right" data-display="push" id="settingsPanel">
-      <div class="ui-bar ui-bar-a">
-        <h3>Settings</h3>
-      </div>
-      <div class="ui-body ui-body-a">
-        <table cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="150px">
-              <a class='settingsIcon ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'></a>background</td>
-            <td><input id="visitedColor" value="03a834" class="basic" type="text"></td>
-          </tr>
-          <tr>
-            <td><a class='settingsIcon ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'></a>background</td>
-            <td><input id="wantedColor" value="a80303" class="basic" type="text"></td>
-          </tr>
-        </table>
-        <fieldset data-role="controlgroup" data-type="horizontal" class="settingsNumberFormat">
-          <legend class="numberFormatTitle">display format:</legend>
-          <input type="radio" name="radio-number-format-1" id="radio-number-format-1b" value="percentage">
-          <label for="radio-number-format-1b">in %</label>
-          <input type="radio" name="radio-number-format-1" id="radio-number-format-1a" value="fraction">
-          <label for="radio-number-format-1a">fractional</label>
-        </fieldset>
-      </div>
-      <div class="shareContainer">
-        <img src="./img/whatsapp.png" id="whatsapp" alt="whatsapp"/>
-        <!--<img src="./img/facebook.png" id="facebook" alt="facebook"/>
-        <img src="./img/twitter.png" id="twitter" alt="twitter"/>
-        <img src="./img/instagram.png" id="instagram" alt="instagram"/><!-->
-      </div>
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="data/country.js"></script>
-    <script type="text/javascript" src="js/ApplicationModel.js"></script>
-    <script type="text/javascript" src="js/VisitedView.js"></script>
-    <script type="text/javascript" src="js/Controller.js"></script>
-    <script id="template" type="x-tmpl-mustache">
-      <tr class="{{class}}">
-        <td class='ui-cell-icon'><img src='./img/{{code}}.png'/></td>
-        <td class='ui-cell-text'>{{name}}</td>
-        <td class='ui-cell-button' align='right'>
-          <span class='focusButton' style="display:{{display}}">
-            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-eye ui-btn-icon-notext ui-btn-inline'>Button</a>
-          </span>
-          <span class='visitedButton'>
-            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext ui-btn-inline'>Button</a>
-          </span>
-          <span class='wantedButton'>
-            <a id='{{code}}' class='ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline'>Button</a>
-          </span>
-        </td>
-      </tr>
-    </script>
-    <script type="text/javascript">
-      $(function() {
-        var model = new ApplicationModel();
-        var view = new VisitedView(model);
-        var controller = new Controller(model, view);
-        view.init();
-      });
-    </script>
-  </body>
+  <div id="app">
+    <!-- Right Panel -->
+    <f7-panel left cover layout="dark">
+      <f7-view id="left-panel-view">
+        <f7-navbar title="Settings" sliding></f7-navbar>
+        <f7-pages>
+          <f7-page>
+            
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-panel>
+
+    <!-- Main Views -->
+    <f7-views>
+      <f7-view id="main-view">
+        <!-- Navbar -->
+        <f7-navbar class="nav-trans">
+          <f7-nav-left>
+            <f7-link icon="icon-bars" open-panel="left"></f7-link>
+          </f7-nav-left>
+        </f7-navbar>
+        <!-- Pages -->
+        <f7-pages>
+          <f7-page>
+            <jvectormap></jvectormap>
+            <div id="content">
+              <div class="accordion-list">
+                <div class="accordion-item">
+                    <div class="accordion-item-toggle">Africa</div>
+                    <div class="accordion-item-content">
+                      <f7-list>
+                        <f7-list-group>
+                          <template v-for="country in getCountries('africa')">
+                            <my-country :my-country="country"></my-country>
+                          </template>
+                        </f7-list-group>
+                      </f7-list>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-views>
+  </div>
+
+  <!-- About Page Template -->
+  <template id="page-about">
+    <f7-page>
+      <f7-navbar title="About" back-link="Back" sliding></f7-navbar>
+      <f7-block inner>
+        <p>Here is About page!</p>
+        <p>You can go <f7-link back>back</f7-link>.</p>
+        <p>Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas sed orci. In hac habitasse platea dictumst.</p>
+        <p>Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis. Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet aliquam lorem, et gravida ipsum. Mauris consectetur nisl non sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus elit. Ut vel diam dolor.</p>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <!-- Form Page Template -->
+  <template id="page-form">
+    <f7-page>
+      <f7-navbar title="Form" back-link="Back" sliding></f7-navbar>
+      <f7-block-title>Form</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label>Name</f7-label>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Password</f7-label>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>E-mail</f7-label>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>URL</f7-label>
+          <f7-input type="url" placeholder="URL"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Phone</f7-label>
+          <f7-input type="tel" placeholder="Phone"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Birth date</f7-label>
+          <f7-input type="date" placeholder="Birth date" value="2014-04-30"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Date time</f7-label>
+          <f7-input type="datetime-local"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Gender</f7-label>
+          <f7-input type="select">
+            <option value="1">Male</option>
+            <option value="1">Female</option>
+          </f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Switch</f7-label>
+          <f7-input type="switch"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Range</f7-label>
+          <f7-input type="range" min="0" max="100" step="1" value="90"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Textarea</f7-label>
+          <f7-input type="textarea" placeholder="Textarea"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Form With Floating Labels</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label floating>Name</f7-label>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label floating>Password</f7-label>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label floating>E-mail</f7-label>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Form Without Labels</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Checkboxes</f7-block-title>
+      <f7-list form>
+        <f7-list-item v-for="n in 3" checkbox name="my-checkbox" :value="n" :title="'Checkbox ' + n"></f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Radios</f7-block-title>
+      <f7-list form>
+        <f7-list-item v-for="n in 3" radio name="my-radio" :checked="n === 1" :value="n" :title="'Radio ' + n"></f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Buttons</f7-block-title>
+      <f7-block inner>
+        <p><f7-button>Button</f7-button></p>
+        <p><f7-button round>Button Round</f7-button></p>
+        <p><f7-button fill>Button Fill</f7-button></p>
+        <p>
+          <f7-buttons>
+            <f7-button round active>Button 1</f7-button>
+            <f7-button round>Button 2</f7-button>
+            <f7-button round>Button 3</f7-button>
+          </f7-buttons>
+        </p>
+        <p>
+          <f7-buttons color="orange">
+            <f7-button round big>Button 1</f7-button>
+            <f7-button round big active>Button 2</f7-button>
+            <f7-button round big>Button 3</f7-button>
+          </f7-buttons>
+        </p>
+        <p>
+          <f7-grid>
+            <f7-col><f7-button big fill color="green">Send</f7-button></f7-col>
+            <f7-col><f7-button big fill color="red">Delete</f7-button></f7-col>
+          </f7-grid>
+        </p>
+        <p>
+          <f7-grid>
+            <f7-col><f7-button fill raised color="green">Raised</f7-button></f7-col>
+            <f7-col><f7-button raised color="red">Raised</f7-button></f7-col>
+            <f7-col><f7-button fill raised color="pink">Raised</f7-button></f7-col>
+          </f7-grid>
+        </p>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <!-- Dynamic Routing Page Template -->
+  <template id="page-dynamic-routing">
+    <f7-page>
+      <f7-navbar title="Dynamic Route" back-link="Back" sliding></f7-navbar>
+      <f7-block inner>
+        <ul>
+          <li><b>Url:</b> {{$route.url}}</li>
+          <li><b>Path:</b> {{$route.path}}</li>
+          <li><b>Hash:</b> {{$route.hash}}</li>
+          <li><b>Params:</b>
+            <ul>
+              <li v-for="(value, key) in $route.params"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Query:</b>
+            <ul>
+              <li v-for="(value, key) in $route.query"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Route:</b> {{$route.route}}</li>
+        </ul>
+      </f7-block>
+      <f7-block inner>
+        <f7-link @click="$router.back()">Go back via Router API</f7-link>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <script src="cordova.js"></script>
+  <script src="data/country.js"></script>
+  <script src="js/lib/framework7.min.js"></script>
+  <script src="js/lib/vue.min.js"></script>
+  <script src="js/lib/framework7-vue.min.js"></script>
+  <script src="js/app.js"></script>
+
+  
+</body>
 </html>

@@ -1,0 +1,170 @@
+#map{
+  width: 100%;
+  height:35%;
+  position: fixed;
+  z-index:100;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout{
+  display:none;
+}
+
+#content{
+  top: 35%;
+  position: absolute;
+  width: 100%;
+  overflow-y: auto;
+  height:65%;
+}
+
+.header{
+  overflow:hidden;
+}
+
+.icon{
+  z-index:200;
+  position:absolute;
+  width:18%;
+  right:0;
+  display:none;
+}
+
+.hamburgerLink{
+  padding-left:10px;
+  width:30px;
+  height:40px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  top: 0px;
+}
+
+.hamburger{
+  content: "";
+  top: 4px;
+  right: 2px;
+  position:relative;
+
+  display: block;
+  width: 18px;
+  height: 0;
+  -webkit-box-shadow: 1px 10px 1px 2px #CCCCCC,1px 18px 1px 2px     #CCCCCC,1px 26px 1px 2px #CCCCCC;
+  box-shadow: 0 10px 0 2px #CCCCCC,0 18px 0 2px #CCCCCC,0 26px 0 2px #CCCCCC;
+}
+
+.hamburger:link, .hamburger:visited, .hamburger:hover, .hamburger:active{
+  text-decoration: none;
+  color:#CCCCCC !important;
+}
+
+.numberFormatTitle{
+  padding-bottom:2px;
+}
+
+.settingsIcon{
+  margin-bottom:12px;
+}
+
+.settingsNumberFormat{
+  padding-top: 6px !important;
+}
+
+.shareContainer{
+  margin-top: 10px;
+}
+
+#whatsapp, #facebook, #twitter, #instagram {
+  margin-right:5px;
+  width: 40px;
+  border-radius: 10%;
+}
+
+#whatsapp {
+  margin-top:0px;
+}
+
+.colorpicker {
+  background-color: white !important;
+  border: solid 1px #CCCCCC !important;
+}
+
+.colorpickerContainer {
+  background-color: #FCFCFC !important;
+  border: solid 1px #CCCCCC !important;
+}
+
+.countryIcon{
+  margin-top:-2px;
+}
+
+.collapsing, .ui-focus-content{
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.collapsing .ui-collapsible-content{
+  padding: 0;
+  margin: 0;
+}
+
+.bubble{
+  width:35px;
+}
+
+.ui-focus-header{
+  margin:5px 0 5px 0;
+  padding: 5px;
+  padding-top:7px;
+}
+
+#focusTitle{
+  position:relative;
+  padding-left:3px;
+  top:-8px;
+}
+
+.custom-count-pos{
+  padding-top: 2px;
+  padding-bottom:1px;
+}
+
+.ui-collapsible-content{
+  padding: .2em .5em;
+}
+
+.ui-collapsible-content-gray{
+  background-color: #EEEEEE;
+}
+
+.ui-collapsible-content-white{
+  background-color: #FFFFFF;
+}
+
+.countryList, #regionList{
+  width:100%;
+}
+
+.ui-cell-icon {
+  padding-left:5px;
+  padding-right:5px;
+  padding-top: 5px;
+  width:30px;
+}
+
+.ui-cell-text {
+  width:auto;
+  padding-top:4px;
+  padding-left:10px;§§
+}
+
+.ui-cell-button{
+  width: 150px;
+}
+
+@media all and (min-width: 42em) {
+
+}
+
+@media all and (min-width: 55em) {
+
+}
