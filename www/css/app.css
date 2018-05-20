@@ -1,0 +1,54 @@
+body, html{
+    margin: 0px;
+    height: 100%;
+}
+
+.header{
+  width: 100%;
+  height: 35%;
+}
+
+.jvectormap-container {
+    height: 35%;
+}
+
+.navbar{
+  background-color: transparent;
+}
+
+.mapContainer{
+  height:35%;
+  position: fixed
+}
+
+.map {
+  height:100%;
+  width: 100%;
+  position: fixed;
+  top:0px;
+}
+
+#content{
+  position: absolute;
+  width: 100%;
+  overflow-y: scroll;
+  height: 65%;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout{
+  display:none;
+}
+
+.countryIcon{
+  float: left;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.page-content {
+  overflow:hidden
+}
+
+.list-block{
+  margin: 0px;
+}
