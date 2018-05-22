@@ -25,6 +25,7 @@
     "cordova-plugin-screen-orientation": "~2.0.0",
     "cordova-plugin-splashscreen": "~4.0.2",
     "cordova-plugin-x-socialsharing": "~5.1.8",
+    "framework7-icons": "^0.9.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15"
   }

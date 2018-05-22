@@ -16,9 +16,10 @@
   <script src="js/lib/jquery-jvectormap-south_america-mill.js"></script>
   <script src="js/lib/jquery-jvectormap-oceania-mill.js"></script>
 
-  <link rel="stylesheet" href="css/framework7.material.min.css">
-  <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   
 </head>
   <body>
@@ -32,8 +33,9 @@
             <f7-nav-left>
               <f7-link icon="icon-bars" open-panel="left"></f7-link>
             </f7-nav-left>
+            <span class="mapTitle">{{ $t(currentMap.key) }} - {{ countDisplay }}</span>
           </f7-navbar>
-          <jvectormap :map-name="currentMap"></jvectormap>
+          <jvectormap :map-name="currentMap.mapName" :visited="visited" :wanted="wanted"></jvectormap>
         </div>
 
         <!-- Pages -->
@@ -42,11 +44,13 @@
             <div id="content">
               <f7-list accordion>
                 <template v-for="(value, key) in continents">
-                  <f7-list-item class="continent" :id="key" :title="$t(key)" @accordion:open.prevent="changeMap(value)" @accordion:close="resetMap()" accordion-item>
+                  <f7-list-item class="continent" :id="key" :title="$t(key)" @accordion:open.prevent="changeMap(value)" @accordion:close="changeMap(world)" accordion-item>
                     <f7-accordion-content>
                       <template v-for="country in value.countries">
-                        <img class="countryIcon" :src="'img/' + country.code + '.png'"/>
-                        <f7-list-item class="countryName" :title="country.name"></f7-list-item>
+                        <f7-list-item class="countryItem" :title="country.name">
+                          <img class="countryIcon" :src="'img/' + country.code + '.png'"/>
+                          <i class="fas fa-star fa-2x visitedIcon"></i>
+                        </f7-list-item>
                       </template>
                     </f7-accordion-content>
                   </f7-list-item>

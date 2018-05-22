@@ -1,23 +1,544 @@
-var world_countries = [
-  'BD', 'BE', 'BF', 'BG', 'BA', 'BN', 'BO', 'JP', 'BI', 'BJ', 'BT', 'JM', 'BW', 'BR', 'BS',
-  'BY', 'BZ', 'RU', 'RW', 'RS', 'TL', 'TM', 'TJ', 'RO', 'GW', 'GT', 'GR', 'GQ', 'GY', 'GE',
-  'GB', 'GA', 'GN', 'GM', 'GL', 'GH', 'OM', 'TN', 'JO', 'HR', 'HT', 'HU', 'HN', 'PR', 'PS', 'PT',
-  'PY', 'PA', 'PG', 'PE', 'PK', 'PH', 'PL', 'ZM', 'EH', 'EE', 'EG', 'ZA', 'EC', 'IT', 'VN', 'SB',
-  'ET', 'SO', 'ZW', 'ES', 'ER', 'ME', 'MD', 'MG', 'MA', 'UZ', 'MM', 'ML', 'MN', 'MK', 'MW', 'MR',
-  'UG', 'MY', 'MX', 'IL', 'FR', 'XS', 'FI', 'FJ', 'FK', 'NI', 'NL', 'NO', 'NA', 'VU', 'NC', 'NE',
-  'NG', 'NZ', 'NP', 'XK', 'CI', 'CH', 'CO', 'CN', 'CM', 'CL', 'XC', 'CA', 'CG', 'CF', 'CD', 'CZ',
-  'CY', 'CR', 'CU', 'SZ', 'SY', 'KG', 'KE', 'SS', 'SR', 'KH', 'SV', 'SK', 'KR', 'SI', 'KP', 'KW',
-  'SN', 'SL', 'KZ', 'SA', 'SE', 'SD', 'DO', 'DJ', 'DK', 'DE', 'YE', 'DZ', 'US', 'UY', 'LB', 'LA',
-  'TW', 'TT', 'TR', 'LK', 'LV', 'LT', 'LU', 'LR', 'LS', 'TH', 'TF', 'TG', 'TD', 'LY', 'AE', 'VE',
-  'AF', 'IQ', 'IS', 'IR', 'AM', 'AL', 'AO', 'AR', 'AU', 'AT', 'IN', 'TZ', 'AZ', 'IE', 'ID', 'UA',
-  'QA', 'MZ',
-];
+var world = {
+    "key": "world",
+    "mapName": "world_mill",
+    "countries": [
+        {
+            "code": 'BD'
+        },
+        {
+            "code": 'BE'
+        },
+        {
+            "code": 'BF'
+        },
+        {
+            "code": 'BG'
+        },
+        {
+            "code": 'BA'
+        },
+        {
+            "code": 'BN'
+        },
+        {
+            "code": 'BO'
+        },
+        {
+            "code": 'JP'
+        },
+        {
+            "code": 'BI'
+        },
+        {
+            "code": 'BJ'
+        },
+        {
+            "code": 'BT'
+        },
+        {
+            "code": 'JM'
+        },
+        {
+            "code": 'BW'
+        },
+        {
+            "code": 'BR'
+        },
+        {
+            "code": 'BS'
+        },
+        {
+            "code": 'BY'
+        },
+        {
+            "code": 'BZ'
+        },
+        {
+            "code": 'RU'
+        },
+        {
+            "code": 'RW'
+        },
+        {
+            "code": 'RS'
+        },
+        {
+            "code": 'TL'
+        },
+        {
+            "code": 'TM'
+        },
+        {
+            "code": 'TJ'
+        },
+        {
+            "code": 'RO'
+        },
+        {
+            "code": 'GW'
+        },
+        {
+            "code": 'GT'
+        },
+        {
+            "code": 'GR'
+        },
+        {
+            "code": 'GQ'
+        },
+        {
+            "code": 'GY'
+        },
+        {
+            "code": 'GE'
+        },
+        {
+            "code": 'GB'
+        },
+        {
+            "code": 'GA'
+        },
+        {
+            "code": 'GN'
+        },
+        {
+            "code": 'GM'
+        },
+        {
+            "code": 'GL'
+        },
+        {
+            "code": 'GH'
+        },
+        {
+            "code": 'OM'
+        },
+        {
+            "code": 'TN'
+        },
+        {
+            "code": 'JO'
+        },
+        {
+            "code": 'HR'
+        },
+        {
+            "code": 'HT'
+        },
+        {
+            "code": 'HU'
+        },
+        {
+            "code": 'HN'
+        },
+        {
+            "code": 'PR'
+        },
+        {
+            "code": 'PS'
+        },
+        {
+            "code": 'PT'
+        },
+        {
+            "code": 'PY'
+        },
+        {
+            "code": 'PA'
+        },
+        {
+            "code": 'PG'
+        },
+        {
+            "code": 'PE'
+        },
+        {
+            "code": 'PK'
+        },
+        {
+            "code": 'PH'
+        },
+        {
+            "code": 'PL'
+        },
+        {
+            "code": 'ZM'
+        },
+        {
+            "code": 'EH'
+        },
+        {
+            "code": 'EE'
+        },
+        {
+            "code": 'EG'
+        },
+        {
+            "code": 'ZA'
+        },
+        {
+            "code": 'EC'
+        },
+        {
+            "code": 'IT'
+        },
+        {
+            "code": 'VN'
+        },
+        {
+            "code": 'SB'
+        },
+        {
+            "code": 'ET'
+        },
+        {
+            "code": 'SO'
+        },
+        {
+            "code": 'ZW'
+        },
+        {
+            "code": 'ES'
+        },
+        {
+            "code": 'ER'
+        },
+        {
+            "code": 'ME'
+        },
+        {
+            "code": 'MD'
+        },
+        {
+            "code": 'MG'
+        },
+        {
+            "code": 'MA'
+        },
+        {
+            "code": 'UZ'
+        },
+        {
+            "code": 'MM'
+        },
+        {
+            "code": 'ML'
+        },
+        {
+            "code": 'MN'
+        },
+        {
+            "code": 'MK'
+        },
+        {
+            "code": 'MW'
+        },
+        {
+            "code": 'MR'
+        },
+        {
+            "code": 'UG'
+        },
+        {
+            "code": 'MY'
+        },
+        {
+            "code": 'MX'
+        },
+        {
+            "code": 'IL'
+        },
+        {
+            "code": 'FR'
+        },
+        {
+            "code": 'XS'
+        },
+        {
+            "code": 'FI'
+        },
+        {
+            "code": 'FJ'
+        },
+        {
+            "code": 'FK'
+        },
+        {
+            "code": 'NI'
+        },
+        {
+            "code": 'NL'
+        },
+        {
+            "code": 'NO'
+        },
+        {
+            "code": 'NA'
+        },
+        {
+            "code": 'VU'
+        },
+        {
+            "code": 'NC'
+        },
+        {
+            "code": 'NE'
+        },
+        {
+            "code": 'NG'
+        },
+        {
+            "code": 'NZ'
+        },
+        {
+            "code": 'NP'
+        },
+        {
+            "code": 'XK'
+        },
+        {
+            "code": 'CI'
+        },
+        {
+            "code": 'CH'
+        },
+        {
+            "code": 'CO'
+        },
+        {
+            "code": 'CN'
+        },
+        {
+            "code": 'CM'
+        },
+        {
+            "code": 'CL'
+        },
+        {
+            "code": 'XC'
+        },
+        {
+            "code": 'CA'
+        },
+        {
+            "code": 'CG'
+        },
+        {
+            "code": 'CF'
+        },
+        {
+            "code": 'CD'
+        },
+        {
+            "code": 'CZ'
+        },
+        {
+            "code": 'CY'
+        },
+        {
+            "code": 'CR'
+        },
+        {
+            "code": 'CU'
+        },
+        {
+            "code": 'SZ'
+        },
+        {
+            "code": 'SY'
+        },
+        {
+            "code": 'KG'
+        },
+        {
+            "code": 'KE'
+        },
+        {
+            "code": 'SS'
+        },
+        {
+            "code": 'SR'
+        },
+        {
+            "code": 'KH'
+        },
+        {
+            "code": 'SV'
+        },
+        {
+            "code": 'SK'
+        },
+        {
+            "code": 'KR'
+        },
+        {
+            "code": 'SI'
+        },
+        {
+            "code": 'KP'
+        },
+        {
+            "code": 'KW'
+        },
+        {
+            "code": 'SN'
+        },
+        {
+            "code": 'SL'
+        },
+        {
+            "code": 'KZ'
+        },
+        {
+            "code": 'SA'
+        },
+        {
+            "code": 'SE'
+        },
+        {
+            "code": 'SD'
+        },
+        {
+            "code": 'DO'
+        },
+        {
+            "code": 'DJ'
+        },
+        {
+            "code": 'DK'
+        },
+        {
+            "code": 'DE'
+        },
+        {
+            "code": 'YE'
+        },
+        {
+            "code": 'DZ'
+        },
+        {
+            "code": 'US'
+        },
+        {
+            "code": 'UY'
+        },
+        {
+            "code": 'LB'
+        },
+        {
+            "code": 'LA'
+        },
+        {
+            "code": 'TW'
+        },
+        {
+            "code": 'TT'
+        },
+        {
+            "code": 'TR'
+        },
+        {
+            "code": 'LK'
+        },
+        {
+            "code": 'LV'
+        },
+        {
+            "code": 'LT'
+        },
+        {
+            "code": 'LU'
+        },
+        {
+            "code": 'LR'
+        },
+        {
+            "code": 'LS'
+        },
+        {
+            "code": 'TH'
+        },
+        {
+            "code": 'TF'
+        },
+        {
+            "code": 'TG'
+        },
+        {
+            "code": 'TD'
+        },
+        {
+            "code": 'LY'
+        },
+        {
+            "code": 'AE'
+        },
+        {
+            "code": 'VE'
+        },
+        {
+            "code": 'AF'
+        },
+        {
+            "code": 'IQ'
+        },
+        {
+            "code": 'IS'
+        },
+        {
+            "code": 'IR'
+        },
+        {
+            "code": 'AM'
+        },
+        {
+            "code": 'AL'
+        },
+        {
+            "code": 'AO'
+        },
+        {
+            "code": 'AR'
+        },
+        {
+            "code": 'AU'
+        },
+        {
+            "code": 'AT'
+        },
+        {
+            "code": 'IN'
+        },
+        {
+            "code": 'TZ'
+        },
+        {
+            "code": 'AZ'
+        },
+        {
+            "code": 'IE'
+        },
+        {
+            "code": 'ID'
+        },
+        {
+            "code": 'UA'
+        },
+        {
+            "code": 'QA'
+        },
+        {
+            "code": 'MZ'
+        },
+    ]
+}
 
 var continents = (
     {
         "africa": {
+            "key": "africa",
             "mapName": 'africa_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "BF",
                     "name": "Burkina Faso"
@@ -237,8 +758,9 @@ var continents = (
             ]
         },
         "asia": {
+            "key": "asia",
             "mapName": 'asia_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "BD",
                     "name": "Bangladesh"
@@ -443,7 +965,7 @@ var continents = (
         },
         "oceania": {
             "mapName": 'oceania_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "GU",
                     "name": "Guam"
@@ -501,10 +1023,11 @@ var continents = (
                     "name": "Vanuatu"
                 }
             ]
-        },  
+        },
         "europe": {
+            "key": "europe",
             "mapName": 'europe_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "BE",
                     "name": "Belgium"
@@ -700,8 +1223,9 @@ var continents = (
             ]
         },
         "south_america": {
+            "key": "south_america",
             "mapName": 'south_america_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "PY",
                     "name": "Paraguay"
@@ -758,8 +1282,9 @@ var continents = (
         },
 
         "north_america": {
+            "key": "north_america",
             "mapName": 'north_america_mill',
-            "countries" : [
+            "countries": [
                 {
                     "code": "PR",
                     "name": "Puerto Rico"

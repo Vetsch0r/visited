@@ -2,56 +2,43 @@
 Vue.use(Framework7Vue)
 Vue.use(VueI18n)
 
+const eventBus = new Vue();
+
 Vue.component('jvectormap', {
   template: `
     	<div class="map"></div>
   `,
 
-  props: ['mapName'],
-  
-  mounted: function() {
+  props: ['mapName', 'visited', 'wanted'],
+
+  mounted: function () {
     this.loadMap();
-    this.visited = JSON.parse( window.localStorage.getItem('visited') || '[]' );
-    this.wanted = JSON.parse( window.localStorage.getItem('wanted') || '[]' );
   },
-  
+
   methods: {
-    loadMap: function(){
+    loadMap: function () {
       $('.map').empty();
       $('.map').vectorMap(this.getMapParams());
     },
 
-    handleCountryClick: function(code){
-      if(this.visited.indexOf(code) != -1){
-        this.wanted.push(code);
-        this.visited.splice(this.visited.indexOf(code), 1);
-      }
-      else if(this.wanted.indexOf(code) != -1){
-        this.wanted.splice(this.wanted.indexOf(code), 1);
-      }
-      else{
-        this.visited.push(code);
-      }
-    },
-
-    calculateDataSeries: function(){
-      var visitedSeries = this.visited.reduce(function(result, item, index, array) {
+    calculateDataSeries: function () {
+      var visitedSeries = this.visited.reduce(function (result, item, index, array) {
         result[item] = '1';
         return result;
       }, {});
-      var wantedSeries = this.wanted.reduce(function(result, item, index, array) {
+      var wantedSeries = this.wanted.reduce(function (result, item, index, array) {
         result[item] = '2';
         return result;
       }, {});
       return Object.assign(visitedSeries, wantedSeries)
     },
 
-    getMapParams: function(){
+    getMapParams: function () {
       var outer = this;
       return {
         map: this.mapName,
         regionLabelStyle: {
-          initial: {'display': 'none'}
+          initial: { 'display': 'none' }
         },
         regionStyle: {
           selected: {
@@ -61,7 +48,7 @@ Vue.component('jvectormap', {
             "fill-opacity": 1.0
           }
         },
-        
+
         series: {
           regions: [{
             scale: {
@@ -76,39 +63,24 @@ Vue.component('jvectormap', {
         backgroundColor: '#383f47',
         zoomMax: 40,
         regionsSelectable: true,
-        onRegionClick: function(e, code){
+        onRegionClick: function (e, code) {
           e.preventDefault();
-          outer.handleCountryClick(code);
+          eventBus.$emit('regionClicked', {
+            code: code
+          });
         }
-      }
-    }
-  },
-  data: function () {
-    return {
-      visited: [],
-      wanted: []
-    }
-  },
-  computed: {
-    dataSeries: function(){
-      alert("comp" + this.visited)
-      return {
-        "DE" : 1,
-        "FR" : 2
       }
     }
   },
 
   watch: {
-    mapName: function(newMap, oldMap){
+    mapName: function (newMap, oldMap) {
       this.loadMap();
     },
-    visited: function(newList){
-      window.localStorage.setItem('visited', JSON.stringify(newList));
+    visited: function (newList) {
       this.loadMap();
     },
-    wanted: function(newList){
-      window.localStorage.setItem('wanted', JSON.stringify(newList));
+    wanted: function (newList) {
       this.loadMap();
     }
   }
@@ -123,17 +95,64 @@ new Vue({
     name: 'My App',
     id: 'ch.vetsch.visited'
   },
-  data: {
-    currentMap: 'world_mill',
-    currentMapData: null,
+
+  mounted: function () {
+    this.visited = JSON.parse(window.localStorage.getItem('visited') || '[]');
+    this.wanted = JSON.parse(window.localStorage.getItem('wanted') || '[]');
+
+    eventBus.$on('regionClicked', (data) => {
+      this.handleRegionClick(data.code);
+    });
   },
+
+  data: {
+    currentMap: world,
+    visited: [],
+    wanted: []
+  },
+
   methods: {
-    changeMap: function(mapData){
-      this.currentMapData = mapData;
-      this.currentMap = mapData.mapName;
+
+    changeMap: function (map) {
+      this.currentMap = map;
     },
-    resetMap: function(){
-      this.currentMap = 'world_mill';
+
+    handleRegionClick: function (code) {
+      if (this.visited.indexOf(code) != -1) {
+        this.wanted.push(code);
+        this.visited.splice(this.visited.indexOf(code), 1);
+      }
+      else if (this.wanted.indexOf(code) != -1) {
+        this.wanted.splice(this.wanted.indexOf(code), 1);
+      }
+      else {
+        this.visited.push(code);
+      }
+    },
+  },
+
+  computed: {
+
+    countDisplay: function () {
+      var visitedCountries = this.visited;
+      var total = this.currentMap.countries.length;
+      var currentlyVisited = 0;
+
+      this.currentMap.countries.forEach(function (element) {
+        if (visitedCountries.indexOf(element.code) != -1) {
+          currentlyVisited++;
+        }
+      });
+      return currentlyVisited + " / " + total;
+    }
+  },
+
+  watch: {
+    visited: function (newList) {
+      window.localStorage.setItem('visited', JSON.stringify(newList));
+    },
+    wanted: function (newList) {
+      window.localStorage.setItem('wanted', JSON.stringify(newList));
     }
   }
 })

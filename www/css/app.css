@@ -5,27 +5,23 @@ body, html{
 
 .header{
   width: 100%;
-  height: 35%;
+  height: 40%;
+}
+
+.mapTitle{
+  margin:0 auto;
+  font-weight: bold;
 }
 
 .jvectormap-container {
-    height: 35%;
-}
-
-.navbar{
-  background-color: transparent;
-}
-
-.mapContainer{
-  height:35%;
-  position: fixed
+  top: 5%;
+  height: 35%;
 }
 
 .map {
   height:100%;
   width: 100%;
   position: fixed;
-  top:0px;
 }
 
 #content{
@@ -43,6 +39,19 @@ body, html{
   float: left;
   padding-top: 5px;
   padding-left: 10px;
+}
+
+.visitedIcon {
+  color: green;
+}
+
+.countryItem .item-title {
+  padding-left : 60px;
+}
+
+.countryIcon {
+  left: 0px;
+  position: absolute;
 }
 
 .page-content {

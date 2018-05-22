@@ -2,6 +2,7 @@ Vue.use(VueI18n)
 
 const messages = {
   en: {
+    world: 'World',
     africa: 'Africa',
     asia: 'Asia',
     oceania: 'Oceania',
@@ -10,6 +11,7 @@ const messages = {
     north_america: 'North America'
   },
   de: {
+    world: 'Welt',
     africa: 'Afrika',
     asia: 'Asien',
     oceania: 'Ozeanien',
