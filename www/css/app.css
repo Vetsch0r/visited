@@ -6,22 +6,26 @@ body, html{
 .header{
   width: 100%;
   height: 40%;
+  position: fixed;
 }
 
-.mapTitle{
+.navbar {
+  height : 17%;
+  background: #32B2E2;
+}
+
+.title{
   margin:0 auto;
   font-weight: bold;
 }
 
 .jvectormap-container {
-  top: 5%;
-  height: 35%;
+  height: 100%;
 }
 
 .map {
-  height:100%;
+  height:83%;
   width: 100%;
-  position: fixed;
 }
 
 #content{
@@ -29,29 +33,70 @@ body, html{
   width: 100%;
   overflow-y: scroll;
   height: 65%;
+  background-color:white;
+}
+
+.mainPage{
+  top: 40%;
 }
 
 .jvectormap-zoomin, .jvectormap-zoomout{
   display:none;
 }
 
-.countryIcon{
-  float: left;
-  padding-top: 5px;
+.continent>.item-link{
+  background-color: #efeff4;
+}
+
+.countBubble{
+  border-radius: 15px;
+  background-color: white;
+  width: 60px;
+  height: 25px;
+  border: 1px solid black;
+  font-size: 10pt;
+}
+
+.countryDetailTable{
+  display: table;         
+  width: 100%;                
+}
+
+.countryDetailRow{
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+
+.countryDetailColumn{
+  float: left; 
+  display: table-column;              
+}
+
+.countryDetailIcon{
+  width: 12%;
+}
+
+.countryIcon {
+  padding-top:3px;
+}
+
+.countryDetailName{
+  width:68%;
+}
+
+.countryName{
+  top: 17px;
+  position: absolute;
   padding-left: 10px;
+}
+
+.countryDetailVisited{
+  width:20%;
 }
 
 .visitedIcon {
   color: green;
-}
-
-.countryItem .item-title {
-  padding-left : 60px;
-}
-
-.countryIcon {
-  left: 0px;
-  position: absolute;
 }
 
 .page-content {
