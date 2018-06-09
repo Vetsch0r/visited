@@ -33,10 +33,10 @@
             <f7-nav-left>
               <f7-link icon="icon-bars" open-panel="left"></f7-link>
             </f7-nav-left>
-            <span class="title"></span>
           </f7-navbar>
-          <jvectormap :map-name="currentMap.mapName" :visited="visited" :wanted="wanted"></jvectormap>
+          <img src="img/header.png" class="logo"/>
         </div>
+        <jvectormap :map-name="currentMap.mapName" :visited="visited" :wanted="wanted"></jvectormap>
 
         <!-- Pages -->
         <f7-pages class="mainPage">
@@ -58,7 +58,10 @@
                                 <span class="countryName">{{country.name}}</span>
                               </div>  
                               <div  class="countryDetailColumn countryDetailVisited">
-                                <i class="far fa-star"></i>
+                                <i class="far fa-check-circle fa-2x icon"></i>
+                              </div>
+                              <div  class="countryDetailColumn countryDetailWanted">
+                                <i class="far fa-eye fa-2x icon"></i>
                               </div>
                             </div>
                           </div>
