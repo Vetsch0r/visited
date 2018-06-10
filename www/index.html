@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
   <title>My App</title>
-  
+
   <script src="js/lib/jquery-2.1.1.min.js"></script>
   <script src="js/lib/jquery-jvectormap-2.0.3.min.js"></script>
   <script src="js/lib/jquery-jvectormap-world-mill.js"></script>
@@ -19,10 +19,10 @@
   <link rel="stylesheet" href="css/framework7.material.min.css">
   <link rel="stylesheet" href="css/framework7.material.colors.min.css">
   <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="css/fontawesome-all.css">
 </head>
-  <body>
+
+<body>
   <div id="app">
     <!-- Main Views -->
     <f7-views>
@@ -34,7 +34,7 @@
               <f7-link icon="icon-bars" open-panel="left"></f7-link>
             </f7-nav-left>
           </f7-navbar>
-          <img src="img/header.png" class="logo"/>
+          <img src="img/header.png" class="logo" />
         </div>
         <jvectormap :map-name="currentMap.mapName" :visited="visited" :wanted="wanted"></jvectormap>
 
@@ -44,23 +44,24 @@
             <div id="content">
               <f7-list accordion>
                 <template v-for="(value, key) in continents">
-                  <f7-list-item class="continent" :id="key" :title="$t(key)" @accordion:open.prevent="changeMap(value)" @accordion:close="changeMap(world)" accordion-item>
-     
+                  <f7-list-item class="continent" :id="key" :title="$t(key)" @accordion:open.prevent="changeMap(value)" @accordion:close="changeMap(world)"
+                    accordion-item>
+
                     <f7-accordion-content>
                       <template v-for="country in value.countries">
                         <f7-list-item class="countryItem">
-                          <div class="countryDetailTable">
-                            <div class="countryDetailRow">
-                              <div class="countryDetailColumn countryDetailIcon" align="center">
-                                <img class="countryIcon" :src="'img/' + country.code + '.png'"/>
+                          <div class="countryTable">
+                            <div class="countryTableRow">
+                              <div class="countryTableCell countryDetailIcon">
+                                <img class="countryIcon" :src="'img/' + country.code + '.png'" />
                               </div>
-                              <div  class="countryDetailColumn countryDetailName">
-                                <span class="countryName">{{country.name}}</span>
-                              </div>  
-                              <div  class="countryDetailColumn countryDetailVisited">
+                              <div class="countryTableCell countryDetailName">
+                                <div class="countryName">{{country.name}}</div>
+                              </div>
+                              <div class="countryTableCell countryDetailVisited">
                                 <i class="far fa-check-circle fa-2x icon"></i>
                               </div>
-                              <div  class="countryDetailColumn countryDetailWanted">
+                              <div class="countryTableCell countryDetailWanted">
                                 <i class="far fa-eye fa-2x icon"></i>
                               </div>
                             </div>
@@ -83,7 +84,7 @@
         <f7-navbar title="Settings" sliding></f7-navbar>
         <f7-pages>
           <f7-page>
-            
+
           </f7-page>
         </f7-pages>
       </f7-view>
@@ -100,4 +101,5 @@
 
   <script src="js/app.js"></script>
 </body>
+
 </html>

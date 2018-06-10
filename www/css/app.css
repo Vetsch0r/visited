@@ -82,20 +82,18 @@ body, html{
   color: white;
 }
 
-.countryDetailTable{
+.countryTable{
   display: table;         
   width: 100%;    
 }
 
-.countryDetailRow{
+.countryTableRow{
   display: table-row;
-  width: auto;
-  clear: both;
 }
 
-.countryDetailColumn{
-  float: left; 
-  display: table-column;              
+.countryTableCell {
+  display: table-cell;
+  vertical-align: top;
 }
 
 .countryDetailIcon{
@@ -103,7 +101,7 @@ body, html{
 }
 
 .countryIcon {
-  padding-top:3px;
+  padding-top:4px;
 }
 
 .countryDetailName{
@@ -111,7 +109,8 @@ body, html{
 }
 
 .countryName{
-  padding-left: 10px;
+  padding-left: 4px;
+  padding-top: 10px;
 }
 
 .countryDetailVisited, .countryDetailWanted{
